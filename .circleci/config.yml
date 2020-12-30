@@ -14,7 +14,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Install & lint & test
+          name: Install tools & lint & test
           command: |
             sudo npm install -g firebase-tools;
             sudo npm install -g @angular/cli > /dev/null;
