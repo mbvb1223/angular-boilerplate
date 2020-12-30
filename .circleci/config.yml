@@ -18,7 +18,6 @@ jobs:
           command: |
             sudo npm install -g firebase-tools
             sudo npm install -g @angular/cli@latest
-            cd functions; npm install; cd ..
             ng lint
             ng test --code-coverage
       - run:
