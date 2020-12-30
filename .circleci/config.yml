@@ -15,13 +15,11 @@ jobs:
             - node_modules
       - run:
           name: Install & lint & test
-          environment:
-            NG_CLI_ANALYTICS: "false"
           command: |
             sudo npm install -g firebase-tools;
             sudo npm install -g @angular/cli > /dev/null;
-#            ng lint;
-#            ng test --code-coverage;
+            ng lint;
+            ng test --code-coverage;
       - run:
           name: Prepare for deployment
           command: |
