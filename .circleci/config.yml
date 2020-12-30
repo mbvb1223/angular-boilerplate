@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Prepare for deployment
           command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ];
+            if [ "${CIRCLE_BRANCH}" == "add-material" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.feature.ts src/environments/environment.prod.ts;
             ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/; fi
 
