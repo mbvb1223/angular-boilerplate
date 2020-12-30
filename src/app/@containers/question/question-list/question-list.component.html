@@ -1,6 +1,15 @@
 
-<h1>asdfasdf</h1>
+<h1>Do you want to love me?</h1>
 
-<li *ngFor="let user of tests; index as i; first as isFirst">
-  {{i}}/{{tests.length}}. {{user}} <span *ngIf="isFirst">default</span>
-</li>
+<div class="grid grid-cols-2 gap-2">
+  <div *ngFor="let question of questions; index as i; first as isFirst" >
+    <mat-card class="m-2" (click)="validAnswer(i)">
+      <mat-card-title>sssssssssssssssssss</mat-card-title>
+      <mat-card-content>sdfasdf as</mat-card-content>
+    </mat-card>
+  </div>
+
+  <button mat-raised-button color="primary" *ngIf="isValid">{{ answerMessage}}</button>
+</div>
+
+

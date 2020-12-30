@@ -19,6 +19,12 @@ const routes: Routes = [
       import('@containers/question/question.module').then((m) => m.QuestionModule),
   },
 
+  {
+    path: Path.Test,
+    loadChildren: () =>
+      import('@containers/test/test.module').then((m) => m.TestModule),
+  },
+
   // Auth
   {
     path: Path.Auth,
