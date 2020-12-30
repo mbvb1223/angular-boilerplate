@@ -19,7 +19,7 @@ jobs:
             NG_CLI_ANALYTICS: "ci"
           command: |
             sudo npm install -g firebase-tools;
-#            sudo npm install -g @angular/cli@latest;
+            sudo npm install -g @angular/cli@latest;
 #            ng lint;
 #            ng test --code-coverage;
       - run:
