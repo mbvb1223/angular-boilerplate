@@ -29,13 +29,10 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/sitemap.xml",
-              "src/robots.txt",
-              "src/_redirects"
+              "src/public"
             ],
             "styles": [
-              "src/assets/css/styles.scss"
+              "src/css/styles.scss"
             ],
             "scripts": []
           },
@@ -71,13 +68,19 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "es": {
-              "localize": ["es"]
+              "localize": [
+                "es"
+              ]
             },
             "fr": {
-              "localize": ["fr"]
+              "localize": [
+                "fr"
+              ]
             },
             "ja": {
-              "localize": ["ja"]
+              "localize": [
+                "ja"
+              ]
             }
           }
         },
@@ -94,12 +97,13 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/public/favicon.ico",
+              "src/public/assets",
+              "src/public/icons",
+              "src/public/manifest.webmanifest"
             ],
             "styles": [
-              "src/assets/css/styles.scss"
+              "src/css/styles.scss"
             ],
             "scripts": []
           },
@@ -138,26 +142,23 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/public/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/public/icons",
+              "src/public/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/css/styles.scss"
             ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },

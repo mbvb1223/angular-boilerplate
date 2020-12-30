@@ -1,95 +1,76 @@
 # Angular Boilerplate
 
-Angular starter for large front-end projects built under a clean architecture that helps to scale and maintain a fast workflow.
+Angular starter for enterprise-grade front-end projects built under a clean architecture that helps to scale and maintain a fast workflow.
 
 ## Main features
 
-- Angular components types (e.g. component, page).
-- Smart and dumb components pattern.
 - Lazy loading.
-- Lazy loading - preload strategies.
-- with dynamic titles and content meta tags.
+- Smart and dumb components pattern.
+- Components types (e.g. component, page).
+- Dynamic titles and content meta tags.
 - Global error handler.
 - Generic type-safe HTTP service.
 - Generic partial UI modules.
 - Scalable CSS architecture with [ITCSS](https://itcss.io/).
-- [Webpack bundler analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) ready to use.
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse) reports improved to the maximum.
-- Authentication scheme based on roles, JWT interceptor, role guard, auth guard, and no-auth guard.
-- PWA (Progressive web app).
-- Offline first
-- i18n - four sample languages (english, spanish, french, japanese).
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse) reports improved.
+- Authentication based on roles.
+- PWA.
+- i18n
 - SEO good practices.
-- Code quality and best practices on each language.
 
 ### Project structure
 
 ```
-📁---app
-  📁---@core
-    📁---enums
-    📁---guards
-    📁---handlers
-    📁---interceptors
-    📁---interfaces
-    📁---services
-    🟥---core.module.ts
-
-  📁---@ui
-    📁---layout
-      📁---components
-        📁---footer
-        📁---navbar
-    🟥---layout.module.ts
-
-    ➕---additional UI modules
-
-  📁---features
-    📁---_auth
-      📁---components
-      📁---pages
-      📁---shared
-      🟥---auth-routing.module.ts
-      🟥---auth.module.ts
-
-    📁---dashboard
-      📁---components
-      📁---pages
-      📁---shared
-      🟥---dashboard-routing.module.ts
-      🟥---dashboard.module.ts
-
-    ➕---additional feature modules
-
-  📁---public
-    📁---pages
-      📁---home
-      📁---internal-server-error
-      📁---not-found
-      ➕---additional public components
-    🟥---public-routing.module.ts
-    🟥---public.module.ts
-
-📁---assets
-  📁---animations
-  📁---icons
-  📁---css
-    📁---01-settings
-    📁---02-tools
-    📁---04-elements
-    📁---05-objects
-    📁---06-components
-    📁---07-trumps
-    🗄️---styles.scss
-  ➕---additional assets
-
-📁---environments
-  🗄️---environment.prod.ts
-  🗄️---environment.ts
-  ➕---additional environments
+└───src
+    ├───app
+│   ├───+auth
+│   │   └───pages
+│   │       ├───forgot-password
+│   │       ├───forgot-password-email-sent
+│   │       ├───password-reset
+│   │       ├───password-reset-failed
+│   │       ├───password-reset-succeeded
+│   │       ├───sign-in
+│   │       └───sign-up
+│   ├───+settings
+│   │   └───pages
+│   ├───+user
+│   │   └───pages
+│   ├───@components
+│   │   ├───breadcrumb
+│   │   ├───footer
+│   │   └───header
+│   ├───@containers
+│   │   ├───home
+│   │   └───not-found
+│   ├───@core
+│   │   ├───directives
+│   │   │   └───click-outside
+│   │   ├───guards
+│   │   ├───interceptors
+│   │   ├───pipes
+│   │   │   └───bytes
+│   │   ├───services
+│   │   │   └───seo
+│   │   ├───structs
+│   │   └───utils
+│   └───features
+├───assets
+├───css
+│   ├───01-settings
+│   ├───02-tools
+│   ├───03-generic
+│   ├───04-elements
+│   ├───05-objects
+│   ├───06-components
+│   └───07-trumps
+├───environments
+├───locale
+└───public
+    └───icons
 ```
 
-## Current page speed insights (Will be improved)
+## Current page speed insights
 
 ### Mobile
 
