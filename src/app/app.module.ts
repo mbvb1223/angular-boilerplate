@@ -11,6 +11,8 @@ import { JwtInterceptor, ServerErrorInterceptor } from './@core/interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     HeaderModule,
     FooterModule,
     NgxWebstorageModule.forRoot(),
+    SocialLoginModule
   ],
   providers: [
     {
@@ -33,6 +36,24 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '686645448062-bqnisflu0a358ameteqc63ah09uc08fu.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent],
 })

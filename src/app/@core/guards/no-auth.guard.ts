@@ -23,7 +23,7 @@ export class NoAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const isLoggedIn = true;
+    const isLoggedIn = false;
 
     if (isLoggedIn) {
       this.router.navigate([Path.App, Path.Dashboard]);
