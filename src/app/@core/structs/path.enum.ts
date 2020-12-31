@@ -19,7 +19,7 @@ export enum Path {
 
   // Features
   Dashboard = 'dashboard',
-  Question = 'question',
-  Test = 'test'
+  Question = 'tests/:id/questions',
+  Test = 'tests'
 
 }

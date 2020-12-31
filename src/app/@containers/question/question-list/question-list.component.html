@@ -1,15 +1,28 @@
+<div class="grid grid-cols-1 gap-1">
+  <div *ngFor="let questions of questionGroups; index as i; first as isFirst">
+      <div *ngIf="i + 1 == part">
+        <div *ngFor="let question of questions; index as i; first as isFirst">
 
-<h1>Do you want to love me?</h1>
+          <h1>Do you want to love me? {{ question }}</h1>
+          <div class="grid grid-cols-2 gap-4">
+            <div *ngFor="let options of [1,2,3,4]; index as optionId; first as isFirst">
+              <mat-card class="m-2" (click)="validAnswer(optionId)">
+                <mat-card-content>
+                  <span><mat-checkbox class="example-margin">Check me!</mat-checkbox></span>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
 
-<div class="grid grid-cols-2 gap-2">
-  <div *ngFor="let question of questions; index as i; first as isFirst" >
-    <mat-card class="m-2" (click)="validAnswer(i)">
-      <mat-card-title>sssssssssssssssssss</mat-card-title>
-      <mat-card-content>sdfasdf as</mat-card-content>
-    </mat-card>
+          <button mat-raised-button color="primary" *ngIf="isValid">{{ answerMessage}}</button>
+
+        </div>
+
+        <div>-------------------------------</div>
+        <a mat-raised-button color="accent" [routerLink]="[]" [queryParams]="{ part: part - 1 }">Previous</a>
+        <a mat-raised-button color="primary" [routerLink]="[]" [queryParams]="{ part: part + 1 }">Next</a>
+      </div>
   </div>
-
-  <button mat-raised-button color="primary" *ngIf="isValid">{{ answerMessage}}</button>
 </div>
 
 
