@@ -11,17 +11,20 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   questions: Array<number>;
   questionGroups: Array<Array<number>>;
   part: number;
-  @LocalStorage()
   answeredList: any;
   correctAnsweredList: any = [];
+
+  localStorageKey = 'answered_';
 
   constructor(
     private route: ActivatedRoute,
     private localSt: LocalStorageService
   ) {
-    if (!this.answeredList) {
-      this.answeredList = [];
-    }
+
+    this.localStorageKey += this.route.snapshot.paramMap.get('id');
+    this.answeredList = this.localSt.retrieve(this.localStorageKey) || [];
+
+    console.log(this.answeredList);
   }
 
   ngOnInit(): void {
@@ -35,9 +38,6 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     this.route.queryParams.subscribe(params => {
       this.part = parseInt(params['part']) || 1;
     });
-
-    this.localSt.observe('answeredList')
-      .subscribe((value) => console.log('new value', value));
   }
 
   ngOnDestroy(): void {
@@ -49,7 +49,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   answer(questionId, value) {
     this.answeredList[questionId] = value;
-    this.answeredList = this.answeredList;
+    this.localSt.store(this.localStorageKey, this.answeredList);
   }
 
   isSelectedAnswer(questionId, value) {
