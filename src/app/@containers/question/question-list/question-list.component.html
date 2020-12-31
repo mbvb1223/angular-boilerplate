@@ -8,17 +8,20 @@
             <div *ngFor="let options of [1,2,3,4]; index as optionId; first as isFirst">
               <mat-card class="m-2">
                 <mat-card-content>
-                  <mat-checkbox (click)="answer(question, options)" class="example-margin">Check asdf asdf asdf sdf asdf sdf sdme!</mat-checkbox>
+                  <mat-checkbox (change)="answer(question, options)" [checked]="isSelectedAnswer(question, options)" class="example-margin">Check asdf asdf asdf sdf asdf sdf sdme!</mat-checkbox>
                 </mat-card-content>
               </mat-card>
             </div>
           </div>
 
-          <button mat-raised-button color="{{ isCorrectAnswer(question) ? 'primary' : 'accent' }}" *ngIf="isAnswered(question)">asdfa sdf asdf</button>
+          <button mat-raised-button
+                  color="{{ isCorrectAnswer(question) ? 'primary' : 'accent' }}"
+                  *ngIf="isAnswered(question)">
+            asdfa sdf asdf
+          </button>
 
         </div>
 
-        <div>-------------------------------</div>
         <a mat-raised-button color="accent" [routerLink]="[]" [queryParams]="{ part: part - 1 }">Previous</a>
         <a mat-raised-button color="primary" [routerLink]="[]" [queryParams]="{ part: part + 1 }">Next</a>
       </div>
