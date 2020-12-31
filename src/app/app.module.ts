@@ -10,6 +10,7 @@ import { environment } from '@environments/environment';
 import { JwtInterceptor, ServerErrorInterceptor } from './@core/interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { AppComponent } from './app.component';
     }),
     HeaderModule,
     FooterModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     {

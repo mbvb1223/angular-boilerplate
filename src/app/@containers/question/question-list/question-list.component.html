@@ -1,20 +1,20 @@
-<div class="grid grid-cols-1 gap-1">
+<div class="grid grid-cols-1 gap-1" style="width: 800px; margin:auto">
   <div *ngFor="let questions of questionGroups; index as i; first as isFirst">
       <div *ngIf="i + 1 == part">
         <div *ngFor="let question of questions; index as i; first as isFirst">
 
           <h1>Do you want to love me? {{ question }}</h1>
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 gap-4" [ngClass]="{'singleClass' : isAnswered(question)}">
             <div *ngFor="let options of [1,2,3,4]; index as optionId; first as isFirst">
-              <mat-card class="m-2" (click)="validAnswer(optionId)">
+              <mat-card class="m-2">
                 <mat-card-content>
-                  <span><mat-checkbox class="example-margin">Check me!</mat-checkbox></span>
+                  <mat-checkbox (click)="answer(question, options)"  class="example-margin">Check asdf asdf asdf sdf asdf sdf sdme!</mat-checkbox>
                 </mat-card-content>
               </mat-card>
             </div>
           </div>
 
-          <button mat-raised-button color="primary" *ngIf="isValid">{{ answerMessage}}</button>
+          <button mat-raised-button color="{{ isCorrectAnswer(question) ? 'primary' : 'accent' }}" *ngIf="isAnswered(question)">asdfa sdf asdf</button>
 
         </div>
 
