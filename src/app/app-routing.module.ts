@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard, NoAuthGuard } from './@core/guards';
-import { Path } from './@core/structs';
+import { Path } from '@core/structs';
 
 const routes: Routes = [
   // ===== Uncomment if Path.Home is different from empty =====

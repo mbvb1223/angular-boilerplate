@@ -3,23 +3,12 @@
       <div *ngIf="i + 1 == part">
         <div *ngFor="let question of questions; index as i; first as isFirst">
 
-          <h1>Do you want to love me? {{ question }}</h1>
-          <div class="grid grid-cols-2 gap-4" [ngClass]="{'singleClass' : isAnswered(question)}">
-            <div *ngFor="let options of [1,2,3,4]; index as optionId; first as isFirst">
-              <mat-card class="m-2">
-                <mat-card-content>
-                  <mat-checkbox (change)="answer(question, options)" [(ngModel)]="true" class="example-margin">Check asdf asdf asdf sdf asdf sdf sdme!</mat-checkbox>
-                </mat-card-content>
-              </mat-card>
-            </div>
-          </div>
-
-          <button mat-raised-button
-                  color="{{ isCorrectAnswer(question) ? 'primary' : 'accent' }}"
-                  *ngIf="isAnswered(question)">
-            {{ isCorrectAnswer(question) ? 'OKAY' : 'WRONG' }}
-          </button>
-
+          <app-question-item
+            [question]="question"
+            [correctAnswerId]="2"
+            [selectedValue]="getSelectedByQuestionId(question)"
+            (newItemEvent) = saveAnswer($event)
+          ></app-question-item>
         </div>
 
         <a mat-raised-button color="accent" [routerLink]="[]" [queryParams]="{ part: part - 1 }">Previous</a>

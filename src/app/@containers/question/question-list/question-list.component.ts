@@ -28,7 +28,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.questions = [1,2,3,4,5,6,7,8,9,10];
+    // this.questions = [1,2,3,4,5,6,7,8,9,10];
+    this.questions = [1];
     this.questionGroups = chunk(this.questions, 5);
     this.correctAnsweredList[1] = 2;
     this.correctAnsweredList[2] = 3;
@@ -43,21 +44,12 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  isCorrectAnswer(questionId): boolean {
-    return this.isAnswered(questionId) && this.correctAnsweredList[questionId] == this.answeredList[questionId];
-  }
-
-  answer(questionId, value) {
-    this.answeredList[questionId] = value;
+  saveAnswer(value) {
+    this.answeredList[1] = value;
     this.localSt.store(this.localStorageKey, this.answeredList);
   }
 
-  isSelectedAnswer(questionId, value) {
-    console.log(questionId, value, 'isSelectedAnswer')
-    return this.isAnswered(questionId) && this.answeredList[questionId] == value;
-  }
-
-  isAnswered(questionId) {
-    return this.answeredList && !!this.answeredList.hasOwnProperty(questionId);
+  getSelectedByQuestionId(questionId) {
+    return this.answeredList[questionId];
   }
 }

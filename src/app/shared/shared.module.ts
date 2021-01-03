@@ -17,10 +17,12 @@ import { SearchComponent } from './search/search.component';
     MaterialConfigurationModule
   ],
   exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SearchComponent,
     LoadingScreenComponent,
-    MaterialConfigurationModule,
-    CommonModule
+    MaterialConfigurationModule
   ]
 })
 export class SharedModule {
