@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FooterModule } from '@components/footer/footer.module';
 import { HeaderModule } from '@components/header/header.module';
@@ -27,7 +28,9 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
     HeaderModule,
     FooterModule,
     NgxWebstorageModule.forRoot(),
-    SocialLoginModule
+    SocialLoginModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

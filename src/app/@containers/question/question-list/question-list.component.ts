@@ -53,6 +53,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   isSelectedAnswer(questionId, value) {
+    console.log(questionId, value, 'isSelectedAnswer')
     return this.isAnswered(questionId) && this.answeredList[questionId] == value;
   }
 
