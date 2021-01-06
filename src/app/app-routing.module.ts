@@ -13,6 +13,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('@containers/home/home.module').then((m) => m.HomeModule),
   },
+
+  {
+    path: Path.Contest,
+    loadChildren: () =>
+      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+  },
+
   {
     path: Path.Question,
     loadChildren: () =>
