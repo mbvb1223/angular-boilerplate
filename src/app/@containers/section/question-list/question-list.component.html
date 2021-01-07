@@ -1,7 +1,5 @@
 <div class="grid grid-cols-1 gap-1" style="width: 800px; margin:auto">
-  <div *ngFor="let question of questions; index as i; first as isFirst">
-    <app-question-item
-      [question]="question"
-    ></app-question-item>
-  </div>
+  <app-question-item *ngFor="let question of questions; index as i; first as isFirst"
+    [question]="question"
+  ></app-question-item>
 </div>

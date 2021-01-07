@@ -9,7 +9,6 @@ import { QuestionModel } from '@core/models/question.model';
 })
 export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
-  @Input() localStorageKey: any;
   @Input() selectedValue: any;
   @Output() newItemEvent = new EventEmitter<string>();
 
@@ -37,9 +36,5 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   isSelectedAnswer(value) {
     console.log('isSelectedAnswer');
     return this.selectedValue == value;
-  }
-
-  isAnswered() {
-    return this.selectedValue;
   }
 }
