@@ -28,8 +28,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.questions = [1,2,3,4,5,6,7,8,9,10];
-    this.questions = [1];
+    this.questions = [1,2,3,4,5,6,7,8,9,10];
+    // this.questions = [1];
     this.questionGroups = chunk(this.questions, 5);
     this.correctAnsweredList[1] = 2;
     this.correctAnsweredList[2] = 3;

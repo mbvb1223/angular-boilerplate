@@ -1,22 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ContestService } from '@core/services/contest.service';
+import { ContestModel } from '@core/models/contest.model';
 
 @Component({
   templateUrl: './contest-list.component.html',
   styleUrls: []
 })
 export class ContestListComponent implements OnInit, OnDestroy {
-  tests: Array<number>;
+  contests: Array<ContestModel>;
 
   constructor(
     private contestService: ContestService
   ) {
-    this.tests = [1,2,3,4,5];
-    this.contestService.getA().subscribe((data) => console.log(data));
+
   }
 
   ngOnInit(): void {
-    this.tests = [1,2,3,4,5]
+    this.contestService.index().subscribe((contests: Array<ContestModel>) => {
+      this.contests = contests
+    });
   }
 
   ngOnDestroy(): void {

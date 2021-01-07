@@ -21,16 +21,28 @@ const routes: Routes = [
   },
 
   {
-    path: Path.Question,
+    path: Path.Subject,
     loadChildren: () =>
-      import('@containers/question/question.module').then((m) => m.QuestionModule),
+      import('@containers/subject/subject.module').then((m) => m.SubjectModule),
   },
 
   {
-    path: Path.Test,
+    path: Path.Section,
     loadChildren: () =>
-      import('@containers/test/test.module').then((m) => m.TestModule),
+      import('@containers/section/section.module').then((m) => m.SectionModule),
   },
+
+  // {
+  //   path: Path.Question,
+  //   loadChildren: () =>
+  //     import('@containers/question/question.module').then((m) => m.QuestionModule),
+  // },
+
+  // {
+  //   path: Path.Test,
+  //   loadChildren: () =>
+  //     import('@containers/test/test.module').then((m) => m.TestModule),
+  // },
 
   // Auth
   {

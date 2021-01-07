@@ -21,5 +21,7 @@ export enum Path {
   Dashboard = 'dashboard',
   Question = 'tests/:id/questions',
   Test = 'tests',
-  Contest = 'contests'
+  Contest = 'contests',
+  Subject = 'subjects',
+  Section = 'sections'
 }

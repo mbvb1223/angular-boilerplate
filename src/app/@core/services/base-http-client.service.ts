@@ -15,7 +15,26 @@ export abstract class BaseHttpClientService {
 
   abstract getEntityPath(): string;
 
-  get(isLoading: boolean = true, options?: {
+  index(isLoading: boolean = true, options?: {
+    headers?: HttpHeaders | {
+      [header: string]: string | string[];
+    };
+    observe?: 'body';
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    };
+    reportProgress?: boolean;
+    responseType?: 'json';
+    withCredentials?: boolean;
+  }) {
+    if (!isLoading) {
+      options = merge(options, { params: { noLoading: 'active' } });
+    }
+
+    return this.httpClient.get(this.getUrl(), options);
+  }
+
+  get(url: string, isLoading: boolean = true, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
@@ -31,7 +50,7 @@ export abstract class BaseHttpClientService {
       options = merge(options, { params: { noLoading: 'active' } });
     }
 
-    return this.httpClient.get(this.getUrl(), options);
+    return this.httpClient.get(url, options);
   }
 
   post(body: any | null, isLoading: boolean = true, options?: {

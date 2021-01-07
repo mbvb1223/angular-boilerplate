@@ -1,0 +1,7 @@
+<div *ngFor="let section of sections; index as i; first as isFirst">
+  <mat-card class="m-2" routerLink="/sections/{{ section.id }}/questions">
+    <mat-card-title>{{ section.title }}</mat-card-title>
+    <mat-card-content>{{ section.description}}</mat-card-content>
+  </mat-card>
+</div>
+
