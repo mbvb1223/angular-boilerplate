@@ -4,6 +4,7 @@ import { Path } from '@core/structs';
 
 import { SocialAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import { AuthBackendService } from '@core/services/auth-backend.service';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -15,7 +16,8 @@ export class SignInPage implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private authBackendService: AuthBackendService
   ) {
     // this.returnUrl =
     //   this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
@@ -24,7 +26,8 @@ export class SignInPage implements OnInit {
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
-      console.log('user__', user)
+      console.log('user_', user)
+      this.authBackendService.google(user.authToken).subscribe((data) => console.log(data));
     });
   }
 

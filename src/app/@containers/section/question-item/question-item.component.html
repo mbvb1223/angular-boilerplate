@@ -1,10 +1,13 @@
+<form [formGroup]="form">
 <h1>{{ question.title }}</h1>
 <div class="grid grid-cols-2 gap-4" [ngClass]="{'singleClass' : selectedValue}">
   <mat-card class="m-2" *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst">
     <mat-card-content>
-      <mat-checkbox (change)="answer(optionId + 1)"
-                    [checked]="isSelectedAnswer(optionId + 1)"
-                    class="example-margin">
+      <mat-checkbox
+          (change)="answer($event)"
+          [value]="(optionId + 1)"
+          formControlName="{{ 'answer_' + (optionId + 1) }}"
+        class="example-margin">
         {{ answerTitle }}
       </mat-checkbox>
     </mat-card-content>
@@ -16,3 +19,4 @@
         *ngIf="!!selectedValue">
   {{ isCorrectAnswer() ? 'OKAY' : 'WRONG' }}
 </button>
+</form>

@@ -53,7 +53,7 @@ export abstract class BaseHttpClientService {
     return this.httpClient.get(url, options);
   }
 
-  post(body: any | null, isLoading: boolean = true, options?: {
+  post(url: string, body: any | null, isLoading: boolean = true, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
@@ -69,7 +69,7 @@ export abstract class BaseHttpClientService {
       options = merge(options, { params: { noLoading: 'active' } });
     }
 
-    return this.httpClient.post(this.getUrl(), body, options);
+    return this.httpClient.post(url, body, options);
   }
 
   delete(isLoading: boolean = true, options?: {
