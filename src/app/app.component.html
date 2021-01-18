@@ -1,6 +1,8 @@
 <ng-container *ngIf="isLoggedIn$ | async; else notAuthorized">
   <app-header></app-header>
-  <router-outlet></router-outlet>
+  <div style="margin: 70px">
+    <router-outlet></router-outlet>
+  </div>
   <app-footer></app-footer>
 </ng-container>
 
