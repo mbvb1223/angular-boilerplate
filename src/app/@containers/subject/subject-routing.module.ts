@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SectionListComponent } from '@containers/subject/section-list/section-list.component';
+import { SubjectDetailComponent } from '@containers/subject/subject-detail/subject-detail.component';
 
 const routes: Routes = [
   {
-    path: ':id/sections',
-    component: SectionListComponent
+    path: ':id',
+    component: SubjectDetailComponent
   },
 ];
 

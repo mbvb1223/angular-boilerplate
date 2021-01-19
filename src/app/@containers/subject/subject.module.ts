@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { SubjectRoutingModule } from './subject-routing.module';
-import { SectionListComponent } from '@containers/subject/section-list/section-list.component';
+import { SubjectDetailComponent } from '@containers/subject/subject-detail/subject-detail.component';
 
 @NgModule({
-  declarations: [SectionListComponent],
+  declarations: [SubjectDetailComponent],
   imports: [SharedModule, SubjectRoutingModule],
 })
 export class SubjectModule {}

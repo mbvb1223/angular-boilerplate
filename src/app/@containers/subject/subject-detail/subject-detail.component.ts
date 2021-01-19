@@ -5,10 +5,10 @@ import { SectionModel } from '@core/models/section.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './section-list.component.html',
+  templateUrl: './subject-detail.component.html',
   styleUrls: []
 })
-export class SectionListComponent implements OnInit, OnDestroy {
+export class SubjectDetailComponent implements OnInit, OnDestroy {
   sections: Array<SectionModel>;
   subjectId: number;
 
