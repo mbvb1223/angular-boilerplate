@@ -1,7 +1,19 @@
-<div *ngFor="let subject of subjects; index as i; first as isFirst">
-  <mat-card class="m-2" routerLink="/subjects/{{ subject.id }}/sections">
-    <mat-card-title>{{ subject.title }}</mat-card-title>
-    <mat-card-content>{{ subject.description}}</mat-card-content>
-  </mat-card>
+<div class="row row-space">
+  <div *ngFor="let subject of subjects; index as i; first as isFirst" class="col-lg-4 col-md-6 col-sm-6">
+    <div class="card card-stats" routerLink="/subjects/{{ subject.id }}/sections">
+      <div class="card-header" data-background-color="orange">
+        <i class="material-icons">weekend</i>
+      </div>
+      <div class="card-content">
+        <p class="category">{{ subject.title }}</p>
+        <h3 class="card-title">{{ subject.description }}</h3>
+      </div>
+      <div class="card-footer">
+        <div class="stats">
+          <i class="material-icons text-danger">warning</i>
+          <a href="#pablo">Get More Space...</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
