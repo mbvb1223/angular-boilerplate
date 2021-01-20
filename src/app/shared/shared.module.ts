@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     MaterialConfigurationModule
   ],

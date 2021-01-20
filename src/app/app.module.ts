@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { LoadingScreenInterceptor } from '@core/interceptors/loading.interceptor';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,13 +32,19 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
     NgxWebstorageModule.forRoot(),
     SocialLoginModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,
       multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingScreenInterceptor,
+      multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {

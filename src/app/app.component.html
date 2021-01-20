@@ -13,3 +13,7 @@
 <ng-template #notAuthorized>
   <router-outlet></router-outlet>
 </ng-template>
+
+<app-loading-screen
+  [ngClass]="loadingScreenComponent.isLoading ? 'app__main-spinner' : ''" #appMainSpinner
+></app-loading-screen>

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import {LoadingScreenService} from '@app/shared/loading-screen/loading-screen.service';
+
+import { LoadingScreenService } from '@core/services/loading-screen.service';
 
 @Component({
   selector: 'app-loading-screen',

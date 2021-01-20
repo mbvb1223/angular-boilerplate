@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { SeoService } from './@core/services/seo';
-import { Path } from './@core/structs';
+import { SeoService } from '@core/services/seo';
+import { Path } from '@core/structs';
+import { LoadingScreenComponent } from '@app/shared/loading-screen/loading-screen.component';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { Path } from './@core/structs';
 })
 export class AppComponent implements OnInit {
   isLoggedIn$ = new BehaviorSubject<boolean>(true);
+  @ViewChild('appMainSpinner', { static: true }) loadingScreenComponent: LoadingScreenComponent;
 
   constructor(private router: Router, private seoService: SeoService) {}
 
