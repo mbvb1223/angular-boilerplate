@@ -12,10 +12,9 @@ import { each } from 'lodash';
 })
 export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
+  @Input() questionNumber: QuestionModel;
   form: FormGroup;
   selectedValue: any;
-
-  // @Output() newItemEvent = new EventEmitter<string>();
 
   constructor(
     private route: ActivatedRoute,

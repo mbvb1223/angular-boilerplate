@@ -36,6 +36,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   public handlePage(event: any) {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+
     this.sectionService
       .paginateQuestions(this.sectionId, (event.pageIndex + 1), this.pageSize)
       .subscribe((questionCollection: ICollection) => {

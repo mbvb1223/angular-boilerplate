@@ -7,4 +7,5 @@ export class QuestionModel extends BaseModel {
   answer_3: string;
   answer_4: string;
   correct_answer: number;
+  description: string;
 }

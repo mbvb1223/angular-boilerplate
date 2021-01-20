@@ -1,5 +1,5 @@
 <div class="row row-space">
-  <div *ngFor="let subject of subjects; index as i; first as isFirst" class="col-lg-4 col-md-6 col-sm-6">
+  <div *ngFor="let subject of subjects; index as i; first as isFirst" class="col-lg-6 col-md-6 col-sm-12 cursor-pointer">
     <div class="card card-stats" routerLink="/subjects/{{ subject.id }}">
       <div class="card-header" data-background-color="orange">
         <i class="material-icons">weekend</i>

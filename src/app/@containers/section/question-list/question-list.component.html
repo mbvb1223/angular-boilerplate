@@ -1,6 +1,8 @@
-<div class="grid grid-cols-1 gap-1" style="width: 800px; margin:auto">
-  <app-question-item *ngFor="let question of questions; index as i; first as isFirst"
-                     [question]="question"
+<div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
+  <app-question-item
+    *ngFor="let question of questions; index as i; first as isFirst"
+    [question]="question"
+    [questionNumber]="(currentPage * pageSize) + i + 1"
   ></app-question-item>
 </div>
 <mat-paginator
@@ -9,7 +11,6 @@
   [showFirstLastButtons]="true"
   [length]="totalSize"
   [pageIndex]="currentPage"
-  [pageSizeOptions]="[10]"
   [hidePageSize]="true"
   (page)="handlePage($event)">
 </mat-paginator>

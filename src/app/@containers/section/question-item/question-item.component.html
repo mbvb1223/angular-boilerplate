@@ -1,22 +1,41 @@
-<form [formGroup]="form">
-<h1>{{ question.title }}</h1>
-<div class="grid grid-cols-2 gap-4" [ngClass]="{'singleClass' : selectedValue}">
-  <mat-card class="m-2" *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst">
-    <mat-card-content>
-      <mat-checkbox
-          (change)="answer($event)"
-          [value]="(optionId + 1)"
-          formControlName="{{ 'answer_' + (optionId + 1) }}"
-        class="example-margin">
-        {{ answerTitle }}
-      </mat-checkbox>
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-card class="mt-3">
+  <mat-card-title style="background: #ededed; margin: 10px 0; padding: 10px;">
+    {{ questionNumber}}. {{ question.title }}
+  </mat-card-title>
 
-<button mat-raised-button
-        color="{{ isCorrectAnswer() ? 'primary' : 'accent' }}"
-        *ngIf="!!selectedValue">
-  {{ isCorrectAnswer() ? 'OKAY' : 'WRONG' }}
-</button>
-</form>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div class="">
+        <mat-card
+          class="m-2 mat-background-primary mat-primary"
+          *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst"
+          [ngStyle]="(selectedValue && (optionId + 1) === question.correct_answer) ? {'background-color':'#b7c9fb'} : {}"
+        >
+          <mat-card-content>
+            <mat-checkbox
+              (change)="answer($event)"
+              [value]="(optionId + 1)"
+              formControlName="{{ 'answer_' + (optionId + 1) }}"
+              class="example-margin">
+              {{ answerTitle }}
+            </mat-checkbox>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </form>
+
+    <div style="padding: 5px">
+      <div style="margin: 10px 0">
+        <button mat-raised-button
+                color="{{ isCorrectAnswer() ? 'primary' : 'accent' }}"
+                *ngIf="!!selectedValue">
+          {{ isCorrectAnswer() ? "Bạn đã trả lời Đúng!" : "Bạn đã trả lời Sai!" }}
+        </button>
+      </div>
+      <div class="font-bold">
+        {{ selectedValue && question.description ? question.description : "" }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
