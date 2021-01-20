@@ -14,13 +14,16 @@ export class SectionService extends BaseHttpClientService {
     return 'sections';
   }
 
-
-  getQuestions(id: number): Observable<Array<QuestionModel>> {
-    const url = this.getUrl() + `/${id}/questions`;
+  paginateQuestions(id: number, currentPage: number = 1, pageSize: number = 10): Observable<any> {
+    const url = this.getUrl() + `/${id}/questions?page=${currentPage}&page_size=${pageSize}`;
 
     return this.get(url).pipe(
-      map((res: ICollection) => res.data),
-      map(data => data.map(question => new QuestionModel(question)))
+      map((res: ICollection) => {
+         return {
+           meta: res.meta,
+           data: res.data.map(question => new QuestionModel(question))
+         }
+      })
     );
   }
 }
