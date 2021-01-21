@@ -6,4 +6,6 @@ export class ContestModel extends BaseModel {
 
   title: string;
   description: string;
+  price: number;
+  sale_price: number;
 }

@@ -4,7 +4,7 @@ import { ContestModel } from '@core/models/contest.model';
 
 @Component({
   templateUrl: './contest-list.component.html',
-  styleUrls: []
+  styleUrls: ['./contest-list.component.scss']
 })
 export class ContestListComponent implements OnInit, OnDestroy {
   contests: Array<ContestModel>;

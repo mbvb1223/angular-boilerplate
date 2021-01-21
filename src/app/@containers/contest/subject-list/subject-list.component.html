@@ -1,13 +1,25 @@
 <div class="row row-space">
   <div *ngFor="let subject of subjects; index as i; first as isFirst" class="col-lg-6 col-md-6 col-sm-12 cursor-pointer">
-    <div class="card card-stats" routerLink="/subjects/{{ subject.id }}">
-      <div class="card-header" data-background-color="orange">
+    <div class="card card-stats hover-shadow-wrapper" routerLink="/subjects/{{ subject.id }}">
+
+      <div *ngIf="i === 0" class="card-header" data-background-color="orange" data-header-animation="true">
         <i class="material-icons">weekend</i>
       </div>
+      <div *ngIf="i === 1" class="card-header" data-background-color="rose" data-header-animation="true">
+        <i class="material-icons">equalizer</i>
+      </div>
+      <div *ngIf="i === 2" class="card-header" data-background-color="green" data-header-animation="true">
+        <i class="material-icons">store</i>
+      </div>
+      <div *ngIf="i === 3" class="card-header" data-background-color="red" data-header-animation="true">
+        <i class="material-icons">weekend</i>
+      </div>
+
       <div class="card-content">
         <p class="category">{{ subject.title }}</p>
         <h3 class="card-title">{{ subject.description }}</h3>
       </div>
+
       <div class="card-footer">
         <div class="stats">
           <i class="material-icons text-danger">warning</i>
