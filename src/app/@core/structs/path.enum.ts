@@ -5,7 +5,7 @@ export enum Path {
 
   // Auth
   Auth = '',
-  SignIn = 'sign-in',
+  SignIn = 'dang-nhap',
   SignUp = 'sign-up',
   ForgotPassword = 'forgot-password',
   ForgotPasswordEmailSent = 'forgot-password-email-sent',

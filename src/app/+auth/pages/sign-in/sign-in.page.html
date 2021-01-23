@@ -1,2 +1,21 @@
-<p>sign in works!</p>
-<span (click)="signInWithGoogle()"><h1>Login</h1></span>
+<div class="row">
+  <div class="col-md-4 ml-auto mr-auto">
+    <div class="card card-login card-hidden hover-shadow-wrapper">
+      <div class="card-header text-center" data-background-color="green">
+        <h4 class="card-title">Login</h4>
+      </div>
+      <div class="card-content text-center " style="padding: 0 10px; margin: 30px 0">
+        <div class="col-lg-12 btn btn-facebook">
+          <i class="fa fa-facebook"></i> &nbsp; Đăng nhập bằng Facebook
+        </div>
+        <div class="col-lg-12 btn btn-google" (click)="signInWithGoogle()">
+          <i class="fa fa-google-plus"></i> &nbsp; Đăng nhập bằng Google
+        </div>
+      </div>
+      <div class="footer text-center">
+        <button type="button" class="btn btn-rose btn-simple btn-wd btn-lg">ThiCongChuc.ORG
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
