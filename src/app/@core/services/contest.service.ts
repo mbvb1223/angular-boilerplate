@@ -30,4 +30,12 @@ export class ContestService extends BaseHttpClientService {
       map(data => data.map(subject => new SubjectModel(subject)))
     );
   }
+
+  getById(id: number): Observable<ContestModel> {
+    const url = this.getUrl() + `/${id}`;
+
+    return this.get(url).pipe(
+      map((res: any) => new ContestModel(res.data))
+    );
+  }
 }

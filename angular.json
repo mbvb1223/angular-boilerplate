@@ -97,7 +97,8 @@
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/css/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         },
         "serve": {

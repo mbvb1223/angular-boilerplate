@@ -23,7 +23,6 @@ export class AuthBackendService extends BaseHttpClientService {
 
   google(authToken: string): Observable<any> {
     const url = this.getUrl() + `/google`;
-    console.log(url);
     return this.post(url, { auth_token: authToken });
   }
 }
