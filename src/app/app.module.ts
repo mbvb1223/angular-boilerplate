@@ -16,11 +16,13 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { LoadingScreenInterceptor } from '@core/interceptors/loading.interceptor';
 import { SharedModule } from '@app/shared/shared.module';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    SnotifyModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -64,7 +66,12 @@ import { SharedModule } from '@app/shared/shared.module';
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
+    {
+      provide: 'SnotifyToastConfig',
+      useValue: ToastDefaults
+    },
+    SnotifyService
   ],
   bootstrap: [AppComponent],
 })
