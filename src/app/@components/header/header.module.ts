@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ThemePanelModule } from '../theme-panel/theme-panel.module';
 import { HeaderComponent } from './header.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, ThemePanelModule],
   exports: [HeaderComponent],
 })
 export class HeaderModule {}
