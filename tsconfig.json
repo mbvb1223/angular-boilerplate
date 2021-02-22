@@ -15,6 +15,7 @@
     "importHelpers": true,
     "target": "es2015",
     "lib": ["es2018", "dom"],
+    "strictPropertyInitialization": false,
     "paths": {
       "@app/*": ["src/app/*"],
       "@components/*": ["src/app/@components/*"],
@@ -28,7 +29,6 @@
     "enableIvy": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "strictTemplates": true,
-    "strictPropertyInitialization": false
+    "strictTemplates": true
   }
 }

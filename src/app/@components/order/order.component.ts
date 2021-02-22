@@ -52,7 +52,7 @@ export class OrderComponent implements OnInit {
   register(): void {
     this.orderService.create(
       this.contest.id,
-      { note: this.form.get('note').value }
+      { note: this.form.get('note')?.value }
     ).subscribe((contest: any) => {
       this.shouldShowForm = false;
       this.isInactive = true;
