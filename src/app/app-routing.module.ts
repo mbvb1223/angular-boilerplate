@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NotFoundPage } from './@containers/not-found/not-found.page';
 import { AuthGuard, NoAuthGuard } from './@core/guards';
 import { Path } from './@core/structs';
 
@@ -31,20 +32,24 @@ const routes: Routes = [
     path: Path.App,
     canActivate: [AuthGuard],
     children: [
-      // {
-      //   path: Path.Dashboard,
-      //   loadChildren: () =>
-      //     import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-      // },
+      {
+        path: Path.Dashboard,
+        loadChildren: () =>
+          import('./features/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule,
+          ),
+      },
     ],
   },
   {
     path: 'settings',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./+settings/settings.module').then((m) => m.SettingsModule),
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./+user/user.module').then((m) => m.UserModule),
   },
 
@@ -53,8 +58,9 @@ const routes: Routes = [
     path: '**',
     loadChildren: () =>
       import('@containers/not-found/not-found.module').then(
-        (m) => m.NotFoundModule
+        (m) => m.NotFoundModule,
       ),
+    component: NotFoundPage,
   },
 ];
 

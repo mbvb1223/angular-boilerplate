@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { ThemeList, ThemeService } from '@app/@core/services/theme';
+import { Path } from '@app/@core/structs';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +15,20 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  @Output() logout = new EventEmitter<void>();
+
+  path = Path;
+  theme = ThemeList;
+
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {}
+
+  onClickLogout(): void {
+    this.logout.emit();
+  }
+
+  onClickToggleTheme(theme: ThemeList): void {
+    this.themeService.changeTheme(theme);
+  }
 }
