@@ -4,6 +4,7 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 
 ## ⚗️ Features
 
+- Strict mode.
 - Lazy loading.
 - Smart and pure components pattern.
 - Components types (e.g. component, page).
@@ -16,10 +17,10 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 - Dynamic titles and content meta tags.
 - TailwindCSS + Autoprefixer + PurgeCSS setup.
 - Dark mode and theme configuration.
-- Scalable CSS architecture with [ITCSS](https://itcss.io/).
+- Scalable CSS architecture in favor of TailwindCSS layers.
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse) reports improved.
 - Migration from TSLint to ESLint.
-- Husky hooks
+- ESLint migration.
 
 ## 📄 Pages
 
@@ -39,18 +40,27 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
   - appearance
   - billing
   - blocked-Users
-  - Notifications
+  - notifications
   - security
   - security-log
 - User
   - my-profile
   - overview
+- Features
+  - dashboard
 
 ## 🧱 Self-contained components
 
 - breadcrumb
 - footer
 - header
+- theme-panel
+
+## 📡 Services
+
+- AuthService
+- SeoService
+- ThemeService
 
 ## 📛 Custom directives
 
@@ -60,7 +70,7 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 
 - bytes (transforms a numeric value into bytes, KB, MB, GB, etc.).
 
-## 🛠️ Customizing to your preference
+## 🛠️ Make some initial tweaks
 
 - Change application title:
 
@@ -76,49 +86,56 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 
   Every page has a `.route` file that contains an exported constant that holds the title, description and a robot's metatag that indicates if it can be indexed or followed by a web crawler.
 
-- Change light and dark mode colors:
-
-  Go to `src/css/01-settings/variables.scss` and tweak it to your preference.
-
 - Change your TailwindCSS configuration:
 
-  Go to `config/tailwind.config.js` and tweak it to your preference. You can refer to https://tailwindcss.com/docs/configuration to learn how to do it.
+  You can find the config file in the project root, then you can refer to https://tailwindcss.com/docs/configuration to learn how to make your own adjustments.
 
-- Add new PostCSS plugins
+- Change light and dark mode colors:
 
-  Go to `config/webpack-dev.config.js` for development and testing or to `config/webpack-prod.config.js` for production settings and add the new plugins inside the plugins array.
+  Go to `src/theme/01-base/variables.scss` and change them to your preference.
+
+- Set a default theme (First time load)
+
+  Go to `src\app\@core\services\theme\theme.service.ts` and change the following line of code:
+
+  from operating system preference
+
+  ```ts
+  private currentTheme$ = new BehaviorSubject<ThemeList>(
+    this.currentTheme || ThemeList.System
+  );
+  ```
+
+  to light mode
+
+  ```ts
+  private currentTheme$ = new BehaviorSubject<ThemeList>(
+    this.currentTheme || ThemeList.Light
+  );
+  ```
+
+  or dark mode
+
+  ```ts
+  private currentTheme$ = new BehaviorSubject<ThemeList>(
+    this.currentTheme || ThemeList.Dark
+  );
+  ```
 
 ## ⛩️ Project structure
 
 ```console
 ├───app
-│   ├───@components
-│   │   ├───breadcrumb
-│   │   ├───footer
-│   │   └───header
-│   ├───@containers
-│   │   ├───home
-│   │   └───not-found
-│   ├───@core
-│   │   ├───directives
-│   │   │   └───click-outside
-│   │   ├───guards
-│   │   ├───interceptors
-│   │   ├───pipes
-│   │   │   └───bytes
-│   │   ├───services
-│   │   │   └───seo
-│   │   ├───structs
-│   │   └───utils
 │   ├───+auth
-│   │   └───pages
-│   │       ├───forgot-password
-│   │       ├───forgot-password-email-sent
-│   │       ├───password-reset
-│   │       ├───password-reset-failed
-│   │       ├───password-reset-succeeded
-│   │       ├───sign-in
-│   │       └───sign-up
+│   │   ├───pages
+│   │   │   ├───forgot-password
+│   │   │   ├───forgot-password-email-sent
+│   │   │   ├───password-reset
+│   │   │   ├───password-reset-failed
+│   │   │   ├───password-reset-succeeded
+│   │   │   ├───sign-in
+│   │   │   └───sign-up
+│   │   └───services
 │   ├───+settings
 │   │   └───pages
 │   │       ├───account
@@ -132,20 +149,36 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 │   │   └───pages
 │   │       ├───my-profile
 │   │       └───overview
+│   ├───@components
+│   │   ├───breadcrumb
+│   │   ├───footer
+│   │   ├───header
+│   │   └───theme-panel
+│   ├───@containers
+│   │   ├───home
+│   │   └───not-found
+│   ├───@core
+│   │   ├───directives
+│   │   │   └───click-outside
+│   │   ├───guards
+│   │   ├───interceptors
+│   │   ├───pipes
+│   │   │   └───bytes
+│   │   ├───services
+│   │   │   ├───seo
+│   │   │   └───theme
+│   │   ├───structs
+│   │   └───utils
 │   └───features
+│       └───dashboard
 ├───assets
-├───css
-│   ├───01-settings
-│   ├───02-tools
-│   ├───03-generic
-│   ├───04-elements
-│   ├───05-objects
-│   ├───06-components
-│   └───07-trumps
 ├───environments
-├───locale
-└───public
-    └───icons
+├───public
+│   └───icons
+└───theme
+    ├───01-base
+    ├───02-components
+    └───03-utilities
 ```
 
 ## 🧙‍♂️ Commands
@@ -153,6 +186,7 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 | Command      | Description                                      | NPM                | Yarn            | Background command                                              |
 | ------------ | ------------------------------------------------ | ------------------ | --------------- | --------------------------------------------------------------- |
 | ng           | See available commands                           | npm run ng         | yarn ng         | ng                                                              |
+| dev          | Run your app in development mode & open app      | npm run dev        | yarn dev        | ng serve -o                                                     |
 | start        | Run your app in development mode                 | npm start          | yarn start      | ng serve                                                        |
 | start:es     | Run your app in development mode in spanish      | npm run start:es   | yarn start:es   | ng serve -c=es --port 4201                                      |
 | build        | Build your app                                   | npm run build      | yarn build      | ng build                                                        |
