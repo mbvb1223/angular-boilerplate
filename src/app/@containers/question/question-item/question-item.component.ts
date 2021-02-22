@@ -11,7 +11,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() correctAnswerId: any;
   @Input() localStorageKey: any;
   @Input() selectedValue: any;
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newItemEvent = new EventEmitter<number>();
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +25,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  answer(value) {
+  answer(value: number) {
     this.selectedValue = value;
     this.newItemEvent.emit(value);
   }
@@ -34,7 +34,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
     return this.selectedValue === this.correctAnswerId;
   }
 
-  isSelectedAnswer(value) {
+  isSelectedAnswer(value: any) {
     console.log('isSelectedAnswer');
     return this.selectedValue == value;
   }

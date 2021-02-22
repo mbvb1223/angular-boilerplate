@@ -12,8 +12,6 @@ import { NotificationService } from '@core/services/notification.service';
   styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage implements OnInit {
-  returnUrl: string;
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,

@@ -20,9 +20,6 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private formBuilder: FormBuilder
   ) {
-  }
-
-  ngOnInit(): void {
     this.form = this.formBuilder.group({
       note: [null, Validators.required],
     });
@@ -39,6 +36,9 @@ export class OrderComponent implements OnInit {
 
       this.isRegistered = !!(this.isActive || this.isInactive);
     });
+  }
+
+  ngOnInit(): void {
   }
 
   toggleForm(): void {

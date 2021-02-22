@@ -18,7 +18,7 @@ export class SubjectListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private contestService: ContestService
   ) {
-    this.contestId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.contestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {

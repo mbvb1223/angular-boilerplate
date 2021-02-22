@@ -11,7 +11,7 @@ import { each } from 'lodash';
   templateUrl: './question-item.component.html',
 })
 export class QuestionItemComponent implements OnInit, OnDestroy {
-  @Input() question: QuestionModel;
+  @Input() question: QuestionModel ;
   @Input() questionNumber: QuestionModel;
   form: FormGroup;
   selectedValue: any;
@@ -49,7 +49,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
     return this.selectedValue === this.question.correct_answer;
   }
 
-  isSelectedAnswer(value) {
-    return this.selectedValue == value;
-  }
+  // isSelectedAnswer(value) {
+  //   return this.selectedValue == value;
+  // }
 }

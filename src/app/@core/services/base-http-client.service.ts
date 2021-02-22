@@ -26,7 +26,7 @@ export abstract class BaseHttpClientService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }) {
+  }): Observable<any> {
     if (!isLoading) {
       options = merge(options, { params: { noLoading: 'active' } });
     }
@@ -45,7 +45,7 @@ export abstract class BaseHttpClientService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }): Observable<Object> {
+  }): Observable<any> {
     if (!isLoading) {
       options = merge(options, { params: { noLoading: 'active' } });
     }
@@ -64,7 +64,7 @@ export abstract class BaseHttpClientService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }): Observable<Object> {
+  }): Observable<any> {
     if (!isLoading) {
       options = merge(options, { params: { noLoading: 'active' } });
     }
@@ -83,7 +83,7 @@ export abstract class BaseHttpClientService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }): Observable<Object> {
+  }): Observable<any> {
     if (!isLoading) {
       options = merge(options, { params: { noLoading: 'active' } });
     }
@@ -102,7 +102,7 @@ export abstract class BaseHttpClientService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }): Observable<Object> {
+  }): Observable<any> {
     if (!isLoading) {
       options = merge(options, { params: { noLoading: 'active' } });
     }

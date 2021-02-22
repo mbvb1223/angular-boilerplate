@@ -16,7 +16,7 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private subjectService: SubjectService
   ) {
-    this.subjectId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.subjectId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {

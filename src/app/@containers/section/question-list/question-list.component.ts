@@ -20,7 +20,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private sectionService: SectionService
   ) {
-    this.sectionId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.sectionId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {

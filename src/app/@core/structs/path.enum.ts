@@ -15,7 +15,6 @@ export enum Path {
 
   // App base url
   App = 'app',
-  Dashboard = '',
 
   // Settings
   Settings = 'settings',
