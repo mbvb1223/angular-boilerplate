@@ -18,7 +18,7 @@ jobs:
           command: |
             sudo npm install -g firebase-tools;
             sudo npm install -g @angular/cli > /dev/null;
-            ng lint;
+#            ng lint;
 #            ng test --code-coverage ;
       - run:
           name: Prepare for deployment
