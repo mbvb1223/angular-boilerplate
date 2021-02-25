@@ -1,10 +1,9 @@
-import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { each } from 'lodash';
 
 @Component({
   selector: 'app-question-item',
@@ -12,7 +11,7 @@ import { each } from 'lodash';
 })
 export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel ;
-  @Input() questionNumber: QuestionModel;
+  @Input() questionNumber: number;
   form: FormGroup;
   selectedValue: any;
 
@@ -38,7 +37,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   answer(checkbox: MatCheckboxChange) {
     this.selectedValue = checkbox.source.value;
 
-    each([1,2,3,4], (item) => {
+    [1,2,3,4].forEach((item: number) => {
       if (item != this.selectedValue) {
         this.form.controls[`answer_${item}`].setValue(null);
       }

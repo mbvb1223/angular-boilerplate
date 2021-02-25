@@ -14,7 +14,7 @@
           <mat-card-content>
             <mat-checkbox
               (change)="answer($event)"
-              [value]="(optionId + 1)"
+              [value]="(optionId + 1) + ''"
               formControlName="{{ 'answer_' + (optionId + 1) }}"
               class="example-margin">
               {{ answerTitle }}
