@@ -7,7 +7,7 @@ import { ICollection } from '@core/interfaces/collection.interface';
 import { OrderModel } from '@core/models/order.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService extends BaseHttpClientService {
   getEntityPath(): string {
@@ -19,14 +19,14 @@ export class OrderService extends BaseHttpClientService {
 
     return this.post(url, data).pipe(
       map((res: ICollection) => res.data),
-      map(data => data.map(subject => console.log(subject)))
+      map((data) => data.map((subject) => console.log(subject))),
     );
   }
 
   index(): Observable<Array<OrderModel>> {
     return this.get(this.getUrl()).pipe(
       map((res: ICollection) => res.data),
-      map(data => data.map(order => new OrderModel(order)))
+      map((data) => data.map((order) => new OrderModel(order))),
     );
   }
 }

@@ -7,7 +7,7 @@ import { ContestModel } from '@core/models/contest.model';
 
 @Component({
   templateUrl: './subject-list.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class SubjectListComponent implements OnInit, OnDestroy {
   subjects: Array<SubjectModel>;
@@ -16,21 +16,24 @@ export class SubjectListComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private contestService: ContestService
+    private contestService: ContestService,
   ) {
     this.contestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
-    this.contestService.getById(this.contestId).subscribe((contest: ContestModel) => {
-      this.contest = contest;
-    });
+    this.contestService
+      .getById(this.contestId)
+      .subscribe((contest: ContestModel) => {
+        this.contest = contest;
+      });
 
-    this.contestService.getSubjects(this.contestId).subscribe((subjects: Array<SubjectModel>) => {
-      this.subjects = subjects
-    });
+    this.contestService
+      .getSubjects(this.contestId)
+      .subscribe((subjects: Array<SubjectModel>) => {
+        this.subjects = subjects;
+      });
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }
