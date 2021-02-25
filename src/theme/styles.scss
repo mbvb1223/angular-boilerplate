@@ -22,15 +22,10 @@
 
 
 @import "08-material/material-dashboard.css";
-//@import "node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-//@import "ng-snotify/styles/_shared/icons.scss";
-//@import "ng-snotify/styles/_shared/animations.scss";
-//@import "ng-snotify/styles/material/buttons.scss";
-//@import "ng-snotify/styles/material/icon.scss";
-//@import "ng-snotify/styles/material/prompt.scss";
-//@import "ng-snotify/styles/material/snotify.scss";
-//@import "ng-snotify/styles/material/toast.scss";
+@import "~ng-snotify/styles/material";
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 button:focus {
