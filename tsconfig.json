@@ -23,7 +23,8 @@
       "@core/*": ["src/app/@core/*"],
       "@assets/*": ["src/assets/*"],
       "@environments/*": ["src/environments/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableIvy": true,
