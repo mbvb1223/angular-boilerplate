@@ -3,6 +3,8 @@ import { OrderService } from '@core/services/order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContestModel } from '@core/models/contest.model';
 import { OrderModel } from '@core/models/order.model';
+import { AuthBackendService } from '@core/services/auth-backend.service';
+import { UserModel } from '@core/models/user.model';
 
 @Component({
   selector: 'app-order-contest',
@@ -12,39 +14,42 @@ export class OrderComponent implements OnInit {
   @Input() contest: ContestModel;
   shouldShowForm = false;
   form: FormGroup;
-  isRegistered: boolean;
+  shouldShowRegisterElement: boolean;
+  user: UserModel | null;
   private _isActive = false;
   private _isInactive = false;
 
   constructor(
     private orderService: OrderService,
     private formBuilder: FormBuilder,
+    public authService: AuthBackendService,
   ) {
     this.form = this.formBuilder.group({
       note: [null, Validators.required],
     });
+
+    this.user = this.authService.getCurrentUser();
   }
 
   ngOnInit(): void {
-    this.orderService.index().subscribe((order: Array<OrderModel>) => {
-      order.forEach((item, index) => {
-        console.log('asdf', this.contest);
-        if (
-          item.contest_id === this.contest.id &&
-          item.status === OrderModel.STATUS_INACTIVE
-        ) {
-          this.isInactive = true;
-        }
-        if (
-          item.contest_id === this.contest.id &&
-          item.status === OrderModel.STATUS_ACTIVE
-        ) {
-          this.isActive = true;
-        }
+    if (this.user) {
+      this.orderService.index().subscribe((order: Array<OrderModel>) => {
+        order.forEach((item, index) => {
+          if (
+            item.contest_id === this.contest.id &&
+            item.status === OrderModel.STATUS_INACTIVE
+          ) {
+            this.isInactive = true;
+          }
+          if (
+            item.contest_id === this.contest.id &&
+            item.status === OrderModel.STATUS_ACTIVE
+          ) {
+            this.isActive = true;
+          }
+        });
       });
-
-      this.isRegistered = !!(this.isActive || this.isInactive);
-    });
+    }
   }
 
   toggleForm(): void {
@@ -66,7 +71,7 @@ export class OrderComponent implements OnInit {
 
   set isInactive(value: boolean) {
     this._isInactive = value;
-    this.isRegistered = this.isActive || this.isInactive;
+    this.shouldShowRegisterElement = this.isActive || this.isInactive;
   }
 
   get isInactive(): boolean {
@@ -75,10 +80,10 @@ export class OrderComponent implements OnInit {
 
   set isActive(value: boolean) {
     this._isActive = value;
-    this.isRegistered = this.isActive || this.isInactive;
+    this.shouldShowRegisterElement = this.isActive || this.isInactive;
   }
 
   get isActive(): boolean {
-    return this._isActive;
+    return this._isActive || (this.shouldShowRegisterElement && this.contest.isFree);
   }
 }

@@ -37,5 +37,5 @@ export enum Path {
   Test = 'tests',
   Contest = 'contests',
   Subject = 'subjects',
-  Section = 'sections'
+  Section = 'sections',
 }

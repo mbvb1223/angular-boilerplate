@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Path } from '@core/structs';
 
 import { SocialAuthService } from 'angularx-social-login';
-import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { NotificationService } from '@core/services/notification.service';
 
@@ -17,7 +19,7 @@ export class SignInPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: SocialAuthService,
     private authBackendService: AuthBackendService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     // this.returnUrl =
     //   this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
@@ -26,10 +28,15 @@ export class SignInPage implements OnInit {
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
-      console.log('user_', user)
       this.authBackendService.google(user.authToken).subscribe((result) => {
-        localStorage.setItem('NX)f$XhV8$;(9X;', result.data.token);
-        this.notificationService.success('Bạn đã đăng nhập thành công!', 'Bạn đã đăng nhập thành công!');
+        this.notificationService.success(`Bạn đã đăng nhập thành công!`);
+
+        const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get(
+          'redirect',
+        );
+        if (redirectUrl) {
+          this.router.navigateByUrl(redirectUrl);
+        }
       });
     });
   }

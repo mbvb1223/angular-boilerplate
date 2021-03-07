@@ -200,7 +200,7 @@
     "universal-analytics" "0.4.23"
     "uuid" "8.3.2"
 
-"@angular/common@~11.2.0":
+"@angular/common@>=9.0.0", "@angular/common@~11.2.0":
   "integrity" "sha512-51gVmr942SZtAFmhVfp7/3fcTQ+Tia7UxWjv6iUtYF3oCvTWbo/J1zki2VNSfmMNKJV8MaMq6XUw8UWbHA0sgQ=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-11.2.3.tgz"
   "version" "11.2.3"
@@ -290,6 +290,13 @@
   "integrity" "sha512-/JgA4rCH2SyIK/v0+sCqNgiBEV/pXQUcUoqfm//2zfc3VwerehvF3RtRBfabtLBpdwdO5a9DZ4nX+djvTJypvw=="
   "resolved" "https://registry.npmjs.org/@angular/service-worker/-/service-worker-11.2.3.tgz"
   "version" "11.2.3"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@auth0/angular-jwt@^5.0.2":
+  "integrity" "sha512-rSamC9mu+gUxoR86AXcIo+KD7xRIro+/iu1F2Ld85YAZEVKlpB5vYG+g0yGaEOqjtQWP/i0H6fi6XMGPVHSYYQ=="
+  "resolved" "https://registry.npmjs.org/@auth0/angular-jwt/-/angular-jwt-5.0.2.tgz"
+  "version" "5.0.2"
   dependencies:
     "tslib" "^2.0.0"
 

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ForgotPasswordEmailSentPage } from './pages/forgot-password-email-sent/forgot-password-email-sent.page';
@@ -8,6 +7,7 @@ import { PasswordResetSucceededPage } from './pages/password-reset-succeeded/pas
 import { PasswordResetPage } from './pages/password-reset/password-reset.page';
 import { SignInPage } from './pages/sign-in/sign-in.page';
 import { SignUpPage } from './pages/sign-up/sign-up.page';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,6 @@ import { SignUpPage } from './pages/sign-up/sign-up.page';
     PasswordResetSucceededPage,
     PasswordResetFailedPage,
   ],
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [AuthRoutingModule, SharedModule],
 })
 export class AuthModule {}

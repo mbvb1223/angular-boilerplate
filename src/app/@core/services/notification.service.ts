@@ -3,78 +3,98 @@ import { Injectable } from '@angular/core';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService {
+  constructor(private snotifyService: SnotifyService) {}
 
-  constructor(
-    private snotifyService: SnotifyService
-  ) {
-  }
-
-  success(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  success(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'success'
-      }
+        type: 'success',
+      },
     });
   }
 
-  error(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  error(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'error'
-      }
+        type: 'error',
+      },
     });
   }
 
-  simple(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  simple(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'simple'
-      }
+        type: 'simple',
+      },
     });
   }
 
-  warning(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  warning(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'warning'
-      }
+        type: 'warning',
+      },
     });
   }
 
-  info(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  info(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'info'
-      }
+        type: 'info',
+      },
     });
   }
 
-  confirm(title: string, body: string, position: SnotifyPosition = SnotifyPosition.rightTop): void {
+  confirm(
+    title: string,
+    body?: string,
+    position: SnotifyPosition = SnotifyPosition.rightTop,
+  ): void {
     this.snotifyService.create({
       title: title,
       body: body,
       config: {
         position: position,
-        type: 'confirm'
-      }
+        type: 'confirm',
+      },
     });
   }
 }

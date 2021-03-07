@@ -5,8 +5,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ThemeList, ThemeService } from '@app/@core/services/theme';
 import { Path } from '@app/@core/structs';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -18,17 +18,17 @@ export class HeaderComponent implements OnInit {
   @Output() logout = new EventEmitter<void>();
 
   path = Path;
-  theme = ThemeList;
+  isLogged: boolean;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private authService: SocialAuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user: SocialUser) => {
+      this.isLogged = !!user;
+    });
+  }
 
   onClickLogout(): void {
     this.logout.emit();
-  }
-
-  onClickToggleTheme(theme: ThemeList): void {
-    this.themeService.changeTheme(theme);
   }
 }

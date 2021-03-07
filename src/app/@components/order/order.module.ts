@@ -5,16 +5,8 @@ import { OrderComponent } from '@components/order/order.component';
 import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    OrderComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule
-  ],
-  exports: [
-    OrderComponent
-  ]
+  declarations: [OrderComponent],
+  imports: [CommonModule, SharedModule],
+  exports: [OrderComponent],
 })
-export class OrderModule {
-}
+export class OrderModule {}
