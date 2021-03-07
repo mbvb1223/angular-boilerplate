@@ -1,17 +1,16 @@
 <div class="row">
   <div *ngFor="let contest of contests; index as i; first as isFirst" class=" col-lg-4 col-md-6">
-    <div class="card card-product hover-shadow-wrapper cursor-pointer" routerLink="/contests/{{ contest.id }}/subjects">
+    <div class="card card-product hover-shadow-wrapper cursor-pointer {{ contest.isActive ? '' : 'disabled-bg-color'}}"
+         (click)="goToContest(contest)">
       <div class="card-header card-header-image" data-header-animation="true">
-        <a routerLink="/contests/{{ contest.id }}/subjects">
-          <img class="img" src="https://i.ibb.co/tmNWb9J/card-2.jpg" alt="">
-        </a>
+        <img class="img" src="https://i.ibb.co/tmNWb9J/card-2.jpg" alt="">
       </div>
       <div class="card-body">
         <div class="card-actions">
         </div>
-        <h4 class="card-title">
-          <a routerLink="/contests/{{ contest.id }}/subjects">{{ contest.title }}</a>
-        </h4>
+        <h3 class="card-title">
+          {{ contest.title }}
+        </h3>
         <div class="card-description">
           {{ contest.description }}
         </div>

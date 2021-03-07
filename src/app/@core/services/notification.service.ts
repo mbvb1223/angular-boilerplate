@@ -17,6 +17,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'success',
       },
@@ -32,6 +33,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'error',
       },
@@ -47,6 +49,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'simple',
       },
@@ -62,6 +65,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'warning',
       },
@@ -77,6 +81,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'info',
       },
@@ -92,6 +97,7 @@ export class NotificationService {
       title: title,
       body: body,
       config: {
+        titleMaxLength: 5555,
         position: position,
         type: 'confirm',
       },

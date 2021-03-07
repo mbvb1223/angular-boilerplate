@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { chunk } from 'lodash'
+import { chunk } from 'lodash';
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 
 @Component({
   templateUrl: './question-list.component.html',
-  styleUrls: ['./question-list.component.scss']
+  styleUrls: ['./question-list.component.scss'],
 })
 export class QuestionListComponent implements OnInit, OnDestroy {
   questions: Array<number>;
@@ -18,9 +18,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private localSt: LocalStorageService
+    private localSt: LocalStorageService,
   ) {
-
     this.localStorageKey += this.route.snapshot.paramMap.get('id');
     this.answeredList = this.localSt.retrieve(this.localStorageKey) || [];
 
@@ -28,7 +27,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.questions = [1,2,3,4,5,6,7,8,9,10];
+    this.questions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     // this.questions = [1];
     this.questionGroups = chunk(this.questions, 5);
     this.correctAnsweredList[1] = 2;
@@ -36,13 +35,12 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     this.correctAnsweredList[3] = 4;
     this.correctAnsweredList[4] = 1;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.part = parseInt(params['part']) || 1;
     });
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   saveAnswer(value) {
     this.answeredList[1] = value;

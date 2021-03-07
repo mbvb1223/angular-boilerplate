@@ -8,6 +8,7 @@ import {
 } from 'angularx-social-login';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { NotificationService } from '@core/services/notification.service';
+import { Path } from '@core/structs';
 
 @Component({
   templateUrl: './sign-in.page.html',
@@ -20,28 +21,37 @@ export class SignInPage implements OnInit {
     private authService: SocialAuthService,
     private authBackendService: AuthBackendService,
     private notificationService: NotificationService,
-  ) {
-    // this.returnUrl =
-    //   this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
-    //   `/${Path.App}/${Path.Dashboard}`;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
-      this.authBackendService.google(user.authToken).subscribe((result) => {
-        this.notificationService.success(`Bạn đã đăng nhập thành công!`);
-
-        const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get(
-          'redirect',
-        );
-        if (redirectUrl) {
-          this.router.navigateByUrl(redirectUrl);
-        }
-      });
+      if (user.provider === 'GOOGLE') {
+        this.authBackendService.google(user.authToken).subscribe(() => {
+          this.handleAfterLogin();
+        });
+      } else {
+        this.authBackendService.facebook(user.authToken).subscribe(() => {
+          this.handleAfterLogin();
+        });
+      }
     });
   }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFacebook(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  private handleAfterLogin() {
+    this.notificationService.success(`Bạn đã đăng nhập thành công!`);
+
+    const redirectUrl =
+      this.activatedRoute.snapshot.queryParamMap.get('redirect') ??
+      Path.Contest;
+
+    this.router.navigateByUrl(redirectUrl);
   }
 }

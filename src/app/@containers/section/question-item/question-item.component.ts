@@ -10,17 +10,16 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   templateUrl: './question-item.component.html',
 })
 export class QuestionItemComponent implements OnInit, OnDestroy {
-  @Input() question: QuestionModel ;
+  @Input() question: QuestionModel;
   @Input() questionNumber: number;
   form: FormGroup;
-  selectedValue: any;
+  selectedValue: number;
 
   constructor(
     private route: ActivatedRoute,
     private localSt: LocalStorageService,
-    private formBuilder: FormBuilder
-  ) {
-  }
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -31,17 +30,16 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   answer(checkbox: MatCheckboxChange) {
-    this.selectedValue = checkbox.source.value;
+    this.selectedValue = parseInt(checkbox.source.value);
 
-    [1,2,3,4].forEach((item: number) => {
+    [1, 2, 3, 4].forEach((item: number) => {
       if (item != this.selectedValue) {
         this.form.controls[`answer_${item}`].setValue(null);
       }
-    })
+    });
   }
 
   isCorrectAnswer(): boolean {

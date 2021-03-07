@@ -13,8 +13,14 @@ import { JwtInterceptor, ServerErrorInterceptor } from './@core/interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
 import { LoadingScreenInterceptor } from '@core/interceptors/loading.interceptor';
 import { SharedModule } from '@app/shared/shared.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
@@ -36,7 +42,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     SocialLoginModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {
@@ -47,7 +53,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingScreenInterceptor,
-      multi: true
+      multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
@@ -57,22 +63,20 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '686645448062-bqnisflu0a358ameteqc63ah09uc08fu.apps.googleusercontent.com'
-            )
+            provider: new GoogleLoginProvider(environment.googleClientId),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId')
-          }
-        ]
+            provider: new FacebookLoginProvider(environment.facebookClientId),
+          },
+        ],
       } as SocialAuthServiceConfig,
     },
     {
       provide: 'SnotifyToastConfig',
-      useValue: ToastDefaults
+      useValue: ToastDefaults,
     },
-    SnotifyService
+    SnotifyService,
   ],
   bootstrap: [AppComponent],
 })

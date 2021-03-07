@@ -1,6 +1,13 @@
-import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-question-item',
@@ -15,15 +22,12 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private localSt: LocalStorageService
-  ) {
-  }
+    private localSt: LocalStorageService,
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   answer(value: number) {
     this.selectedValue = value;

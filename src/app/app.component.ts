@@ -12,8 +12,8 @@ import { LoadingScreenComponent } from '@app/shared/loading-screen/loading-scree
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  isLoggedIn$!: Observable<boolean>;
-  @ViewChild('appMainSpinner', { static: true }) loadingScreenComponent: LoadingScreenComponent;
+  @ViewChild('appMainSpinner', { static: true })
+  loadingScreenComponent: LoadingScreenComponent;
 
   constructor(
     private router: Router,
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.seoService.init();
   }
 

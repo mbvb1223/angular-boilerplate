@@ -52,7 +52,7 @@ export class SubjectListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.notificationService.warning('Vui lòng đăng nhập!', '');
+    this.notificationService.warning('Vui lòng đăng nhập!');
     this.router.navigate([Path.SignIn], {
       queryParams: { redirect: this.router.url },
     });

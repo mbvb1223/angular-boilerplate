@@ -5,8 +5,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Path } from '@app/@core/structs';
-import { SocialAuthService, SocialUser } from 'angularx-social-login';
+
+import { AuthBackendService } from '@core/services/auth-backend.service';
 
 @Component({
   selector: 'app-header',
@@ -17,15 +17,17 @@ import { SocialAuthService, SocialUser } from 'angularx-social-login';
 export class HeaderComponent implements OnInit {
   @Output() logout = new EventEmitter<void>();
 
-  path = Path;
   isLogged: boolean;
 
-  constructor(private authService: SocialAuthService) {}
+  constructor(private authBackendService: AuthBackendService) {}
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user: SocialUser) => {
-      this.isLogged = !!user;
-    });
+    // this.authBackendService.isLoggedIn$.subscribe((isLogged: boolean) => {
+    //   console.log('bbbbbbbbb', isLogged);
+    //   console.log('bbbbbbbbb', this.isLogged);
+    //   this.isLogged = isLogged;
+    //   console.log('ssssss', this.isLogged);
+    // });
   }
 
   onClickLogout(): void {
