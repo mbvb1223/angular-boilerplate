@@ -5,7 +5,7 @@ export enum Path {
 
   // Auth
   Auth = '',
-  SignIn = 'sign-in',
+  SignIn = 'dang-nhap',
   SignUp = 'sign-up',
   ForgotPassword = 'forgot-password',
   ForgotPasswordEmailSent = 'forgot-password-email-sent',
@@ -15,7 +15,6 @@ export enum Path {
 
   // App base url
   App = 'app',
-  Dashboard = '',
 
   // Settings
   Settings = 'settings',
@@ -31,4 +30,12 @@ export enum Path {
   User = 'users',
   UserOverview = 'overview',
   UserProfile = ':username',
+
+  // Features
+  Dashboard = 'dashboard',
+  Question = 'tests/:id/questions',
+  Test = 'tests',
+  Contest = 'contests',
+  Subject = 'subjects',
+  Section = 'sections',
 }

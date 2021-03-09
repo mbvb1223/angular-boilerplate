@@ -5,8 +5,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ThemeList, ThemeService } from '@app/@core/services/theme';
-import { Path } from '@app/@core/structs';
+
+import { AuthBackendService } from '@core/services/auth-backend.service';
 
 @Component({
   selector: 'app-header',
@@ -17,18 +17,20 @@ import { Path } from '@app/@core/structs';
 export class HeaderComponent implements OnInit {
   @Output() logout = new EventEmitter<void>();
 
-  path = Path;
-  theme = ThemeList;
+  isLogged: boolean;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private authBackendService: AuthBackendService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.authBackendService.isLoggedIn$.subscribe((isLogged: boolean) => {
+    //   console.log('bbbbbbbbb', isLogged);
+    //   console.log('bbbbbbbbb', this.isLogged);
+    //   this.isLogged = isLogged;
+    //   console.log('ssssss', this.isLogged);
+    // });
+  }
 
   onClickLogout(): void {
     this.logout.emit();
-  }
-
-  onClickToggleTheme(theme: ThemeList): void {
-    this.themeService.changeTheme(theme);
   }
 }

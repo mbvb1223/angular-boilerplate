@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundPage } from './@containers/not-found/not-found.page';
 import { AuthGuard, NoAuthGuard } from './@core/guards';
-import { Path } from './@core/structs';
+import { Path } from '@core/structs';
 
 const routes: Routes = [
   // ===== Uncomment if Path.Home is different from empty =====
@@ -14,6 +14,36 @@ const routes: Routes = [
     loadChildren: () =>
       import('@containers/home/home.module').then((m) => m.HomeModule),
   },
+
+  {
+    path: Path.Contest,
+    loadChildren: () =>
+      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+  },
+
+  {
+    path: Path.Subject,
+    loadChildren: () =>
+      import('@containers/subject/subject.module').then((m) => m.SubjectModule),
+  },
+
+  {
+    path: Path.Section,
+    loadChildren: () =>
+      import('@containers/section/section.module').then((m) => m.SectionModule),
+  },
+
+  // {
+  //   path: Path.Question,
+  //   loadChildren: () =>
+  //     import('@containers/question/question.module').then((m) => m.QuestionModule),
+  // },
+
+  // {
+  //   path: Path.Test,
+  //   loadChildren: () =>
+  //     import('@containers/test/test.module').then((m) => m.TestModule),
+  // },
 
   // Auth
   {

@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: '',
+  apiUrl: 'https://mo-backend.herokuapp.com/api/',
+  googleClientId:
+    '543678162369-go3u1vv05h1pp9odsh9uc7i7v0ep1a3l.apps.googleusercontent.com', // secret: jsFL-97-i4mxkQFHMEBtUUJc
+  facebookClientId: '486122019055775',
 };
