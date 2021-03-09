@@ -23,16 +23,16 @@ jobs:
       - run:
           name: Prepare for deployment
           command: |
-            if [ "${CIRCLE_BRANCH}" == "add-material" ];
-            then rm src/environments/environment.prod.ts; mv src/environments/environment.feature.ts src/environments/environment.prod.ts;
+            if [ "${CIRCLE_BRANCH}" == "dev" ];
+            then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
             ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/; fi
 
             if [ "${CIRCLE_BRANCH}" == "prod" ];
-            then ng build --aot --prod --base-href https://thicongchuc-22e3a.firebaseapp.com/; fi
+            then ng build --aot --prod --base-href https://thicongchuc.org/; fi
       - run:
           name: Deploy app to firebase
           command: |
-            if [ "${CIRCLE_BRANCH}" == "add-material" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "prod" ]; then firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
 workflows:
   version: 2
