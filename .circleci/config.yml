@@ -28,7 +28,7 @@ jobs:
             ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/; fi
 
             if [ "${CIRCLE_BRANCH}" == "prod" ];
-            then ng build --aot --prod --base-href https://thicongchuc-22e3a.firebaseapp.com/; fi
+            then ng build --aot --prod --base-href https://thicongchuc.org/; fi
       - run:
           name: Deploy app to firebase
           command: |
