@@ -15,6 +15,7 @@
     "importHelpers": true,
     "target": "es2015",
     "lib": ["es2018", "dom"],
+    "strictPropertyInitialization": false,
     "paths": {
       "@app/*": ["src/app/*"],
       "@components/*": ["src/app/@components/*"],
@@ -22,7 +23,8 @@
       "@core/*": ["src/app/@core/*"],
       "@assets/*": ["src/assets/*"],
       "@environments/*": ["src/environments/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableIvy": true,

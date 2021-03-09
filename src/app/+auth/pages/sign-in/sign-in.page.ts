@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@app/+auth/services/auth.service';
+
+import { SocialAuthService } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
+import { AuthBackendService } from '@core/services/auth-backend.service';
+import { NotificationService } from '@core/services/notification.service';
 import { Path } from '@core/structs';
 
 @Component({
@@ -8,22 +15,43 @@ import { Path } from '@core/structs';
   styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage implements OnInit {
-  returnUrl: string;
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
-  ) {
-    this.returnUrl =
-      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
-      `/${Path.App}`;
+    private authService: SocialAuthService,
+    private authBackendService: AuthBackendService,
+    private notificationService: NotificationService,
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      if (user.provider === 'GOOGLE') {
+        this.authBackendService.google(user.authToken).subscribe(() => {
+          this.handleAfterLogin();
+        });
+      } else {
+        this.authBackendService.facebook(user.authToken).subscribe(() => {
+          this.handleAfterLogin();
+        });
+      }
+    });
   }
 
-  ngOnInit(): void {}
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
-  onClickSignIn(): void {
-    this.authService.signIn();
-    this.router.navigate([this.returnUrl]);
+  signInWithFacebook(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  private handleAfterLogin() {
+    this.notificationService.success(`Bạn đã đăng nhập thành công!`);
+
+    const redirectUrl =
+      this.activatedRoute.snapshot.queryParamMap.get('redirect') ??
+      Path.Contest;
+
+    this.router.navigateByUrl(redirectUrl);
   }
 }
