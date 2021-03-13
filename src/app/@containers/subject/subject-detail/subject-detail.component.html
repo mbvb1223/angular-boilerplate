@@ -3,7 +3,7 @@
   <div class="col-lg-8 col-md-6">
     <div
       *ngFor="let section of sections; index as i; first as isFirst"
-      routerLink="/sections/{{ section.id }}/questions"
+      (click)="goToSection(section)"
       class="card cursor-pointer hover-shadow-wrapper"
     >
       <div class="card-header card-header-primary">

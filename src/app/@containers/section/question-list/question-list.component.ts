@@ -4,6 +4,7 @@ import { QuestionModel } from '@core/models/question.model';
 import { ActivatedRoute } from '@angular/router';
 import { SectionService } from '@core/services/section.service';
 import { ICollection } from '@core/interfaces/collection.interface';
+import { Helper } from '@core/helpers/helper';
 
 @Component({
   templateUrl: './question-list.component.html',
@@ -20,7 +21,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private sectionService: SectionService,
   ) {
-    this.sectionId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+    this.sectionId = Helper.getId(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {

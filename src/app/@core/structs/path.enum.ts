@@ -5,7 +5,7 @@ export enum Path {
 
   // Auth
   Auth = '',
-  SignIn = 'dang-nhap',
+  SignIn = 'auth/dang-nhap',
   SignUp = 'sign-up',
   ForgotPassword = 'forgot-password',
   ForgotPasswordEmailSent = 'forgot-password-email-sent',
@@ -35,7 +35,7 @@ export enum Path {
   Dashboard = 'dashboard',
   Question = 'tests/:id/questions',
   Test = 'tests',
-  Contest = 'contests',
-  Subject = 'subjects',
-  Section = 'sections',
+  Contest = 'ky-thi',
+  Subject = ':ky-thi/mon-thi',
+  Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',
 }

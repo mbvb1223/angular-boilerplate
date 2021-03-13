@@ -49,7 +49,7 @@ export class SignInPage implements OnInit {
     this.notificationService.success(`Bạn đã đăng nhập thành công!`);
 
     const redirectUrl =
-      this.activatedRoute.snapshot.queryParamMap.get('redirect') ??
+      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ??
       Path.Contest;
 
     this.router.navigateByUrl(redirectUrl);

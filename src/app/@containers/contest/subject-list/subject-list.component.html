@@ -3,7 +3,7 @@
 <div class="row row-space">
   <div *ngFor="let subject of subjects; index as i; first as isFirst"
        class="col-lg-6 col-md-6 col-sm-12 cursor-pointer">
-    <div class="card card-stats hover-shadow-wrapper" (click)="goToSubject(subject.id)">
+    <div class="card card-stats hover-shadow-wrapper" (click)="goToSubject(subject)">
 
       <div *ngIf="i === 0" class="card-header card-header-icon card-header-primary">
         <div class="card-icon" data-header-animation="true">
@@ -32,7 +32,7 @@
 
       <div class="card-body">
         <div class="card-description">
-          {{ contest.description }}
+          {{ subject.description }}
         </div>
       </div>
     </div>

@@ -7,12 +7,12 @@ import { SubjectListComponent } from '@containers/contest/subject-list/subject-l
 const routes: Routes = [
   {
     path: '',
-    component: ContestListComponent
+    component: ContestListComponent,
   },
   {
-    path: ':id/subjects',
-    component: SubjectListComponent
-  }
+    path: ':id',
+    component: SubjectListComponent,
+  },
 ];
 
 @NgModule({

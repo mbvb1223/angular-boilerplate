@@ -8,6 +8,7 @@ export class ContestModel extends BaseModel {
   status: number;
   description: string;
   price: number;
+  image: string;
   sale_price: number;
 
   get isFree(): boolean {

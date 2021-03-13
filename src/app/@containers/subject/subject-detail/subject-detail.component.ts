@@ -2,11 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { SubjectService } from '@core/services/subject.service';
 import { SectionModel } from '@core/models/section.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Helper } from '@core/helpers/helper';
 
 @Component({
   templateUrl: './subject-detail.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class SubjectDetailComponent implements OnInit, OnDestroy {
   sections: Array<SectionModel>;
@@ -14,17 +15,30 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private subjectService: SubjectService
+    private router: Router,
+    private subjectService: SubjectService,
   ) {
-    this.subjectId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
-    this.subjectService.getSections(this.subjectId).subscribe((sections: Array<SectionModel>) => {
-      this.sections = sections
-    });
+    this.subjectId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('id'),
+    );
+
+    this.subjectService
+      .getSections(this.subjectId)
+      .subscribe((sections: Array<SectionModel>) => {
+        this.sections = sections;
+      });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {}
+
+  goToSection(section: SectionModel) {
+    this.router.navigate([
+      this.router.url,
+      'phan-thi',
+      Helper.convertToUrl(section.title, section.id),
+    ]);
   }
 }

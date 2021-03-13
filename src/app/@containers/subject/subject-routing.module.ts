@@ -6,7 +6,7 @@ import { SubjectDetailComponent } from '@containers/subject/subject-detail/subje
 const routes: Routes = [
   {
     path: ':id',
-    component: SubjectDetailComponent
+    component: SubjectDetailComponent,
   },
 ];
 

@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: Path.Home,
     loadChildren: () =>
-      import('@containers/home/home.module').then((m) => m.HomeModule),
+      import('@containers/contest/contest.module').then((m) => m.ContestModule),
   },
 
   {
@@ -32,18 +32,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('@containers/section/section.module').then((m) => m.SectionModule),
   },
-
-  // {
-  //   path: Path.Question,
-  //   loadChildren: () =>
-  //     import('@containers/question/question.module').then((m) => m.QuestionModule),
-  // },
-
-  // {
-  //   path: Path.Test,
-  //   loadChildren: () =>
-  //     import('@containers/test/test.module').then((m) => m.TestModule),
-  // },
 
   // Auth
   {
