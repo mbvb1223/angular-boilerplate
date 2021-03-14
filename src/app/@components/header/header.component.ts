@@ -1,12 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  EventEmitter, Input,
   OnInit,
   Output,
 } from '@angular/core';
 
 import { AuthBackendService } from '@core/services/auth-backend.service';
+import { UserModel } from '@core/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -15,22 +16,13 @@ import { AuthBackendService } from '@core/services/auth-backend.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  @Output() logout = new EventEmitter<void>();
-
-  isLogged: boolean;
+  @Input() user: UserModel | null;
 
   constructor(private authBackendService: AuthBackendService) {}
 
-  ngOnInit(): void {
-    // this.authBackendService.isLoggedIn$.subscribe((isLogged: boolean) => {
-    //   console.log('bbbbbbbbb', isLogged);
-    //   console.log('bbbbbbbbb', this.isLogged);
-    //   this.isLogged = isLogged;
-    //   console.log('ssssss', this.isLogged);
-    // });
-  }
+  ngOnInit(): void {}
 
   onClickLogout(): void {
-    this.logout.emit();
+    this.authBackendService.logout();
   }
 }

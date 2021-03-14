@@ -33,8 +33,6 @@ export enum Path {
 
   // Features
   Dashboard = 'dashboard',
-  Question = 'tests/:id/questions',
-  Test = 'tests',
   Contest = 'ky-thi',
   Subject = ':ky-thi/mon-thi',
   Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',

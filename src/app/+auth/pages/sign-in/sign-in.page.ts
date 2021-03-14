@@ -25,6 +25,10 @@ export class SignInPage implements OnInit {
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
+      if (!user) {
+        return;
+      }
+
       if (user.provider === 'GOOGLE') {
         this.authBackendService.google(user.authToken).subscribe(() => {
           this.handleAfterLogin();
@@ -49,8 +53,7 @@ export class SignInPage implements OnInit {
     this.notificationService.success(`Bạn đã đăng nhập thành công!`);
 
     const redirectUrl =
-      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ??
-      Path.Contest;
+      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ?? '/';
 
     this.router.navigateByUrl(redirectUrl);
   }

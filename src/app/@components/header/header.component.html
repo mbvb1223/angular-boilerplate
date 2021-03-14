@@ -1,6 +1,6 @@
 <header class="h-30 bg-accent header-shadow">
   <nav class="container">
-    <button style="font-size: 30px; height: 70px"
+    <button style="font-size: 20px; height: 70px"
       class="pull-left mat-focus-indicator docs-navbar-hide-small docs-button mat-button mat-button-base ng-star-inserted cursor-pointer"
       tabindex="0" aria-disabled="false" routerLink="/">
       <span class="mat-button-wrapper" style="color: yellow; font-weight: bold;">ThiCongChuc.Org</span>
@@ -8,11 +8,14 @@
       <span class="mat-button-focus-overlay"></span>
     </button>
 
-<!--    <button *ngIf="!isLogged" routerLink="/dang-nhap" class="btn pull-right btn-primary" style="margin-top: 16px; font-size: 14px">-->
-<!--      Đăng nhập-->
-<!--    </button>-->
-<!--    <button *ngIf="isLogged" routerLink="/dang-xuat" class="btn pull-right btn-primary" style="margin-top: 16px; font-size: 14px">-->
-<!--      Đăng XUAT-->
-<!--    </button>-->
+   <div>
+     <button *ngIf="!user" routerLink="/auth/dang-nhap" class="btn btn-sm pull-right btn-primary" style="margin-top: 16px; font-size: 14px">
+       Đăng nhập
+     </button>
+     <button *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="btn btn-sm pull-right btn-warning" style="margin-top: 20px; font-size: 14px">Hi {{ user.name }}</button>
+     <mat-menu #menu="matMenu">
+       <button mat-menu-item (click)="onClickLogout()">Đăng xuất</button>
+     </mat-menu>
+   </div>
   </nav>
 </header>

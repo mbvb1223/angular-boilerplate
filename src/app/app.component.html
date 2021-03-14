@@ -1,5 +1,5 @@
 <ng-container>
-  <app-header></app-header>
+  <app-header [user]="userSubject$ | async"></app-header>
 
   <div class="container" style="padding-top: 25px; min-height: 500px">
     <div class="main-content">
