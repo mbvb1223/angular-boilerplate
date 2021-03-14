@@ -1,5 +1,5 @@
 {
-  "name": "angular-boilerplate",
+  "name": "thicongchuc.org",
   "version": "0.0.0",
   "sideEffects": false,
   "private": true,
@@ -15,7 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "i18n:extract": "ng extract-i18n --output-path locale --ivy",
-    "analyze": "webpack-bundle-analyzer dist/angular-boilerplate/stats.json"
+    "analyze": "webpack-bundle-analyzer dist/thicongchuc.org/stats.json"
   },
   "dependencies": {
     "@angular-eslint/builder": "^1.2.0",
