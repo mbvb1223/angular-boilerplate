@@ -1,0 +1,14 @@
+<mat-card class="mt-3 hover-shadow-wrapper">
+  <mat-card-title style="background: #ededed; margin: 10px 0; padding: 10px;">
+    {{ questionNumber }}: {{ question.title }}
+  </mat-card-title>
+
+  <mat-card-content>
+      <app-question-item *ngFor="let question of question.children; index as i; first as isFirst"
+                         [question]="question"
+                         [questionNumber]=" i + 1"
+                         [questionPrefix]="questionNumber + '.'"
+      ></app-question-item>
+  </mat-card-content>
+</mat-card>
+

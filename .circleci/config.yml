@@ -25,7 +25,7 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
-            ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/; fi
+            ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/ --outputHashing=all; fi
 
             if [ "${CIRCLE_BRANCH}" == "prod" ];
             then ng build --aot --prod --base-href https://thicongchuc.org/ --outputHashing=all; fi

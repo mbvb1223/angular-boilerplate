@@ -1,9 +1,15 @@
 <div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
-  <app-question-item
-    *ngFor="let question of questions; index as i; first as isFirst"
-    [question]="question"
-    [questionNumber]="(currentPage * pageSize) + i + 1"
-  ></app-question-item>
+  <div *ngFor="let question of questions; index as i; first as isFirst">
+    <app-question-item *ngIf="question.isSingle"
+                       [question]="question"
+                       [questionNumber]="(currentPage * pageSize) + i + 1"
+    ></app-question-item>
+
+    <app-question-group *ngIf="question.isParent"
+                        [question]="question"
+                        [questionNumber]="(currentPage * pageSize) + i + 1"
+    ></app-question-group>
+  </div>
 </div>
 <mat-paginator
   #paginator

@@ -12,6 +12,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
   @Input() questionNumber: number;
+  @Input() questionPrefix: string;
   form: FormGroup;
   selectedValue: number;
 
