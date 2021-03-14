@@ -1,7 +1,7 @@
 import { BaseHttpClientService } from '@core/services/base-http-client.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const jwtHelper = new JwtHelperService();
@@ -10,8 +10,6 @@ import { ContestModel } from '@core/models/contest.model';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { UserModel } from '@core/models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { getItem, StorageItem } from '@core/utils';
-import { AuthService } from '@app/+auth/services/auth.service';
 import { SocialAuthService } from 'angularx-social-login';
 import { NotificationService } from '@core/services/notification.service';
 
@@ -81,10 +79,11 @@ export class AuthBackendService extends BaseHttpClientService {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userKey);
 
+    this.notificationService.warning(`Bạn đã đăng xuất!`);
+
     this.socialAuthService.signOut(true).finally(() => {
-      this.notificationService.warning(`Bạn đã đăng xuất!`);
+      this.userSubject$.next(this.getCurrentUser());
     });
-    this.userSubject$.next(this.getCurrentUser());
   }
 
   private handleAfterLogin(result: any) {
