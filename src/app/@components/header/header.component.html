@@ -12,7 +12,9 @@
      <button *ngIf="!user" routerLink="/auth/dang-nhap" class="btn btn-sm pull-right btn-primary" style="margin-top: 16px; font-size: 14px">
        Đăng nhập
      </button>
-     <button *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="btn btn-sm pull-right btn-warning" style="margin-top: 20px; font-size: 14px">Hi {{ user.name }}</button>
+     <span *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="btn btn-sm pull-right btn-warning"
+           style="margin-top: 20px; font-size: 14px; text-transform: none"
+     >Hi, {{ user.name }}</span>
      <mat-menu #menu="matMenu">
        <button mat-menu-item (click)="onClickLogout()">Đăng xuất</button>
      </mat-menu>
