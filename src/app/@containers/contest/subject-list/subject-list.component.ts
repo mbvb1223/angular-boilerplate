@@ -9,9 +9,6 @@ import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
 import { Path } from '@core/structs';
 import { Helper } from '@core/helpers/helper';
-import { PostsService } from '@core/services/posts.service';
-import { PostModel } from '@core/models/post.model';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   templateUrl: './subject-list.component.html',
@@ -21,14 +18,12 @@ export class SubjectListComponent implements OnInit, OnDestroy {
   subjects: Array<SubjectModel>;
   contestId: number;
   contest: ContestModel;
-  posts: Array<PostModel>;
   private currentUser: UserModel | null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private contestService: ContestService,
-    private postService: PostsService,
     private notificationService: NotificationService,
     public authService: AuthBackendService,
   ) {}
@@ -42,13 +37,6 @@ export class SubjectListComponent implements OnInit, OnDestroy {
       .subscribe((contest: ContestModel) => {
         this.contest = contest;
       });
-
-    const httpParams = new HttpParams()
-      .set('type_id', PostModel.TYPE_CONTEST.toString())
-      .set('creatable_id', this.contestId.toString());
-    this.postService.index(httpParams).subscribe((posts: Array<PostModel>) => {
-      this.posts = posts;
-    });
 
     this.contestService
       .getSubjects(this.contestId)

@@ -10,7 +10,7 @@ import { HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class PostsService extends BaseHttpClientService {
+export class PostService extends BaseHttpClientService {
   getEntityPath(): string {
     return 'posts';
   }
