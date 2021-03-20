@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-lg-8 col-md-6">
+  <div class="col-lg-7 col-md-6">
     <div
       *ngFor="let section of sections; index as i; first as isFirst"
       (click)="goToSection(section)"
@@ -15,8 +15,11 @@
     </div>
   </div>
 
-  <div class="col-lg-4 col-md-6">
-    <div class="row"><h2><img src="https://onthicongchuc.org/img/course-online.png" alt=""></h2></div>
+  <div class="col-lg-5 col-md-6">
+    <div class="row">
+      <img src="https://onthicongchuc.org/img/course-online.png" alt="" width="100%">
+    </div>
+    <app-post-list typeId="3" creatableId="{{ subjectId }}"></app-post-list>
   </div>
 
 </div>
