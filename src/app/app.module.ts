@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +23,7 @@ import {
 import { LoadingScreenInterceptor } from '@core/interceptors/loading.interceptor';
 import { SharedModule } from '@app/shared/shared.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +38,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     }),
     HeaderModule,
     FooterModule,
+    BreadcrumbModule,
     NgxWebstorageModule.forRoot(),
     SocialLoginModule,
     FormsModule,

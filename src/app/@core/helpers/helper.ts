@@ -1,4 +1,7 @@
 export class Helper {
+  static convertToContestUrl(title: string, id: number): string {
+    return 'ky-thi/' + Helper.convertToUrl(title, id);
+  }
   static convertToUrl(title: string, id: number): string {
     // Đổi chữ hoa thành chữ thường
     let slug = title.toLowerCase();

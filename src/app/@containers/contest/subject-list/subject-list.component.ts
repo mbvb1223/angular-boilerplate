@@ -9,6 +9,7 @@ import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
 import { Path } from '@core/structs';
 import { Helper } from '@core/helpers/helper';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
 
 @Component({
   templateUrl: './subject-list.component.html',
@@ -26,6 +27,7 @@ export class SubjectListComponent implements OnInit, OnDestroy {
     private contestService: ContestService,
     private notificationService: NotificationService,
     public authService: AuthBackendService,
+    public breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class SubjectListComponent implements OnInit, OnDestroy {
       .getById(this.contestId)
       .subscribe((contest: ContestModel) => {
         this.contest = contest;
+        this.breadcrumbService.setItem(
+          Helper.convertToContestUrl(contest.title, contest.id),
+          this.contest.title,
+        );
       });
 
     this.contestService

@@ -5,6 +5,7 @@ import { SectionModel } from '@core/models/section.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Helper } from '@core/helpers/helper';
 import { SubjectModel } from '@core/models/subject.model';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
 
 @Component({
   templateUrl: './subject-detail.component.html',
@@ -19,6 +20,7 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private subjectService: SubjectService,
+    private breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
       .getById(this.subjectId)
       .subscribe((subject: SubjectModel) => {
         this.subject = subject;
+        this.breadcrumbService.setItem(this.router.url, this.subject.title);
       });
 
     this.subjectService

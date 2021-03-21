@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectorRef,
+} from '@angular/core';
+
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
+import { IBreadcrumbInterface } from '@core/interfaces/breadcrumb.interface';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -6,8 +15,22 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumb.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbComponent implements OnInit {
-  constructor() {}
+export class BreadcrumbComponent implements OnInit, OnDestroy {
+  item: IBreadcrumbInterface;
 
-  ngOnInit(): void {}
+  constructor(
+    protected breadcrumbService: BreadcrumbService,
+    protected cd: ChangeDetectorRef,
+  ) {}
+
+  ngOnInit(): void {
+    this.breadcrumbService.breadcrumbObserver.subscribe(
+      (item: IBreadcrumbInterface) => {
+        this.item = item;
+        this.cd.markForCheck();
+      },
+    );
+  }
+
+  ngOnDestroy(): void {}
 }

@@ -6,6 +6,7 @@ import { ContestModel } from '@core/models/contest.model';
 import { Path } from '@core/structs';
 import { NotificationService } from '@core/services/notification.service';
 import { Helper } from '@core/helpers/helper';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
 
 @Component({
   templateUrl: './contest-list.component.html',
@@ -18,12 +19,15 @@ export class ContestListComponent implements OnInit, OnDestroy {
     private router: Router,
     private contestService: ContestService,
     private notificationService: NotificationService,
+    private breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
     this.contestService.index().subscribe((contests: Array<ContestModel>) => {
       this.contests = contests;
     });
+
+    this.breadcrumbService.setItem();
   }
 
   ngOnDestroy(): void {}
