@@ -7,8 +7,8 @@
   </div>
   <div class="card-body">
     <mat-card-content>
-      <div *ngFor="let post of posts; index as i">
-        ※ <a (click)="goToPost(post)" class="cursor-pointer mt-2">{{ post.title }}</a>
+      <div *ngFor="let post of posts; index as i" class="pt-2">
+        ※ <a (click)="goToPost(post)" class="cursor-pointer" style="color: #004175;">{{ post.title }}</a>
       </div>
     </mat-card-content>
   </div>
