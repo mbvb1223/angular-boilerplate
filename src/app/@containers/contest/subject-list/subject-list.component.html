@@ -39,5 +39,5 @@
   </div>
 </div>
 
-<app-post-list typeId="2" creatableId="{{ contestId }}">
+<app-post-list *ngIf="contest" typeId="2" creatableId="{{ contestId }}" [parentObject]="contest">
 </app-post-list>

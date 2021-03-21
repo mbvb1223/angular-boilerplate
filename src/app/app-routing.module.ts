@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { NotFoundPage } from './@containers/not-found/not-found.page';
-import { AuthGuard, NoAuthGuard } from './@core/guards';
+
+import { NotFoundPage } from '@containers/not-found/not-found.page';
+import { AuthGuard, NoAuthGuard } from '@core/guards';
 import { Path } from '@core/structs';
 
 const routes: Routes = [
@@ -31,6 +32,12 @@ const routes: Routes = [
     path: Path.Section,
     loadChildren: () =>
       import('@containers/section/section.module').then((m) => m.SectionModule),
+  },
+
+  {
+    path: Path.Post,
+    loadChildren: () =>
+      import('@containers/post/post.module').then((m) => m.PostModule),
   },
 
   // Auth

@@ -8,7 +8,7 @@
   <div class="card-body">
     <mat-card-content>
       <div *ngFor="let post of posts; index as i">
-        ※ {{ post.title }}
+        ※ <a (click)="goToPost(post)" class="cursor-pointer mt-2">{{ post.title }}</a>
       </div>
     </mat-card-content>
   </div>

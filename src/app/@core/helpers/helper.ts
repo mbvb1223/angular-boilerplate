@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 export class Helper {
   static convertToUrl(title: string, id: number): string {
     // Đổi chữ hoa thành chữ thường

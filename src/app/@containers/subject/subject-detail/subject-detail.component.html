@@ -19,7 +19,7 @@
     <div class="row">
       <img src="https://onthicongchuc.org/img/course-online.png" alt="" width="100%">
     </div>
-    <app-post-list typeId="3" creatableId="{{ subjectId }}"></app-post-list>
+    <app-post-list *ngIf="subject" typeId="3" creatableId="{{ subjectId }}" [parentObject]="subject"></app-post-list>
   </div>
 
 </div>
