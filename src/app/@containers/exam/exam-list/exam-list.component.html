@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div
+      *ngFor="let exam of exams"
+      (click)="goToExam(exam)"
+      class="card cursor-pointer hover-shadow-wrapper"
+    >
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">{{ exam.title }}</h4>
+      </div>
+      <div class="card-body">
+        <mat-card-content>{{ exam.description}}</mat-card-content>
+      </div>
+    </div>
+  </div>
+</div>
+
