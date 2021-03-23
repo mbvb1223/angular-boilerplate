@@ -6,8 +6,9 @@ export class BaseModel {
       return;
     }
     for (const key of Object.keys(params)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      (<any>this)[key] = params[key];
+      (<never>this)[key] = params[key];
     }
   }
 }

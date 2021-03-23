@@ -13,5 +13,9 @@ import { QuestionGroupComponent } from '@containers/section/question-group/quest
     QuestionGroupComponent,
   ],
   imports: [SharedModule, SectionRoutingModule],
+  exports: [
+    QuestionItemComponent,
+    QuestionGroupComponent
+  ]
 })
 export class SectionModule {}

@@ -51,4 +51,8 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
       Helper.convertToUrl(section.title, section.id),
     ]);
   }
+
+  goToExam(subjectId: number) {
+    this.router.navigate([this.router.url, 'de-thi']);
+  }
 }

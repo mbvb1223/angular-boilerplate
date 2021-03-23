@@ -40,6 +40,12 @@ const routes: Routes = [
   },
 
   {
+    path: Path.Exam,
+    loadChildren: () =>
+      import('@containers/exam/exam.module').then((m) => m.ExamModule),
+  },
+
+  {
     path: Path.Post,
     loadChildren: () =>
       import('@containers/post/post.module').then((m) => m.PostModule),

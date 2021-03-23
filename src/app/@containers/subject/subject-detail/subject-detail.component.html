@@ -16,8 +16,8 @@
   </div>
 
   <div class="col-lg-5 col-md-6">
-    <div class="row">
-      <img src="https://onthicongchuc.org/img/course-online.png" alt="" width="100%">
+    <div class="row cursor-pointer hover-shadow-wrapper">
+      <img src="https://i.imgur.com/ZMkJL9F.png" alt="" width="100%" (click)="goToExam(subjectId)">
     </div>
     <app-post-list *ngIf="subject" typeId="3" creatableId="{{ subjectId }}" [parentObject]="subject"></app-post-list>
   </div>

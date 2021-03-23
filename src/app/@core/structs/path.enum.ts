@@ -37,5 +37,6 @@ export enum Path {
   Contest = 'ky-thi',
   Subject = ':ky-thi/mon-thi',
   Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',
+  Exam = ':ky-thi/mon-thi/:mon-thi/de-thi',
   Post = 'bai-viet/:type',
 }

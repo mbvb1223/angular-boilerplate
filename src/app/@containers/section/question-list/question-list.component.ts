@@ -21,7 +21,9 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private sectionService: SectionService,
   ) {
-    this.sectionId = Helper.getId(<string>this.route.snapshot.paramMap.get('id'));
+    this.sectionId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('id'),
+    );
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  public handlePage(event: any) {
+  handlePage(event: any) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     this.sectionService
