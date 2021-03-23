@@ -11,6 +11,11 @@ const routes: Routes = [
 
   // Public
   {
+    path: Path.Public,
+    loadChildren: () =>
+      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+  },
+  {
     path: Path.Home,
     loadChildren: () =>
       import('@containers/contest/contest.module').then((m) => m.ContestModule),

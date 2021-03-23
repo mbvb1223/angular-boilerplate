@@ -1,5 +1,6 @@
 export enum Path {
   // General containers
+  Public = 'public',
   Home = '',
   NotFound = '404',
 
