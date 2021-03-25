@@ -36,4 +36,10 @@ export class Helper {
   static getId(url: string): number {
     return parseInt(<string>url.split(/[-]+/).pop());
   }
+
+  static scrollTop(): void {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  }
 }

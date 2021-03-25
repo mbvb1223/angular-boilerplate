@@ -31,6 +31,8 @@ export class SubjectListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    Helper.scrollTop();
+
     this.contestId = Helper.getId(
       <string>this.route.snapshot.paramMap.get('id'),
     );

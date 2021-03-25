@@ -11,4 +11,12 @@ export class ExamModel extends BaseModel {
   subject_id: number;
 
   questions: Array<QuestionModel>;
+
+  constructor(params?: Array<unknown>) {
+    super(params);
+
+    this.questions = this.questions.map(
+      (question: any) => new QuestionModel(question),
+    );
+  }
 }

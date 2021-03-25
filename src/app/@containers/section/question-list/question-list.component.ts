@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SectionService } from '@core/services/section.service';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { Helper } from '@core/helpers/helper';
+import { PageEvent } from '@angular/material/paginator/paginator';
 
 @Component({
   templateUrl: './question-list.component.html',
@@ -37,8 +38,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  handlePage(event: any) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  handlePage(event: PageEvent) {
+    Helper.scrollTop();
 
     this.sectionService
       .paginateQuestions(this.sectionId, event.pageIndex + 1, this.pageSize)

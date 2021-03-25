@@ -24,6 +24,8 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    Helper.scrollTop();
+
     this.subjectId = Helper.getId(
       <string>this.route.snapshot.paramMap.get('id'),
     );
