@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator/paginator';
@@ -99,6 +95,7 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
 
         question.children.forEach((questionItem: QuestionModel) => {
           if (
+            this.result &&
             questionItem.id in this.result &&
             questionItem.correct_answer === this.result[questionItem.id]
           ) {
@@ -108,11 +105,11 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
       } else {
         number += 1;
         if (
+          this.result &&
           question.id in this.result &&
           question.correct_answer === this.result[question.id]
         ) {
           correctNumber++;
-          console.log('yyy')
         }
       }
     });

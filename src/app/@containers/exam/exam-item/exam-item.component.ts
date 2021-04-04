@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
 import { ExamService } from '@core/services/exam.service';
@@ -23,6 +24,12 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   questions: Array<QuestionModel>;
   answers: Array<number>;
   shouldResetQueryParams: boolean;
+  timeHour: number;
+  timeMinute: number;
+  timeSecond: number;
+  shouldWarningTime: boolean;
+  isSticky = false;
+  isSubmitting = false;
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -36,6 +43,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private breadcrumbService: BreadcrumbService,
+    private scrollDispatcher: ScrollDispatcher,
   ) {}
 
   ngOnInit(): void {
@@ -54,12 +62,15 @@ export class ExamItemComponent implements OnInit, OnDestroy {
       this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
 
       this.resetStorage();
+      this.getCountdown();
     });
 
     this.breadcrumbService.setItem(
       Helper.parentUrl(this.router.url),
       'Danh sách đề thi',
     );
+
+    this.scrollDispatcher.scrolled().subscribe(() => this.checkScroll());
   }
 
   ngOnDestroy(): void {}
@@ -92,23 +103,37 @@ export class ExamItemComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const data = {
-        answer: this.getAnsweredQuestions(),
-      };
-
-      this.examService
-        .submit(this.examId, data)
-        .subscribe((result: UserExamModel) => {
-          this.notificationService.success('Bạn đã nộp bài thành công!');
-          this.sessionStorageService.clear('exam_' + this.examId);
-          this.sessionStorageService.clear('exam_' + this.examId + '_answers');
-          this.router.navigate([this.router.url, 'result', result.id]);
-        });
+      this.submitExam();
     });
+  }
+
+  submitExam(): void {
+    if (this.isSubmitting) {
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    const data = {
+      answer: this.getAnsweredQuestions(),
+    };
+
+    this.examService
+      .submit(this.examId, data)
+      .subscribe((result: UserExamModel) => {
+        this.notificationService.success('Bạn đã nộp bài thành công!');
+        this.sessionStorageService.clear('exam_' + this.examId);
+        this.sessionStorageService.clear('exam_' + this.examId + '_answers');
+        this.router.navigate([this.router.url, 'result', result.id]);
+      });
   }
 
   isLastPage(): boolean {
     return this.currentPage === this.lastPage;
+  }
+
+  checkScroll() {
+    this.isSticky = window.pageYOffset >= 250;
   }
 
   public getNumberAnswered(): number {
@@ -127,6 +152,10 @@ export class ExamItemComponent implements OnInit, OnDestroy {
 
   public getTotalNumberQuestions(): number {
     let number = 0;
+    if (!this.exam || !this.exam.questions) {
+      return 0;
+    }
+
     this.exam.questions.forEach((question: QuestionModel) => {
       if (question.isParent) {
         number += question.children.length;
@@ -136,6 +165,37 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     });
 
     return number;
+  }
+
+  getCountdown() {
+    // Update the count down every 1 second
+    const x = setInterval(() => {
+      // Get today's date and time
+      const now = new Date().getTime();
+
+      const examTime = this.sessionStorageService.retrieve(
+        'exam_' + this.examId,
+      );
+      // Find the distance between now and the count down date
+      const distance = new Date(examTime['end_time']).getTime() - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      this.timeHour = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      this.timeMinute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.timeSecond = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        this.submitExam();
+      }
+
+      if (this.timeMinute < 5) {
+        this.shouldWarningTime = true;
+      }
+    }, 1000);
   }
 
   paginate(
@@ -158,10 +218,10 @@ export class ExamItemComponent implements OnInit, OnDestroy {
       this.sessionStorageService.clear('exam_' + this.examId);
 
       this.sessionStorageService.store('exam_' + this.examId, {
-        start_time: formatDate(new Date(), 'yyyy/MM/dd HH:mm', 'en'),
+        start_time: formatDate(new Date(), 'yyyy/MM/dd HH:mm:ss', 'en'),
         end_time: formatDate(
           new Date().setMinutes(new Date().getMinutes() + this.exam.time),
-          'yyyy/MM/dd HH:mm',
+          'yyyy/MM/dd HH:mm:ss',
           'en',
         ),
       });
