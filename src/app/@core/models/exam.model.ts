@@ -15,8 +15,10 @@ export class ExamModel extends BaseModel {
   constructor(params?: Array<unknown>) {
     super(params);
 
-    this.questions = this.questions.map(
-      (question: any) => new QuestionModel(question),
-    );
+    if (this.questions) {
+      this.questions = this.questions.map(
+        (question: any) => new QuestionModel(question),
+      );
+    }
   }
 }

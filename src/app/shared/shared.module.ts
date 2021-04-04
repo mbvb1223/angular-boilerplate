@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { MaterialConfigurationModule } from './material-configuration/material-configuration.module';
 import { SearchComponent } from './search/search.component';
+import { DialogComponent } from '@app/shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
+    DialogComponent,
     LoadingScreenComponent,
     SearchComponent
   ],

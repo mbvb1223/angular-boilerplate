@@ -8,6 +8,9 @@ import { QuestionModel } from '@core/models/question.model';
 export class QuestionGroupComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
   @Input() questionNumber: number;
+  @Input() showAnswer: boolean;
+  @Input() examId: number;
+  @Input() result: any;
 
   ngOnInit(): void {}
   ngOnDestroy(): void {}

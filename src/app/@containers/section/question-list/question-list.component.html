@@ -3,11 +3,13 @@
     <app-question-item *ngIf="question.isSingle"
                        [question]="question"
                        [questionNumber]="(currentPage * pageSize) + i + 1"
+                       [showAnswer]="true"
     ></app-question-item>
 
     <app-question-group *ngIf="question.isParent"
                         [question]="question"
                         [questionNumber]="(currentPage * pageSize) + i + 1"
+                        [showAnswer]="true"
     ></app-question-group>
   </div>
 </div>

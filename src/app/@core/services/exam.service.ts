@@ -7,6 +7,7 @@ import { ContestModel } from '@core/models/contest.model';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { SubjectModel } from '@core/models/subject.model';
 import { ExamModel } from '@core/models/exam.model';
+import { UserExamModel } from '@core/models/user-exam.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,17 @@ export class ExamService extends BaseHttpClientService {
     const url = this.getUrl() + `/${id}`;
 
     return this.get(url).pipe(map((res) => new ExamModel(res.data)));
+  }
+
+  getResult(id: number, resultId: number): Observable<UserExamModel> {
+    const url = this.getUrl() + `/${id}` + '/result/' + resultId;
+
+    return this.get(url).pipe(map((res) => new UserExamModel(res.data)));
+  }
+
+  submit(examId: number, data: any): Observable<any> {
+    const url = this.getUrl() + `/${examId}`;
+
+    return this.post(url, data).pipe(map((res: ICollection) => res.data));
   }
 }

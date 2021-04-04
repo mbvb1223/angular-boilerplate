@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { chunk } from 'lodash';
-import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
+import { formatDate } from '@angular/common';
+
+import { SessionStorageService } from 'ngx-webstorage';
 import { ExamModel } from '@core/models/exam.model';
 import { ExamService } from '@core/services/exam.service';
 import { SubjectService } from '@core/services/subject.service';
@@ -16,7 +17,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private localSt: LocalStorageService,
+    private sessionStorageService: SessionStorageService,
     private router: Router,
     private examService: ExamService,
     private subjectService: SubjectService,
@@ -40,5 +41,14 @@ export class ExamListComponent implements OnInit, OnDestroy {
       this.router.url,
       Helper.convertToUrl(exam.title, exam.id),
     ]);
+
+    this.sessionStorageService.store('exam_' + exam.id, {
+      start_time: formatDate(new Date(), 'yyyy/MM/dd HH:mm', 'en'),
+      end_time: formatDate(
+        new Date().setMinutes(new Date().getMinutes() + exam.time),
+        'yyyy/MM/dd HH:mm',
+        'en',
+      ),
+    });
   }
 }

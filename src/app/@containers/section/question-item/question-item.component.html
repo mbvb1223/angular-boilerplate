@@ -9,7 +9,7 @@
         style="padding-top: 5px"
         class="m-1 mat-background-primary mat-primary "
         *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst"
-        [ngStyle]="(selectedValue && (optionId + 1) === question.correct_answer) ? {'background-color':'#b7c9fb'} : {}"
+        [ngStyle]="(shouldShowAnswer() && (optionId + 1) === question.correct_answer) ? {'background-color': '#b7c9fb'} : {}"
       >
         <mat-checkbox
           (change)="answer($event)"
@@ -21,7 +21,7 @@
       </div>
     </form>
 
-    <div style="padding: 5px">
+    <div style="padding: 5px" *ngIf="shouldShowAnswer()">
       <div style="margin: 10px 0" class="text-center">
         <button mat-raised-button
                 color="{{ isCorrectAnswer() ? 'primary' : 'accent' }}"
@@ -30,7 +30,7 @@
         </button>
       </div>
       <div class="font-bold">
-        {{ selectedValue && question.description ? question.description : "" }}
+        {{ question.description ? question.description : "" }}
       </div>
     </div>
   </mat-card-content>

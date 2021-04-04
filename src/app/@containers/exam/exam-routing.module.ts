@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ExamListComponent } from '@containers/exam/exam-list/exam-list.component';
 import { ExamItemComponent } from '@containers/exam/exam-item/exam-item.component';
+import { ExamItemResultComponent } from '@containers/exam/exam-item-result/exam-item-result.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: ':de-thi',
     component: ExamItemComponent,
+  },
+  {
+    path: ':de-thi/result/:result-id',
+    component: ExamItemResultComponent,
   },
 ];
 
