@@ -13,6 +13,7 @@ import { ExamService } from '@core/services/exam.service';
 import { Helper } from '@core/helpers/helper';
 import { ExamModel } from '@core/models/exam.model';
 import { UserExamModel } from '@core/models/user-exam.model';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
 
 @Component({
   selector: 'app-exam-item-result',
@@ -36,6 +37,7 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private sessionStorageService: SessionStorageService,
     private examService: ExamService,
+    private breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +62,11 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
         this.totalSize = exam.questions.length;
         this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
       });
+
+    this.breadcrumbService.setItem(
+      Helper.parentUrl(this.router.url, 3),
+      'Danh sách đề thi',
+    );
   }
 
   ngOnDestroy(): void {}
@@ -93,7 +100,7 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
         question.children.forEach((questionItem: QuestionModel) => {
           if (
             questionItem.id in this.result &&
-            question.correct_answer == this.result[questionItem.id]
+            questionItem.correct_answer === this.result[questionItem.id]
           ) {
             correctNumber++;
           }
@@ -102,17 +109,15 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
         number += 1;
         if (
           question.id in this.result &&
-          question.correct_answer == this.result[question.id]
+          question.correct_answer === this.result[question.id]
         ) {
           correctNumber++;
+          console.log('yyy')
         }
       }
     });
 
-    return (this.analytics = [
-      number,
-      correctNumber,
-    ]);
+    return (this.analytics = [number, correctNumber]);
   }
 
   paginate(

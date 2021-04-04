@@ -9,6 +9,7 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
   @Input() questionNumber: number;
   @Input() showAnswer: boolean;
+  @Input() forceShowAnswer: boolean;
   @Input() examId: number;
   @Input() result: any;
 

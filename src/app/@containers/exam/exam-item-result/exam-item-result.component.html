@@ -9,8 +9,9 @@
       <app-question-item *ngIf="question.isSingle"
                          [question]="question"
                          [questionNumber]="(currentPage * pageSize) + i + 1"
-                         [showAnswer]="true"
+                         [canShowAnswer]="true"
                          [result]="result"
+                         [forceShowAnswer]="true"
       ></app-question-item>
 
       <app-question-group *ngIf="question.isParent"
@@ -18,6 +19,7 @@
                           [questionNumber]="(currentPage * pageSize) + i + 1"
                           [showAnswer]="true"
                           [result]="result"
+                          [forceShowAnswer]="true"
       ></app-question-group>
     </div>
   </div>

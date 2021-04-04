@@ -14,7 +14,8 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() question: QuestionModel;
   @Input() questionNumber: number;
   @Input() questionPrefix: string;
-  @Input() showAnswer: boolean;
+  @Input() canShowAnswer: boolean;
+  @Input() forceShowAnswer: boolean;
   @Input() examId: number;
   @Input() result: any;
   selectedValue: number | null;
@@ -75,7 +76,11 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   }
 
   shouldShowAnswer(): boolean {
-    return !!this.selectedValue && this.showAnswer;
+    if (this.forceShowAnswer) {
+      return this.forceShowAnswer;
+    }
+
+    return !!this.selectedValue && this.canShowAnswer;
   }
 
   private getAnswers(): any {
