@@ -22,7 +22,7 @@
   [hidePageSize]="true"
   (page)="handlePage($event)">
 </mat-paginator>
-<div *ngIf="isLastPage()">
-  <div><b>Bạn đã trả lời: </b> {{ getNumberAnswered() }} / {{ getTotalNumberQuestions() }}</div>
-  <button mat-raised-button color="primary" class="text-center" (click)="submit()">Nộp bài</button>
+
+<div *ngIf="isLastPage()" class="text-center" style="padding: 15px 0">
+  <button [disabled]="!this.getNumberAnswered()" mat-raised-button color="primary" class="text-center" (click)="submit()" style="font-size: 24px">Nộp bài</button>
 </div>

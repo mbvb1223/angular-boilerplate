@@ -1,25 +1,28 @@
-<div *ngIf="exam" style="text-align: center; padding: 5px 0">
-  <button mat-raised-button color="primary" style="font-size: 24px">
-    Số câu trả lời đúng: {{ getAnalyticsNumber()[1]}} / {{ getAnalyticsNumber()[0] }}
-  </button>
-</div>
-<div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
-  <div *ngFor="let question of questions; index as i; first as isFirst">
-    <app-question-item *ngIf="question.isSingle"
-                       [question]="question"
-                       [questionNumber]="(currentPage * pageSize) + i + 1"
-                       [showAnswer]="true"
-                       [result]="result"
-    ></app-question-item>
+<div style="pointer-events: none;">
+  <div *ngIf="exam" style="text-align: center; padding: 5px 0">
+    <button mat-raised-button color="primary" style="font-size: 24px">
+      Số câu trả lời đúng: {{ getAnalyticsNumber()[1]}} / {{ getAnalyticsNumber()[0] }}
+    </button>
+  </div>
+  <div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
+    <div *ngFor="let question of questions; index as i; first as isFirst">
+      <app-question-item *ngIf="question.isSingle"
+                         [question]="question"
+                         [questionNumber]="(currentPage * pageSize) + i + 1"
+                         [showAnswer]="true"
+                         [result]="result"
+      ></app-question-item>
 
-    <app-question-group *ngIf="question.isParent"
-                        [question]="question"
-                        [questionNumber]="(currentPage * pageSize) + i + 1"
-                        [showAnswer]="true"
-                        [result]="result"
-    ></app-question-group>
+      <app-question-group *ngIf="question.isParent"
+                          [question]="question"
+                          [questionNumber]="(currentPage * pageSize) + i + 1"
+                          [showAnswer]="true"
+                          [result]="result"
+      ></app-question-group>
+    </div>
   </div>
 </div>
+
 <mat-paginator
   #paginator
   [pageSize]="pageSize"

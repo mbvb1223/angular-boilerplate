@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { SessionStorageService } from 'ngx-webstorage';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-question-item',
@@ -59,7 +60,12 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
 
     if (this.examId) {
       const answers = this.getAnswers();
-      answers[`${this.question.id}`] = this.selectedValue;
+      if (!this.selectedValue) {
+        delete answers[`${this.question.id}`];
+      } else {
+        answers[`${this.question.id}`] = this.selectedValue;
+      }
+
       this.sessionStorageService.store(this.sessionKey, answers);
     }
   }
@@ -69,9 +75,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   }
 
   shouldShowAnswer(): boolean {
-    return (
-      !!this.selectedValue && !!this.question.description && this.showAnswer
-    );
+    return !!this.selectedValue && this.showAnswer;
   }
 
   private getAnswers(): any {

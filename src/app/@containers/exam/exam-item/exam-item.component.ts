@@ -1,10 +1,6 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
 import { ExamService } from '@core/services/exam.service';
 import { Helper } from '@core/helpers/helper';
@@ -14,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '@app/shared/dialog/dialog.component';
 import { NotificationService } from '@core/services/notification.service';
 import { UserExamModel } from '@core/models/user-exam.model';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-exam-item',
@@ -24,6 +22,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   exam: ExamModel;
   questions: Array<QuestionModel>;
   answers: Array<number>;
+  shouldResetQueryParams: boolean;
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -36,6 +35,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     private examService: ExamService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
+    private breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
@@ -43,12 +43,23 @@ export class ExamItemComponent implements OnInit, OnDestroy {
       <string>this.route.snapshot.paramMap.get('de-thi'),
     );
 
+    this.route.queryParams.subscribe((params: Params) => {
+      this.shouldResetQueryParams = params['reset'];
+    });
+
     this.examService.getById(this.examId).subscribe((exam: ExamModel) => {
       this.exam = exam;
       this.questions = this.paginate(exam.questions, this.pageSize, 1);
       this.totalSize = exam.questions.length;
       this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
+
+      this.resetStorage();
     });
+
+    this.breadcrumbService.setItem(
+      Helper.parentUrl(this.router.url),
+      'Danh sách đề thi',
+    );
   }
 
   ngOnDestroy(): void {}
@@ -65,9 +76,22 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    const dialogRef = this.dialog.open(DialogComponent);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Bạn đã chắc chắn muốn nộp bài?',
+        message:
+          '<b>Bạn đã trả lời: </b>' +
+          this.getNumberAnswered() +
+          '/' +
+          this.getTotalNumberQuestions(),
+      },
+    });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (!result) {
+        return;
+      }
+
       const data = {
         answer: this.getAnsweredQuestions(),
       };
@@ -121,5 +145,28 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   ): Array<QuestionModel> {
     // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
     return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+  }
+
+  private resetStorage() {
+    const examTime = this.sessionStorageService.retrieve('exam_' + this.examId);
+    if (
+      this.shouldResetQueryParams ||
+      !examTime ||
+      (examTime && Date.parse(examTime.end_time) < Date.now())
+    ) {
+      this.sessionStorageService.clear('exam_' + this.examId + '_answers');
+      this.sessionStorageService.clear('exam_' + this.examId);
+
+      this.sessionStorageService.store('exam_' + this.examId, {
+        start_time: formatDate(new Date(), 'yyyy/MM/dd HH:mm', 'en'),
+        end_time: formatDate(
+          new Date().setMinutes(new Date().getMinutes() + this.exam.time),
+          'yyyy/MM/dd HH:mm',
+          'en',
+        ),
+      });
+    }
+
+    this.router.navigate([], { queryParams: {} });
   }
 }
