@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from 'ngx-webstorage';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
+import { Helper } from '@core/helpers/helper';
+import { StoreKeyEnum } from '@core/structs/store-key.enum';
 
 @Component({
   selector: 'app-question-item',
@@ -20,6 +22,7 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   @Input() result: any;
   selectedValue: number | null;
   sessionKey: string;
+  isActiveOrder: boolean;
   form: FormGroup;
 
   constructor(
@@ -44,6 +47,11 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
     if (this.selectedValue) {
       this.form.controls[`answer_${this.selectedValue}`].setValue(true);
     }
+
+    this.isActiveOrder = Helper.isActiveOrder(
+      this.sessionStorageService.retrieve(StoreKeyEnum.Order),
+      Helper.getId(<string>this.route.snapshot.paramMap.get('ky-thi')),
+    );
   }
 
   ngOnDestroy(): void {}

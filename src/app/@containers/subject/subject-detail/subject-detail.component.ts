@@ -14,6 +14,7 @@ import { BreadcrumbService } from '@core/services/breadcrumb.service';
 export class SubjectDetailComponent implements OnInit, OnDestroy {
   sections: Array<SectionModel>;
   subjectId: number;
+  contestId: number;
   subject: SubjectModel;
 
   constructor(
@@ -28,6 +29,9 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
 
     this.subjectId = Helper.getId(
       <string>this.route.snapshot.paramMap.get('id'),
+    );
+    this.contestId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('ky-thi'),
     );
 
     this.subjectService

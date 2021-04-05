@@ -29,9 +29,13 @@
           {{ isCorrectAnswer() ? "Bạn đã trả lời Đúng!" : "Bạn đã trả lời Sai!" }}
         </button>
       </div>
-      <div class="font-bold">
+      <div class="font-bold" *ngIf="isActiveOrder">
         {{ question.description ? question.description : "" }}
       </div>
+      <div class="font-bold" *ngIf="!isActiveOrder">
+        Tài khoản miễn phí chỉ làm được 10 câu
+      </div>
+
     </div>
   </mat-card-content>
 </mat-card>

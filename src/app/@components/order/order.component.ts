@@ -1,10 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OrderService } from '@core/services/order.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SessionStorageService } from 'ngx-webstorage';
+
+import { OrderService } from '@core/services/order.service';
 import { ContestModel } from '@core/models/contest.model';
 import { OrderModel } from '@core/models/order.model';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
+import { StoreKeyEnum } from '@core/structs/store-key.enum';
+import { ContestService } from '@core/services/contest.service';
 
 @Component({
   selector: 'app-order-contest',
@@ -12,17 +16,20 @@ import { UserModel } from '@core/models/user.model';
 })
 export class OrderComponent implements OnInit {
   @Input() contest: ContestModel;
+  @Input() contestId: number;
   shouldShowForm = false;
   form: FormGroup;
   shouldShowRegisterElement: boolean;
   user: UserModel | null;
-  private _isActive = false;
-  private _isInactive = false;
+  isActive = false;
+  isInactive = false;
 
   constructor(
     private orderService: OrderService,
     private formBuilder: FormBuilder,
-    public authService: AuthBackendService,
+    private authService: AuthBackendService,
+    private contestService: ContestService,
+    private sessionStorageService: SessionStorageService,
   ) {
     this.form = this.formBuilder.group({
       note: [null, Validators.required],
@@ -32,9 +39,19 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.contestId) {
+      this.contestService
+        .getById(this.contestId)
+        .subscribe((contest: ContestModel) => {
+          this.contest = contest;
+        });
+    }
+
     if (this.user) {
-      this.orderService.index().subscribe((order: Array<OrderModel>) => {
-        order.forEach((item, index) => {
+      this.orderService.index().subscribe((orders: Array<OrderModel>) => {
+        this.sessionStorageService.store(StoreKeyEnum.Order, orders);
+
+        orders.forEach((item, index) => {
           if (
             item.contest_id === this.contest.id &&
             item.status === OrderModel.STATUS_INACTIVE
@@ -69,21 +86,23 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  set isInactive(value: boolean) {
-    this._isInactive = value;
-    this.shouldShowRegisterElement = this.isActive || this.isInactive;
-  }
-
-  get isInactive(): boolean {
-    return this._isInactive;
-  }
-
-  set isActive(value: boolean) {
-    this._isActive = value;
-    this.shouldShowRegisterElement = this.isActive || this.isInactive;
-  }
-
-  get isActive(): boolean {
-    return this._isActive || (this.shouldShowRegisterElement && this.contest.isFree);
-  }
+  // set isInactive(value: boolean) {
+  //   this._isInactive = value;
+  //   // this.shouldShowRegisterElement = this.isActive || this.isInactive;
+  // }
+  //
+  // get isInactive(): boolean {
+  //   return this._isInactive;
+  // }
+  //
+  // set isActive(value: boolean) {
+  //   this._isActive = value;
+  //   // this.shouldShowRegisterElement = this.isActive || this.isInactive;
+  // }
+  //
+  // get isActive(): boolean {
+  //   return (
+  //     this._isActive || (this.shouldShowRegisterElement && this.contest.isFree)
+  //   );
+  // }
 }

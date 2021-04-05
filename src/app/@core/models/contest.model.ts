@@ -18,4 +18,18 @@ export class ContestModel extends BaseModel {
   get isActive(): boolean {
     return this.status === ContestModel.STATUS_ACTIVE;
   }
+
+  get formatted_sale_price(): string {
+    return this.sale_price.toLocaleString('it-IT', {
+      style: 'currency',
+      currency: 'VND',
+    });
+  }
+
+  get formatted_price(): string {
+    return this.price.toLocaleString('it-IT', {
+      style: 'currency',
+      currency: 'VND',
+    });
+  }
 }

@@ -7,6 +7,8 @@ import { Path } from '@core/structs';
 import { NotificationService } from '@core/services/notification.service';
 import { Helper } from '@core/helpers/helper';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
+import { AuthBackendService } from '@core/services/auth-backend.service';
+import { UserModel } from '@core/models/user.model';
 
 @Component({
   templateUrl: './contest-list.component.html',
@@ -14,12 +16,14 @@ import { BreadcrumbService } from '@core/services/breadcrumb.service';
 })
 export class ContestListComponent implements OnInit, OnDestroy {
   contests: Array<ContestModel>;
+  currentUser: UserModel | null;
 
   constructor(
     private router: Router,
     private contestService: ContestService,
     private notificationService: NotificationService,
     private breadcrumbService: BreadcrumbService,
+    private authBackendService: AuthBackendService,
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +38,24 @@ export class ContestListComponent implements OnInit, OnDestroy {
 
   goToContest(contest: ContestModel) {
     if (contest.isActive) {
-      this.router.navigate([
-        Path.Contest,
-        Helper.convertToUrl(contest.title, contest.id),
-      ]);
+      this.currentUser = this.authBackendService.getCurrentUser();
+      if (this.currentUser) {
+        this.router.navigate([
+          Path.Contest,
+          Helper.convertToUrl(contest.title, contest.id),
+        ]);
+        return;
+      }
+
+      this.notificationService.warning('Vui lòng đăng nhập!');
+
+      this.router.navigate([Path.SignIn], {
+        queryParams: {
+          returnUrl:
+            Path.Contest + '/' + Helper.convertToUrl(contest.title, contest.id),
+        },
+      });
+
       return;
     }
 

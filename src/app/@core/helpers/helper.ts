@@ -1,3 +1,5 @@
+import { OrderModel } from '@core/models/order.model';
+
 export class Helper {
   static convertToContestUrl(title: string, id: number): string {
     return 'ky-thi/' + Helper.convertToUrl(title, id);
@@ -39,6 +41,21 @@ export class Helper {
 
   static parentUrl(url: string, deleteItem: number = 1): string {
     return url.split('/').reverse().slice(deleteItem).reverse().join('/');
+  }
+
+  static isActiveOrder(orders: Array<OrderModel>, contestId: number) {
+    let isActive = false;
+    orders.forEach((item, index) => {
+      if (
+        item.contest_id === contestId &&
+        item.status === OrderModel.STATUS_ACTIVE
+      ) {
+        isActive = true;
+        return;
+      }
+    });
+
+    return isActive;
   }
 
   static scrollTop(): void {

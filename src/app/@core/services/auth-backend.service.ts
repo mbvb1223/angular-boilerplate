@@ -12,6 +12,8 @@ import { UserModel } from '@core/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { SocialAuthService } from 'angularx-social-login';
 import { NotificationService } from '@core/services/notification.service';
+import { Path } from '@core/structs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +28,7 @@ export class AuthBackendService extends BaseHttpClientService {
     protected httpClient: HttpClient,
     protected socialAuthService: SocialAuthService,
     protected notificationService: NotificationService,
+    protected router: Router,
   ) {
     super(httpClient);
 
@@ -80,6 +83,8 @@ export class AuthBackendService extends BaseHttpClientService {
     localStorage.removeItem(this.userKey);
 
     this.notificationService.warning(`Bạn đã đăng xuất!`);
+
+    this.router.navigate([Path.Home]);
 
     this.socialAuthService.signOut(true).finally(() => {
       this.userSubject$.next(this.getCurrentUser());

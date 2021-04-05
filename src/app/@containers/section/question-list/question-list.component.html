@@ -1,3 +1,5 @@
+<app-order-contest [contestId]="contestId"></app-order-contest>
+
 <div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
   <div *ngFor="let question of questions; index as i; first as isFirst">
     <app-question-item *ngIf="question.isSingle"
@@ -13,12 +15,16 @@
     ></app-question-group>
   </div>
 </div>
-<mat-paginator
-  #paginator
-  [pageSize]="pageSize"
-  [showFirstLastButtons]="true"
-  [length]="totalSize"
-  [pageIndex]="currentPage"
-  [hidePageSize]="true"
-  (page)="handlePage($event)">
-</mat-paginator>
+
+<div *ngIf="isActiveOrder">
+  <mat-paginator
+    #paginator
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="true"
+    [length]="totalSize"
+    [pageIndex]="currentPage"
+    [hidePageSize]="true"
+    (page)="handlePage($event)">
+  </mat-paginator>
+</div>
+

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000/api/',
+  apiUrl: 'http://tcc.local/api/',
   googleClientId:
     '686645448062-bqnisflu0a358ameteqc63ah09uc08fu.apps.googleusercontent.com',
   facebookClientId: '486122019055775',

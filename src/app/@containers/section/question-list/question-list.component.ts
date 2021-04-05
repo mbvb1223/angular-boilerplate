@@ -6,6 +6,8 @@ import { SectionService } from '@core/services/section.service';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { Helper } from '@core/helpers/helper';
 import { PageEvent } from '@angular/material/paginator/paginator';
+import { StoreKeyEnum } from '@core/structs/store-key.enum';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   templateUrl: './question-list.component.html',
@@ -14,6 +16,8 @@ import { PageEvent } from '@angular/material/paginator/paginator';
 export class QuestionListComponent implements OnInit, OnDestroy {
   questions: Array<QuestionModel>;
   sectionId: number;
+  contestId: number;
+  isActiveOrder: boolean;
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -21,9 +25,14 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private sectionService: SectionService,
+    private sessionStorageService: SessionStorageService,
   ) {
     this.sectionId = Helper.getId(
       <string>this.route.snapshot.paramMap.get('id'),
+    );
+
+    this.contestId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('ky-thi'),
     );
   }
 
@@ -34,6 +43,11 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         this.questions = questionCollection.data;
         this.totalSize = questionCollection.meta.total;
       });
+
+    this.isActiveOrder = Helper.isActiveOrder(
+      this.sessionStorageService.retrieve(StoreKeyEnum.Order),
+      Helper.getId(<string>this.route.snapshot.paramMap.get('ky-thi')),
+    );
   }
 
   ngOnDestroy(): void {}
