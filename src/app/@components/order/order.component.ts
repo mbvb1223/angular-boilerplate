@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from 'ngx-webstorage';
+import { ActivatedRoute } from '@angular/router';
 
 import { OrderService } from '@core/services/order.service';
 import { ContestModel } from '@core/models/contest.model';
@@ -9,6 +10,7 @@ import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
 import { StoreKeyEnum } from '@core/structs/store-key.enum';
 import { ContestService } from '@core/services/contest.service';
+import { Helper } from '@core/helpers/helper';
 
 @Component({
   selector: 'app-order-contest',
@@ -16,7 +18,6 @@ import { ContestService } from '@core/services/contest.service';
 })
 export class OrderComponent implements OnInit {
   @Input() contest: ContestModel;
-  @Input() contestId: number;
   shouldShowForm = false;
   form: FormGroup;
   shouldShowRegisterElement: boolean;
@@ -30,6 +31,7 @@ export class OrderComponent implements OnInit {
     private authService: AuthBackendService,
     private contestService: ContestService,
     private sessionStorageService: SessionStorageService,
+    private route: ActivatedRoute,
   ) {
     this.form = this.formBuilder.group({
       note: [null, Validators.required],
@@ -39,9 +41,12 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.contestId) {
+    if (!this.contest) {
+      const contestId = Helper.getId(
+        <string>this.route.snapshot.paramMap.get('ky-thi'),
+      );
       this.contestService
-        .getById(this.contestId)
+        .getById(contestId)
         .subscribe((contest: ContestModel) => {
           this.contest = contest;
         });

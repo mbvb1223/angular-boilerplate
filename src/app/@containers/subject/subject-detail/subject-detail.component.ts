@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SubjectService } from '@core/services/subject.service';
 import { SectionModel } from '@core/models/section.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Helper } from '@core/helpers/helper';
 import { SubjectModel } from '@core/models/subject.model';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
@@ -14,7 +14,6 @@ import { BreadcrumbService } from '@core/services/breadcrumb.service';
 export class SubjectDetailComponent implements OnInit, OnDestroy {
   sections: Array<SectionModel>;
   subjectId: number;
-  contestId: number;
   subject: SubjectModel;
 
   constructor(
@@ -29,9 +28,6 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
 
     this.subjectId = Helper.getId(
       <string>this.route.snapshot.paramMap.get('id'),
-    );
-    this.contestId = Helper.getId(
-      <string>this.route.snapshot.paramMap.get('ky-thi'),
     );
 
     this.subjectService
@@ -58,7 +54,7 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
     ]);
   }
 
-  goToExam(subjectId: number) {
+  goToExam() {
     this.router.navigate([this.router.url, 'de-thi']);
   }
 }

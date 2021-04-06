@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { SessionStorageService } from 'ngx-webstorage';
+
 import { ActivatedRoute } from '@angular/router';
 import { QuestionModel } from '@core/models/question.model';
 import { Helper } from '@core/helpers/helper';
