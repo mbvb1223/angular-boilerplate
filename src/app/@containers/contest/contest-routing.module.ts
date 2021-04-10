@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ContestListComponent,
   },
   {
-    path: ':id',
+    path: ':ky-thi',
     component: SubjectListComponent,
   },
 ];

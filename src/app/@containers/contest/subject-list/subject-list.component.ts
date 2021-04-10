@@ -34,7 +34,7 @@ export class SubjectListComponent implements OnInit, OnDestroy {
     Helper.scrollTop();
 
     this.contestId = Helper.getId(
-      <string>this.route.snapshot.paramMap.get('id'),
+      <string>this.route.snapshot.paramMap.get('ky-thi'),
     );
     this.contestService
       .getById(this.contestId)

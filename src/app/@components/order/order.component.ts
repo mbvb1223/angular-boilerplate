@@ -24,6 +24,7 @@ export class OrderComponent implements OnInit {
   user: UserModel | null;
   isActive = false;
   isInactive = false;
+  isFinishLoading = false;
 
   constructor(
     private orderService: OrderService,
@@ -70,6 +71,8 @@ export class OrderComponent implements OnInit {
             this.isActive = true;
           }
         });
+
+        this.isFinishLoading = true;
       });
     }
   }

@@ -1,4 +1,4 @@
-<div class="row" *ngIf="contest && !contest.isFree && !isActive">
+<div class="row" *ngIf="contest && !contest.isFree && !isActive && isFinishLoading">
   <div class="col-lg-12 col-md-12">
 
     <div class="card" *ngIf="!isInactive">
@@ -17,20 +17,49 @@
               <div class="timeline-panel">
                 <div class="timeline-heading"><span class="badge badge-success">Thanh Toán</span></div>
                 <div class="timeline-body">
-                  <p>
-                    {{ contest.isFree ? 'Miễn phí' : 'Vui lòng thanh toán' }}: {{ contest.formatted_sale_price }}
-                    <span style="text-decoration: line-through;">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <p>
+                        <b>{{ contest.isFree ? 'Miễn phí' : 'Vui lòng thanh toán' }}
+                          :</b> {{ contest.formatted_sale_price }}
+                        <span style="text-decoration: line-through;">
                     ({{ contest.formatted_price }})
                     </span>
-                  </p>
-                  <div class="my-2">
-                    <span class="font-title-soft"><b>Người hưởng thụ: </b>Trịnh Thị Liên </span>
-                  </div>
-                  <div class="my-2">
-                    <span class="font-title-soft"><b>STK:</b> 007704060063627</span>
-                  </div>
-                  <div class="my-2">
-                    <span class="font-title-soft"><b>Ngân hàng:</b> VIB - Ngân hàng Quốc Tế VIB</span>
+                      </p>
+                      <div class="my-2">
+                        <span class="font-title-soft"><b>Người hưởng thụ: </b>Trịnh Thị Liên </span>
+                      </div>
+                      <div class="my-2">
+                        <span class="font-title-soft"><b>STK:</b> 007704060063627</span>
+                      </div>
+                      <div class="my-2">
+                        <span class="font-title-soft"><b>Ngân hàng:</b> VIB - Ngân hàng Quốc Tế VIB</span>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                      <div class="text-center"><b><p>{{ contest.title }}</p></b></div>
+                      <div>
+                        <mat-icon class="material-icons" style="color: blue">done</mat-icon>
+                        Đề thi cập nhật liên tục
+                      </div>
+                      <div>
+                        <mat-icon class="material-icons" style="color: blue">done</mat-icon>
+                        Trọn bộ câu hỏi và giải thích
+                      </div>
+                      <div>
+                        <mat-icon class="material-icons" style="color: blue">done</mat-icon>
+                        Tải về trọn bộ tài liệu
+                      </div>
+                      <div>
+                        <mat-icon class="material-icons" style="color: blue">done</mat-icon>
+                        Cập nhật thông tin chi tiết về kỳ thi qua email
+                      </div>
+                      <div>
+                        <mat-icon class="material-icons" style="color: blue">done</mat-icon>
+                        Tài khoản kích hoạt cho đến khi thi xong
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -45,7 +74,7 @@
                     <mat-form-field appearance="outline">
                       <input
                         formControlName="note"
-                        matInput placeholder="Vui lòng nhập Họ Tên và Số Điện Thoại">
+                        matInput placeholder="Nhập Họ Tên và Số Điện Thoại">
                     </mat-form-field>
                   </form>
                 </div>
@@ -56,7 +85,9 @@
           <div class="text-center">
             <button (click)="hideForm()" mat-raised-button color="default" class="text-center">Hủy</button>
             &nbsp; &nbsp;
-            <button (click)="register()" [disabled]="!form.valid" mat-raised-button color="primary" class="text-center">Đăng ký</button>
+            <button (click)="register()" [disabled]="!form.valid" mat-raised-button color="primary" class="text-center">
+              Đăng ký
+            </button>
           </div>
         </div>
       </div>
