@@ -1,18 +1,18 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { formatDate } from '@angular/common';
+
 import { QuestionModel } from '@core/models/question.model';
 import { ExamService } from '@core/services/exam.service';
 import { Helper } from '@core/helpers/helper';
-import { ExamModel } from '@core/models/exam.model';
-import { PageEvent } from '@angular/material/paginator/paginator';
-import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '@app/shared/dialog/dialog.component';
 import { NotificationService } from '@core/services/notification.service';
 import { UserExamModel } from '@core/models/user-exam.model';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
-import { formatDate } from '@angular/common';
+import { ExamModel } from '@core/models/exam.model';
 
 @Component({
   selector: 'app-exam-item',
@@ -43,7 +43,6 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private breadcrumbService: BreadcrumbService,
-    private scrollDispatcher: ScrollDispatcher,
   ) {}
 
   ngOnInit(): void {
@@ -69,8 +68,6 @@ export class ExamItemComponent implements OnInit, OnDestroy {
       Helper.parentUrl(this.router.url),
       'Danh sách đề thi',
     );
-
-    this.scrollDispatcher.scrolled().subscribe(() => this.checkScroll());
   }
 
   ngOnDestroy(): void {}
@@ -132,6 +129,9 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     return this.currentPage === this.lastPage;
   }
 
+  @HostListener('mousewheel', ['$event'])
+  @HostListener('touchmove', ['$event'])
+  @HostListener('window:scroll', ['$event'])
   checkScroll() {
     this.isSticky = window.pageYOffset >= 250;
   }
@@ -192,7 +192,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
         this.submitExam();
       }
 
-      if (this.timeMinute < 5) {
+      if (this.timeHour < 1 && this.timeMinute < 5) {
         this.shouldWarningTime = true;
       }
     }, 1000);

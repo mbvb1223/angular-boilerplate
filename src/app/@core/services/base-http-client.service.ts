@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import merge from 'lodash/merge';
 
 import { environment } from '@environments/environment';
 
@@ -62,7 +61,7 @@ export abstract class BaseHttpClientService {
     },
   ): Observable<any> {
     if (!isLoading) {
-      options = merge(options, { params: { noLoading: 'active' } });
+      options = { ...options, ...{ params: { noLoading: 'active' } } };
     }
 
     return this.httpClient.get(url, options);
@@ -90,7 +89,7 @@ export abstract class BaseHttpClientService {
     },
   ): Observable<any> {
     if (!isLoading) {
-      options = merge(options, { params: { noLoading: 'active' } });
+      options = { ...options, ...{ params: { noLoading: 'active' } } };
     }
 
     return this.httpClient.post(url, body, options);
@@ -116,7 +115,7 @@ export abstract class BaseHttpClientService {
     },
   ): Observable<any> {
     if (!isLoading) {
-      options = merge(options, { params: { noLoading: 'active' } });
+      options = { ...options, ...{ params: { noLoading: 'active' } } };
     }
 
     return this.httpClient.delete(this.getUrl(), options);
@@ -143,7 +142,7 @@ export abstract class BaseHttpClientService {
     },
   ): Observable<any> {
     if (!isLoading) {
-      options = merge(options, { params: { noLoading: 'active' } });
+      options = { ...options, ...{ params: { noLoading: 'active' } } };
     }
 
     return this.httpClient.put(this.getUrl(), body, options);
