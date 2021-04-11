@@ -34,6 +34,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   public currentPage = 0;
   public totalSize = 0;
   public lastPage: number;
+  private timeInterval: any;
 
   constructor(
     private router: Router,
@@ -70,7 +71,9 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    clearInterval(this.timeInterval);
+  }
 
   handlePage(event: PageEvent) {
     Helper.scrollTop();
@@ -169,7 +172,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
 
   getCountdown() {
     // Update the count down every 1 second
-    const x = setInterval(() => {
+    this.timeInterval = setInterval(() => {
       // Get today's date and time
       const now = new Date().getTime();
 
@@ -188,7 +191,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
 
       // If the count down is finished, write some text
       if (distance < 0) {
-        clearInterval(x);
+        clearInterval(this.timeInterval);
         this.submitExam();
       }
 
