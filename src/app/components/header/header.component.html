@@ -9,12 +9,12 @@
     </span>
 
    <div>
-     <button *ngIf="!user" routerLink="/auth/dang-nhap" class="btn btn-sm pull-right btn-primary" style="">
+     <button *ngIf="!user" routerLink="/auth/dang-nhap" class="btn pull-right btn-primary">
        Đăng nhập
      </button>
-     <span *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="btn btn-sm pull-right btn-warning"
+     <button *ngIf="user" mat-button [matMenuTriggerFor]="menu" class="btn pull-right btn-warning"
            style="text-transform: none; max-width: 150px"
-     >Hi, {{ user.name }}</span>
+     >Hi, {{ user.name }}</button>
      <mat-menu #menu="matMenu">
        <button mat-menu-item (click)="onClickLogout()">Đăng xuất</button>
      </mat-menu>

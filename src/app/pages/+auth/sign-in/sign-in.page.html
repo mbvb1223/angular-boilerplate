@@ -1,9 +1,27 @@
-<div class="container flex flex-col items-center justify-center h-full">
-  <p class="mb-12 text-5xl">You're not logged in!</p>
-  <button
-    class="inline-block h-12 px-6 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:ring-offset-blue-600 focus:outline-none"
-    (click)="onClickSignIn()"
-  >
-    Sign in
-  </button>
+<div class="row">
+  <div class="col-md-12 ml-auto mr-auto">
+    <div class="card card-login card-hidden hover-shadow-wrapper">
+      <div class="card-header text-center" data-background-color="green">
+        <h4 class="card-title">Đăng nhập</h4>
+        <hr>
+      </div>
+      <div class="card-content text-center">
+        <div class="col-md-12" (click)="signInWithFacebook()">
+          <button mat-raised-button class="btn btn-facebook">
+            <i class="fa fa-facebook-square"></i> &nbsp; Đăng nhập với Facebook
+          </button>
+        </div>
+        <div class="col-md-12" (click)="signInWithGoogle()">
+          <button mat-raised-button class="btn btn-google">
+            <i class="fa fa-google-plus"></i> &nbsp; Đăng nhập với Google &nbsp;
+          </button>
+        </div>
+      </div>
+      <div class="footer text-center">
+        <div class="col-md-12">
+          <p>ThiCongChuc.Org</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

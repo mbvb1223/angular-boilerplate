@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { NotFoundPage } from '@containers/not-found/not-found.page';
 import { AuthGuard, NoAuthGuard } from '@core/guards';
 import { Path } from '@core/structs';
+import { NotFoundModule } from '@pages/_not-found/not-found.module';
 
 const routes: Routes = [
   // ===== Uncomment if Path.Home is different from empty =====
@@ -13,42 +13,52 @@ const routes: Routes = [
   {
     path: Path.Public,
     loadChildren: () =>
-      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
   },
   {
     path: Path.Home,
     loadChildren: () =>
-      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
   },
 
   {
     path: Path.Contest,
     loadChildren: () =>
-      import('@containers/contest/contest.module').then((m) => m.ContestModule),
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
   },
 
   {
     path: Path.Subject,
     loadChildren: () =>
-      import('@containers/subject/subject.module').then((m) => m.SubjectModule),
+      import('@app/containers/subject/subject.module').then(
+        (m) => m.SubjectModule,
+      ),
   },
 
   {
     path: Path.Section,
     loadChildren: () =>
-      import('@containers/section/section.module').then((m) => m.SectionModule),
+      import('@app/containers/section/section.module').then(
+        (m) => m.SectionModule,
+      ),
   },
 
   {
     path: Path.Exam,
     loadChildren: () =>
-      import('@containers/exam/exam.module').then((m) => m.ExamModule),
+      import('@app/containers/exam/exam.module').then((m) => m.ExamModule),
   },
 
   {
     path: Path.Post,
     loadChildren: () =>
-      import('@containers/post/post.module').then((m) => m.PostModule),
+      import('@app/containers/post/post.module').then((m) => m.PostModule),
   },
 
   // Auth
