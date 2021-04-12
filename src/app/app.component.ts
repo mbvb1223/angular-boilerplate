@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@app/pages/+auth/_services/auth.service';
+import { SeoService } from '@core/services/seo';
+import { ThemeService } from '@core/services/theme';
+import { Path } from '@core/structs';
 import { Observable } from 'rxjs';
-import { AuthService } from './+auth/services/auth.service';
-import { SeoService } from './@core/services/seo';
-import { ThemeService } from './@core/services/theme';
-import { Path } from './@core/structs';
 
 @Component({
   selector: 'app-root',
