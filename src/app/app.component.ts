@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './+auth/services/auth.service';
+
 import { SeoService } from '@core/services/seo';
 import { Path } from '@core/structs';
 import { LoadingScreenComponent } from '@app/shared/loading-screen/loading-screen.component';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
+import { AuthService } from '@pages/+auth/_services/auth.service';
 
 @Component({
   selector: 'app-root',
