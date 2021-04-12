@@ -3,7 +3,7 @@
     <div class="card card-product hover-shadow-wrapper cursor-pointer {{ contest.isActive ? '' : 'disabled-bg-color'}}"
          (click)="goToContest(contest)">
       <div class="card-header card-header-image" data-header-animation="true">
-        <img class="img" src="https://i.ibb.co/tmNWb9J/card-2.jpg" alt="">
+        <img class="img" src="{{ contest.image }}" alt="">
       </div>
       <div class="card-body">
         <div class="card-actions">

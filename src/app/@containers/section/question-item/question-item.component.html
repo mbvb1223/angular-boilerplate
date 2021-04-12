@@ -1,41 +1,41 @@
-<mat-card class="mt-3 hover-shadow-wrapper">
-  <mat-card-title style="background: #ededed; margin: 10px 0; padding: 10px;">
-    {{ questionNumber}}. {{ question.title }}
+<mat-card class="mt-3 hover-shadow-wrapper question-item">
+  <mat-card-title style="background: #ededed; margin: 10px 0; padding: 10px; font-size: 16px; font-weight: 100">
+    {{ questionPrefix }}{{ questionNumber }}: {{ question.title }}
   </mat-card-title>
 
   <mat-card-content>
     <form [formGroup]="form">
-      <div class="">
-        <mat-card
-          class="m-2 mat-background-primary mat-primary"
-          *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst"
-          [ngStyle]="(selectedValue && (optionId + 1) === question.correct_answer) ? {'background-color':'#b7c9fb'} : {}"
-        >
-          <mat-card-content>
-            <mat-checkbox
-              (change)="answer($event)"
-              [value]="(optionId + 1) + ''"
-              formControlName="{{ 'answer_' + (optionId + 1) }}"
-              class="example-margin">
-              {{ answerTitle }}
-            </mat-checkbox>
-          </mat-card-content>
-        </mat-card>
+      <div
+        style="padding-top: 5px"
+        class="m-1 mat-background-primary mat-primary "
+        *ngFor="let answerTitle of [question.answer_1,question.answer_2,question.answer_3,question.answer_4]; index as optionId; first as isFirst"
+        [ngStyle]="(shouldShowAnswer() && (optionId + 1) === question.correct_answer) ? {'background-color': '#b7c9fb'} : {}"
+      >
+        <mat-checkbox
+          (change)="answer($event)"
+          [value]="(optionId + 1) + ''"
+          formControlName="{{ 'answer_' + (optionId + 1) }}"
+          class="example-margin">
+          {{ answerTitle }}
+        </mat-checkbox>
       </div>
     </form>
 
-    <div style="padding: 5px">
+    <div style="padding: 5px" *ngIf="shouldShowAnswer()">
       <div style="margin: 10px 0" class="text-center">
         <button mat-raised-button
                 color="{{ isCorrectAnswer() ? 'primary' : 'accent' }}"
-                *ngIf="!!selectedValue">
+                >
           {{ isCorrectAnswer() ? "Bạn đã trả lời Đúng!" : "Bạn đã trả lời Sai!" }}
         </button>
       </div>
-      <div class="font-bold">
-        {{ selectedValue && question.description ? question.description : "" }}
+      <div class="font-bold" *ngIf="isActiveOrder">
+        {{ question.description ? question.description : "" }}
       </div>
+      <div class="font-bold" *ngIf="!isActiveOrder">
+        Giải thích: <span style="color: orangered">** Tài khoản miễn phí chỉ làm được 10 câu</span>
+      </div>
+
     </div>
   </mat-card-content>
 </mat-card>
-

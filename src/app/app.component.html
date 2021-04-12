@@ -1,11 +1,10 @@
 <ng-container>
-  <app-header></app-header>
+  <app-header [user]="userSubject$ | async"></app-header>
 
-  <div class="container" style="padding-top: 25px; min-height: 500px">
+  <div class="container" style="padding-top: 5px; min-height: 500px">
+    <app-breadcrumb></app-breadcrumb>
     <div class="main-content">
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
   <app-footer></app-footer>

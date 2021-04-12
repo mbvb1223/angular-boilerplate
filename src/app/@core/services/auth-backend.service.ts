@@ -1,7 +1,7 @@
 import { BaseHttpClientService } from '@core/services/base-http-client.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const jwtHelper = new JwtHelperService();
@@ -10,19 +10,29 @@ import { ContestModel } from '@core/models/contest.model';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { UserModel } from '@core/models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { SocialAuthService } from 'angularx-social-login';
+import { NotificationService } from '@core/services/notification.service';
+import { Path } from '@core/structs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthBackendService extends BaseHttpClientService {
-  @Output() isLoggedIn$: EventEmitter<boolean> = new EventEmitter();
+  userSubject$ = new BehaviorSubject<UserModel | null>(this.getCurrentUser());
 
   private tokenKey = 'NX)f$XhV8$;(9X;';
   private userKey = 'R_!2>k,E%4+Ve~._';
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(
+    protected httpClient: HttpClient,
+    protected socialAuthService: SocialAuthService,
+    protected notificationService: NotificationService,
+    protected router: Router,
+  ) {
     super(httpClient);
-    this.isLoggedIn$.emit(!!this.getCurrentUser());
+
+    this.userSubject$.next(this.getCurrentUser());
   }
 
   getEntityPath(): string {
@@ -68,9 +78,22 @@ export class AuthBackendService extends BaseHttpClientService {
     );
   }
 
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey);
+
+    this.notificationService.warning(`Bạn đã đăng xuất!`);
+
+    this.router.navigate([Path.Home]);
+
+    this.socialAuthService.signOut(true).finally(() => {
+      this.userSubject$.next(this.getCurrentUser());
+    });
+  }
+
   private handleAfterLogin(result: any) {
     localStorage.setItem(this.tokenKey, result.data.token);
     localStorage.setItem(this.userKey, JSON.stringify(result.data.user));
-    this.isLoggedIn$.emit(true);
+    this.userSubject$.next(this.getCurrentUser());
   }
 }

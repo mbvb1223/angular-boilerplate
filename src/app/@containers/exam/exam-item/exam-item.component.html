@@ -1,0 +1,35 @@
+<div class="text-center" id="countdown-time" [ngClass]="isSticky ? 'sticky' : ''" style="z-index: 999999">
+  <button mat-raised-button color="{{ this.shouldWarningTime ? 'warn' : 'primary' }}" style="font-size: 20px">
+    Time: {{ timeHour ? timeHour + ':' : '' }}{{ timeMinute }}:{{ timeSecond }}
+    | Bạn đã trả lời: {{ this.getNumberAnswered() }}/{{ this.getTotalNumberQuestions() }}
+  </button>
+</div>
+
+<div class="grid grid-cols-1 gap-1" style="margin:auto; padding-bottom: 10px">
+  <div *ngFor="let question of questions; index as i; first as isFirst">
+    <app-question-item *ngIf="question.isSingle"
+                       [question]="question"
+                       [questionNumber]="(currentPage * pageSize) + i + 1"
+                       [examId]="examId"
+    ></app-question-item>
+
+    <app-question-group *ngIf="question.isParent"
+                        [question]="question"
+                        [questionNumber]="(currentPage * pageSize) + i + 1"
+                        [examId]="examId"
+    ></app-question-group>
+  </div>
+</div>
+<mat-paginator
+  #paginator
+  [pageSize]="pageSize"
+  [showFirstLastButtons]="true"
+  [length]="totalSize"
+  [pageIndex]="currentPage"
+  [hidePageSize]="true"
+  (page)="handlePage($event)">
+</mat-paginator>
+
+<div *ngIf="isLastPage()" class="text-center" style="padding: 15px 0">
+  <button [disabled]="!this.getNumberAnswered()" mat-raised-button color="primary" class="text-center" (click)="submit()" style="font-size: 24px">Nộp bài</button>
+</div>

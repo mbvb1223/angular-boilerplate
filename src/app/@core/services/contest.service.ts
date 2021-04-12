@@ -8,7 +8,7 @@ import { ICollection } from '@core/interfaces/collection.interface';
 import { SubjectModel } from '@core/models/subject.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContestService extends BaseHttpClientService {
   getEntityPath(): string {
@@ -18,7 +18,7 @@ export class ContestService extends BaseHttpClientService {
   index(): Observable<Array<ContestModel>> {
     return this.get(this.getUrl()).pipe(
       map((res: ICollection) => res.data),
-      map(data => data.map(contest => new ContestModel(contest)))
+      map((data) => data.map((contest) => new ContestModel(contest))),
     );
   }
 
@@ -27,15 +27,13 @@ export class ContestService extends BaseHttpClientService {
 
     return this.get(url).pipe(
       map((res: ICollection) => res.data),
-      map(data => data.map(subject => new SubjectModel(subject)))
+      map((data) => data.map((subject) => new SubjectModel(subject))),
     );
   }
 
   getById(id: number): Observable<ContestModel> {
     const url = this.getUrl() + `/${id}`;
 
-    return this.get(url).pipe(
-      map((res: any) => new ContestModel(res.data))
-    );
+    return this.get(url).pipe(map((res: any) => new ContestModel(res.data)));
   }
 }

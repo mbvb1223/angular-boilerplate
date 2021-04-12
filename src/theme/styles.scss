@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+//@import '~tailwindcss/base';
+//@import '~tailwindcss/components';
+//@import '~tailwindcss/utilities';
 
 @layer base {
   @import '01-base/variables.scss';
@@ -56,4 +56,15 @@ header {
 
 .disabled-bg-color {
   background: #989898;
+}
+
+.question-item label {
+  font-weight: 100;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
 }

@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator/paginator';
+import { ActivatedRoute } from '@angular/router';
+import { SessionStorageService } from 'ngx-webstorage';
 
 import { QuestionModel } from '@core/models/question.model';
-import { ActivatedRoute } from '@angular/router';
 import { SectionService } from '@core/services/section.service';
 import { ICollection } from '@core/interfaces/collection.interface';
+import { Helper } from '@core/helpers/helper';
+import { StoreKeyEnum } from '@core/structs/store-key.enum';
+
 
 @Component({
   templateUrl: './question-list.component.html',
@@ -12,6 +17,7 @@ import { ICollection } from '@core/interfaces/collection.interface';
 export class QuestionListComponent implements OnInit, OnDestroy {
   questions: Array<QuestionModel>;
   sectionId: number;
+  isActiveOrder: boolean;
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -19,8 +25,11 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private sectionService: SectionService,
+    private sessionStorageService: SessionStorageService,
   ) {
-    this.sectionId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
+    this.sectionId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('id'),
+    );
   }
 
   ngOnInit(): void {
@@ -30,12 +39,17 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         this.questions = questionCollection.data;
         this.totalSize = questionCollection.meta.total;
       });
+
+    this.isActiveOrder = Helper.isActiveOrder(
+      this.sessionStorageService.retrieve(StoreKeyEnum.Order),
+      Helper.getId(<string>this.route.snapshot.paramMap.get('ky-thi')),
+    );
   }
 
   ngOnDestroy(): void {}
 
-  public handlePage(event: any) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  handlePage(event: PageEvent) {
+    Helper.scrollTop();
 
     this.sectionService
       .paginateQuestions(this.sectionId, event.pageIndex + 1, this.pageSize)

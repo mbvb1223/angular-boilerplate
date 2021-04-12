@@ -196,4 +196,4 @@ Angular starter for enterprise-grade front-end projects, built under a clean arc
 | lint         | Use ESLint to lint your app                      | npm run lint       | yarn lint       | ng lint                                                         |
 | e2e          | Run your e2e integration tests                   | npm run e2e        | yarn e2e        | ng e2e                                                          |
 | i18n:extract | Extract i18n messages from i18n directives       | npm run extract    | yarn extract    | ng extract-i18n --output-path locale --ivy                      |
-| analyze      | Open webpack-bundle-analyzer                     | npm run analyze    | yarn analyze    | webpack-bundle-analyzer dist/angular-boilerplate/stats.json     |
+| analyze      | Open webpack-bundle-analyzer                     | npm run analyze    | yarn analyze    | webpack-bundle-analyzer dist/thicongchuc.org/stats.json     |

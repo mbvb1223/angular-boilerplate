@@ -200,7 +200,7 @@
     "universal-analytics" "0.4.23"
     "uuid" "8.3.2"
 
-"@angular/common@>=9.0.0", "@angular/common@~11.2.0":
+"@angular/common@~11.2.0":
   "integrity" "sha512-51gVmr942SZtAFmhVfp7/3fcTQ+Tia7UxWjv6iUtYF3oCvTWbo/J1zki2VNSfmMNKJV8MaMq6XUw8UWbHA0sgQ=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-11.2.3.tgz"
   "version" "11.2.3"

@@ -8,6 +8,8 @@ import { NotificationService } from '@core/services/notification.service';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
 import { Path } from '@core/structs';
+import { Helper } from '@core/helpers/helper';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
 
 @Component({
   templateUrl: './subject-list.component.html',
@@ -25,15 +27,23 @@ export class SubjectListComponent implements OnInit, OnDestroy {
     private contestService: ContestService,
     private notificationService: NotificationService,
     public authService: AuthBackendService,
-  ) {
-    this.contestId = parseInt(<string>this.route.snapshot.paramMap.get('id'));
-  }
+    public breadcrumbService: BreadcrumbService,
+  ) {}
 
   ngOnInit(): void {
+    Helper.scrollTop();
+
+    this.contestId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('ky-thi'),
+    );
     this.contestService
       .getById(this.contestId)
       .subscribe((contest: ContestModel) => {
         this.contest = contest;
+        this.breadcrumbService.setItem(
+          Helper.convertToContestUrl(contest.title, contest.id),
+          this.contest.title,
+        );
       });
 
     this.contestService
@@ -45,16 +55,20 @@ export class SubjectListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  goToSubject(subjectId: number): void {
+  goToSubject(subject: SubjectModel): void {
     this.currentUser = this.authService.getCurrentUser();
     if (this.currentUser) {
-      this.router.navigate([Path.Subject, subjectId]);
+      this.router.navigate([
+        Helper.convertToUrl(this.contest.title, this.contest.id),
+        'mon-thi',
+        Helper.convertToUrl(subject.title, subject.id),
+      ]);
       return;
     }
 
     this.notificationService.warning('Vui lòng đăng nhập!');
     this.router.navigate([Path.SignIn], {
-      queryParams: { redirect: this.router.url },
+      queryParams: { returnUrl: this.router.url },
     });
   }
 }

@@ -5,8 +5,8 @@ import { QuestionListComponent } from '@containers/section/question-list/questio
 
 const routes: Routes = [
   {
-    path: ':id/questions',
-    component: QuestionListComponent
+    path: ':id',
+    component: QuestionListComponent,
   },
 ];
 

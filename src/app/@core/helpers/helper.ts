@@ -1,0 +1,66 @@
+import { OrderModel } from '@core/models/order.model';
+
+export class Helper {
+  static convertToContestUrl(title: string, id: number): string {
+    return 'ky-thi/' + Helper.convertToUrl(title, id);
+  }
+  static convertToUrl(title: string, id: number): string {
+    // Đổi chữ hoa thành chữ thường
+    let slug = title.toLowerCase();
+
+    // Đổi ký tự có dấu thành không dấu
+    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+    slug = slug.replace(/đ/gi, 'd');
+    // Xóa các ký tự đặt biệt
+    slug = slug.replace(
+      /\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi,
+      '',
+    );
+    // Đổi khoảng trắng thành ký tự gạch ngang
+    slug = slug.replace(/ /gi, '-');
+    // Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+    // Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-/gi, '-');
+    // Xóa các ký tự gạch ngang ở đầu và cuối
+    slug = '@' + slug + '@';
+
+    return slug.replace(/\@\-|\-\@|\@/gi, '') + '-' + id;
+  }
+
+  static getId(url: string): number {
+    return parseInt(<string>url.split(/[-]+/).pop());
+  }
+
+  static parentUrl(url: string, deleteItem: number = 1): string {
+    return url.split('/').reverse().slice(deleteItem).reverse().join('/');
+  }
+
+  static isActiveOrder(orders: Array<OrderModel>, contestId: number) {
+    let isActive = false;
+    orders.forEach((item, index) => {
+      if (
+        item.contest_id === contestId &&
+        item.status === OrderModel.STATUS_ACTIVE
+      ) {
+        isActive = true;
+        return;
+      }
+    });
+
+    return isActive;
+  }
+
+  static scrollTop(): void {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  }
+}
