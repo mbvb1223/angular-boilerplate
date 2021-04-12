@@ -1,36 +1,16 @@
 {
   "editor.codeActionsOnSave": {
-    "source.organizeImports": false,
-    "source.fixAll": true,
+    "source.organizeImports": true
   },
-  "css.validate": false,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html"
-  ],
   "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "css.validate": false,
   "scss.validate": false
 }

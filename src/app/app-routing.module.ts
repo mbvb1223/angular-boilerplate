@@ -55,7 +55,57 @@ const routes: Routes = [
   {
     path: Path.Auth,
     canActivate: [NoAuthGuard],
-    loadChildren: () => import('./+auth/auth.module').then((m) => m.AuthModule),
+    children: [
+      {
+        path: Path.SignIn,
+        loadChildren: () =>
+          import('@pages/+auth/sign-in/sign-in.module').then(
+            (m) => m.SignInModule,
+          ),
+      },
+      {
+        path: Path.SignUp,
+        loadChildren: () =>
+          import('@pages/+auth/sign-up/sign-up.module').then(
+            (m) => m.SignUpModule,
+          ),
+      },
+      {
+        path: Path.ForgotPassword,
+        loadChildren: () =>
+          import('@pages/+auth/forgot-password/forgot-password.module').then(
+            (m) => m.ForgotPasswordModule,
+          ),
+      },
+      {
+        path: Path.ForgotPassword,
+        loadChildren: () =>
+          import(
+            '@pages/+auth/forgot-password-email-sent/forgot-password-email-sent.module'
+          ).then((m) => m.ForgotPasswordEmailSentModule),
+      },
+      {
+        path: Path.PasswordReset,
+        loadChildren: () =>
+          import('@pages/+auth/password-reset/password-reset.module').then(
+            (m) => m.PasswordResetModule,
+          ),
+      },
+      {
+        path: Path.PasswordResetSucceeded,
+        loadChildren: () =>
+          import(
+            '@pages/+auth/password-reset-succeeded/password-reset-succeeded.module'
+          ).then((m) => m.PasswordResetSucceededModule),
+      },
+      {
+        path: Path.PasswordResetFailed,
+        loadChildren: () =>
+          import(
+            '@pages/+auth/password-reset-failed/password-reset-failed.module'
+          ).then((m) => m.PasswordResetFailedModule),
+      },
+    ],
   },
 
   // App
@@ -71,32 +121,96 @@ const routes: Routes = [
       {
         path: Path.Dashboard,
         loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then(
+          import('@pages/dashboard/dashboard.module').then(
             (m) => m.DashboardModule,
           ),
       },
     ],
   },
   {
-    path: 'settings',
+    path: Path.Settings,
     canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./+settings/settings.module').then((m) => m.SettingsModule),
+    children: [
+      {
+        path: Path.SettingsAccount,
+        loadChildren: () =>
+          import('@pages/+settings/account/account.module').then(
+            (m) => m.AccountModule,
+          ),
+      },
+      {
+        path: Path.SettingsAppearance,
+        loadChildren: () =>
+          import('@pages/+settings/appearance/appearance.module').then(
+            (m) => m.AppearanceModule,
+          ),
+      },
+      {
+        path: Path.SettingsBilling,
+        loadChildren: () =>
+          import('@pages/+settings/billing/billing.module').then(
+            (m) => m.BillingModule,
+          ),
+      },
+      {
+        path: Path.SettingsBlockedUsers,
+        loadChildren: () =>
+          import('@pages/+settings/blocked-users/blocked-users.module').then(
+            (m) => m.BlockedUsersModule,
+          ),
+      },
+      {
+        path: Path.SettingsNotifications,
+        loadChildren: () =>
+          import('@pages/+settings/notifications/notifications.module').then(
+            (m) => m.NotificationsModule,
+          ),
+      },
+      {
+        path: Path.SettingsSecurity,
+        loadChildren: () =>
+          import('@pages/+settings/security/security.module').then(
+            (m) => m.SecurityModule,
+          ),
+      },
+      {
+        path: Path.SettingsSecurityLog,
+        loadChildren: () =>
+          import('@pages/+settings/security-log/security-log.module').then(
+            (m) => m.SecurityLogModule,
+          ),
+      },
+    ],
   },
   {
-    path: 'user',
+    path: Path.Users,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./+user/user.module').then((m) => m.UserModule),
+    children: [
+      {
+        path: Path.UsersProfile,
+        loadChildren: () =>
+          import('@pages/+user/my-profile/my-profile.module').then(
+            (m) => m.MyProfileModule,
+          ),
+      },
+      {
+        path: Path.UsersOverview,
+        loadChildren: () =>
+          import('@pages/+user/overview/overview.module').then(
+            (m) => m.OverviewModule,
+          ),
+      },
+    ],
   },
 
   // Not found page (must go at the bottom)
   {
     path: '**',
     loadChildren: () =>
-      import('@containers/not-found/not-found.module').then(
+      import('@pages/_not-found/not-found.module').then(
         (m) => m.NotFoundModule,
       ),
-    component: NotFoundPage,
+    component: NotFoundModule,
   },
 ];
 

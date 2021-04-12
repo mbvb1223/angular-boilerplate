@@ -39,4 +39,7 @@ export enum Path {
   Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',
   Exam = ':ky-thi/mon-thi/:mon-thi/de-thi',
   Post = 'bai-viet/:type',
+  Users = 'users',
+  UsersOverview = 'overview',
+  UsersProfile = ':username',
 }

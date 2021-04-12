@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { AuthService } from '@app/+auth/services/auth.service';
+import { AuthService } from '@app/pages/+auth/_services/auth.service';
 import { Path } from '@core/structs';
 import { Observable } from 'rxjs';
 

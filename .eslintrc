@@ -10,10 +10,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.*?.json",
-          "e2e/tsconfig.json"
-        ],
+        "project": ["tsconfig.*?.json", "cypress/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
@@ -23,13 +20,10 @@
         "prettier"
       ],
       "rules": {
-         "@angular-eslint/component-class-suffix": [
+        "@angular-eslint/component-class-suffix": [
           "error",
           {
-            "suffixes": [
-              "Component",
-              "Page"
-            ]
+            "suffixes": ["Component", "Page"]
           }
         ],
         "@angular-eslint/directive-selector": [
@@ -40,9 +34,12 @@
           "error",
           { "type": "element", "prefix": "app", "style": "kebab-case" }
         ],
-        "@angular-eslint/no-empty-lifecycle-method": "off",
+        // "@typescript-eslint/no-empty-function": [
+        //   "error",
+        //   { "allow": ["constructors"] }
+        // ],
         "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/no-unused-vars": "off"
+        "@angular-eslint/no-empty-lifecycle-method": "off"
       }
     },
     {
