@@ -116,6 +116,8 @@ export class ExamItemComponent implements OnInit, OnDestroy {
 
     const data = {
       answer: this.getAnsweredQuestions(),
+      start_time: this.getExamInfo()['start_time'],
+      end_time: formatDate(new Date(), 'yyyy/MM/dd HH:mm:ss', 'en'),
     };
 
     this.examService
@@ -153,6 +155,10 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     );
   }
 
+  getExamInfo() {
+    return this.sessionStorageService.retrieve('exam_' + this.examId);
+  }
+
   public getTotalNumberQuestions(): number {
     let number = 0;
     if (!this.exam || !this.exam.questions) {
@@ -176,9 +182,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
       // Get today's date and time
       const now = new Date().getTime();
 
-      const examTime = this.sessionStorageService.retrieve(
-        'exam_' + this.examId,
-      );
+      const examTime = this.getExamInfo();
       // Find the distance between now and the count down date
       const distance = new Date(examTime['end_time']).getTime() - now;
 
@@ -211,7 +215,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   }
 
   private resetStorage() {
-    const examTime = this.sessionStorageService.retrieve('exam_' + this.examId);
+    const examTime = this.getExamInfo();
     if (
       this.shouldResetQueryParams ||
       !examTime ||
