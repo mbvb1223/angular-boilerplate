@@ -32,7 +32,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/public"
+              "src/public",
+              "src/public/sitemap.xml"
             ],
             "styles": [
               "src/theme/styles.scss"
