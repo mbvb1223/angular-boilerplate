@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from 'ngx-webstorage';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { OrderService } from '@core/services/order.service';
 import { ContestModel } from '@core/models/contest.model';
@@ -11,6 +11,8 @@ import { UserModel } from '@core/models/user.model';
 import { StoreKeyEnum } from '@core/structs/store-key.enum';
 import { ContestService } from '@core/services/contest.service';
 import { Helper } from '@core/helpers/helper';
+import { Path } from '@core/structs';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   selector: 'app-order-contest',
@@ -33,6 +35,8 @@ export class OrderComponent implements OnInit {
     private contestService: ContestService,
     private sessionStorageService: SessionStorageService,
     private route: ActivatedRoute,
+    private notificationService: NotificationService,
+    private router: Router,
   ) {
     this.form = this.formBuilder.group({
       note: [null, Validators.required],
@@ -42,6 +46,10 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.user) {
+      return;
+    }
+
     if (!this.contest) {
       const contestId = Helper.getId(
         <string>this.route.snapshot.paramMap.get('ky-thi'),
@@ -53,28 +61,26 @@ export class OrderComponent implements OnInit {
         });
     }
 
-    if (this.user) {
-      this.orderService.index().subscribe((orders: Array<OrderModel>) => {
-        this.sessionStorageService.store(StoreKeyEnum.Order, orders);
+    this.orderService.index().subscribe((orders: Array<OrderModel>) => {
+      this.sessionStorageService.store(StoreKeyEnum.Order, orders);
 
-        orders.forEach((item, index) => {
-          if (
-            item.contest_id === this.contest.id &&
-            item.status === OrderModel.STATUS_INACTIVE
-          ) {
-            this.isInactive = true;
-          }
-          if (
-            item.contest_id === this.contest.id &&
-            item.status === OrderModel.STATUS_ACTIVE
-          ) {
-            this.isActive = true;
-          }
-        });
-
-        this.isFinishLoading = true;
+      orders.forEach((item, index) => {
+        if (
+          item.contest_id === this.contest.id &&
+          item.status === OrderModel.STATUS_INACTIVE
+        ) {
+          this.isInactive = true;
+        }
+        if (
+          item.contest_id === this.contest.id &&
+          item.status === OrderModel.STATUS_ACTIVE
+        ) {
+          this.isActive = true;
+        }
       });
-    }
+
+      this.isFinishLoading = true;
+    });
   }
 
   toggleForm(): void {
@@ -92,6 +98,13 @@ export class OrderComponent implements OnInit {
         this.shouldShowForm = false;
         this.isInactive = true;
       });
+  }
+
+  redirectLoginPage() {
+    this.notificationService.warning('Vui lòng đăng nhập!');
+    this.router.navigate([Path.SignIn], {
+      queryParams: { returnUrl: this.router.url },
+    });
   }
 
   // set isInactive(value: boolean) {
