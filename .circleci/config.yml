@@ -27,13 +27,17 @@ jobs:
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
             ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/ --output-hashing=all; fi
 
-            if [ "${CIRCLE_BRANCH}" == "prod" ];
+            if [ "${CIRCLE_BRANCH}" == "tcc-prod" ];
             then ng build --aot --prod --base-href https://thicongchuc.org/ --output-hashing=all; fi
+
+            if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
+            then ng build --aot --prod --base-href https://onthitoeic.net/ --output-hashing=all; fi
       - run:
           name: Deploy app to firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
-            if [ "${CIRCLE_BRANCH}" == "prod" ]; then firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "tcc-prod" ]; then firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "ott-prod" ]; then firebase deploy --project onthitoeic --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
 workflows:
   version: 2
   workflow:
