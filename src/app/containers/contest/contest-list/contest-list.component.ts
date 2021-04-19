@@ -38,25 +38,31 @@ export class ContestListComponent implements OnInit, OnDestroy {
 
   goToContest(contest: ContestModel) {
     if (contest.isActive) {
-      this.currentUser = this.authBackendService.getCurrentUser();
-      if (this.currentUser) {
-        this.router.navigate([
-          Path.Contest,
-          Helper.convertToUrl(contest.title, contest.id),
-        ]);
-        return;
-      }
-
-      this.notificationService.warning('Vui lòng đăng nhập!');
-
-      this.router.navigate([Path.SignIn], {
-        queryParams: {
-          returnUrl:
-            Path.Contest + '/' + Helper.convertToUrl(contest.title, contest.id),
-        },
-      });
-
+      this.router.navigate([
+        Path.Contest,
+        Helper.convertToUrl(contest.title, contest.id),
+      ]);
       return;
+
+      // this.currentUser = this.authBackendService.getCurrentUser();
+      // if (this.currentUser) {
+      //   this.router.navigate([
+      //     Path.Contest,
+      //     Helper.convertToUrl(contest.title, contest.id),
+      //   ]);
+      //   return;
+      // }
+      //
+      // this.notificationService.warning('Vui lòng đăng nhập!');
+      //
+      // this.router.navigate([Path.SignIn], {
+      //   queryParams: {
+      //     returnUrl:
+      //       Path.Contest + '/' + Helper.convertToUrl(contest.title, contest.id),
+      //   },
+      // });
+      //
+      // return;
     }
 
     this.notificationService.warning('Khóa học đang tạm khóa!');
