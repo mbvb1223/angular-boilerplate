@@ -28,10 +28,10 @@ jobs:
             ng build --aot --prod --base-href https://aloha-feature.firebaseapp.com/ --output-hashing=all; fi
 
             if [ "${CIRCLE_BRANCH}" == "tcc-prod" ];
-            then ng build --aot --prod --base-href https://thicongchuc.org/ --output-hashing=all; fi
+            then ng build --aot --prod --outputHashing=all --build-optimizer --base-href='https://thicongchuc.org/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
-            then ng build --aot --prod --base-href https://onthitoeic.net/ --output-hashing=all; fi
+            then ng build --aot --prod --outputHashing=all --build-optimizer --base-href='https://onthitoeic.net/'; fi
       - run:
           name: Deploy app to firebase
           command: |
