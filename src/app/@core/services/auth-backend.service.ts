@@ -78,6 +78,15 @@ export class AuthBackendService extends BaseHttpClientService {
     );
   }
 
+  getUserName(): string {
+    const user = this.getCurrentUser();
+    if (user) {
+      return user.name;
+    }
+
+    return '';
+  }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userKey);

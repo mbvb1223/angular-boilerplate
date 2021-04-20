@@ -8,6 +8,11 @@ const routes: Routes = [
   {
     path: '',
     component: ContestListComponent,
+    data: {
+      title: 'Danh sách kỳ thi',
+      description: 'Danh sách kỳ thi ThiCongChuc.Org',
+      robots: 'index, follow',
+    },
   },
   {
     path: ':ky-thi',
