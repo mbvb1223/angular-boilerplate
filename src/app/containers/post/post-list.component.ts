@@ -47,7 +47,7 @@ export class PostListComponent implements OnInit {
         )
       ) {
         this.notificationService.warning(
-          'Vui lòng mua khóa học để xem được tài liệu này',
+          'Vui lòng mua khóa học để xem được tài liệu này!',
         );
         return;
       }
