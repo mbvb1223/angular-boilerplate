@@ -11,6 +11,7 @@ export class PostModel extends BaseModel {
   status: number;
   order: number;
   type_id: number;
+  vip: number;
   image: string;
   short_content: string;
   content: string;
@@ -19,5 +20,9 @@ export class PostModel extends BaseModel {
 
   get isActive(): boolean {
     return this.status === PostModel.STATUS_ACTIVE;
+  }
+
+  get isVip() {
+    return this.vip === 1;
   }
 }

@@ -44,7 +44,12 @@ export class Helper {
   }
 
   static isActiveOrder(orders: Array<OrderModel>, contestId: number) {
+    if (!orders) {
+      return false;
+    }
+
     let isActive = false;
+
     orders.forEach((item, index) => {
       if (
         item.contest_id === contestId &&
