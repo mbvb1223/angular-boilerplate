@@ -13,9 +13,9 @@ import { SharedModule } from '@app/shared/shared.module';
         path: '',
         component: SignInPage,
         data: {
-          title: 'Sign into Angular Boilerplate',
+          title: 'Đăng nhập',
           description:
-            'Start writing your business logic right away without any concern on architecture matters.',
+            'Đăng nhập hệ thống ThiCongChuc.Org',
           robots: 'index, follow',
         },
       },
