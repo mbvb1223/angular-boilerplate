@@ -60,7 +60,7 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: true,
+        autoLogin: false,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
