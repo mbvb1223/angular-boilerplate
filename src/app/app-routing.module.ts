@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
 import { AuthGuard, NoAuthGuard } from '@core/guards';
 import { Path } from '@core/structs';
 import { NotFoundModule } from '@pages/_not-found/not-found.module';
@@ -11,54 +10,9 @@ const routes: Routes = [
 
   // Public
   {
-    path: Path.Public,
-    loadChildren: () =>
-      import('@app/containers/contest/contest.module').then(
-        (m) => m.ContestModule,
-      ),
-  },
-  {
     path: Path.Home,
     loadChildren: () =>
-      import('@app/containers/contest/contest.module').then(
-        (m) => m.ContestModule,
-      ),
-  },
-
-  {
-    path: Path.Contest,
-    loadChildren: () =>
-      import('@app/containers/contest/contest.module').then(
-        (m) => m.ContestModule,
-      ),
-  },
-
-  {
-    path: Path.Subject,
-    loadChildren: () =>
-      import('@app/containers/subject/subject.module').then(
-        (m) => m.SubjectModule,
-      ),
-  },
-
-  {
-    path: Path.Section,
-    loadChildren: () =>
-      import('@app/containers/section/section.module').then(
-        (m) => m.SectionModule,
-      ),
-  },
-
-  {
-    path: Path.Exam,
-    loadChildren: () =>
-      import('@app/containers/exam/exam.module').then((m) => m.ExamModule),
-  },
-
-  {
-    path: Path.Post,
-    loadChildren: () =>
-      import('@app/containers/post/post.module').then((m) => m.PostModule),
+      import('@pages/+home/home.module').then((m) => m.HomeModule),
   },
 
   // Auth
