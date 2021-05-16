@@ -27,7 +27,7 @@ export class SignInPage implements OnInit {
 
   signInWithGoogle(): void {
     this.authService
-      .signIn(GoogleLoginProvider.PROVIDER_ID, { ux_mode: 'redirect' })
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((user: SocialUser) => {
         this.authBackendService.google(user.authToken).subscribe(() => {
           this.handleAfterLogin();
