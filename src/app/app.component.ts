@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@app/pages/+auth/_services/auth.service';
 import { SeoService } from '@core/services/seo';
 import { ThemeService } from '@core/services/theme';
 import { Path } from '@core/structs';
 import { Observable } from 'rxjs';
+import { AuthService } from './pages/public/auth/_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +22,9 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.seoService.init();
     this.themeService.init();
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
   }
 
   onLogout(): void {
