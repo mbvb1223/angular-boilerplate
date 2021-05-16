@@ -39,7 +39,7 @@ jobs:
             then ng build --aot --prod --outputHashing=all --base-href='https://thicongchuc.org/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
-            then ng build --aot --configuration=production --index --output-hashing=all --base-href='https://onthitoeic.net/'; fi
+            then ng build --aot --configuration=production --output-hashing=all --base-href='https://onthitoeic.net/'; fi
       - run:
           name: Deploy app to firebase
           command: |
