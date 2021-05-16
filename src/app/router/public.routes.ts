@@ -3,64 +3,84 @@ import { NoAuthGuard } from '@app/@core/guards';
 import { Path } from '@app/@core/structs';
 
 export const PUBLIC_ROUTES: Routes = [
+  // Public
+  {
+    path: Path.Public,
+    loadChildren: () =>
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
+  },
   {
     path: Path.Home,
     loadChildren: () =>
-      import('@app/pages/public/home/home.module').then((m) => m.HomeModule),
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
   },
+
   {
-    path: '',
+    path: Path.Contest,
+    loadChildren: () =>
+      import('@app/containers/contest/contest.module').then(
+        (m) => m.ContestModule,
+      ),
+  },
+
+  {
+    path: Path.Subject,
+    loadChildren: () =>
+      import('@app/containers/subject/subject.module').then(
+        (m) => m.SubjectModule,
+      ),
+  },
+
+  {
+    path: Path.Section,
+    loadChildren: () =>
+      import('@app/containers/section/section.module').then(
+        (m) => m.SectionModule,
+      ),
+  },
+
+  {
+    path: Path.Exam,
+    loadChildren: () =>
+      import('@app/containers/exam/exam.module').then((m) => m.ExamModule),
+  },
+
+  {
+    path: Path.Post,
+    loadChildren: () =>
+      import('@app/containers/post/post.module').then((m) => m.PostModule),
+  },
+
+  // Auth
+  {
+    path: Path.Auth,
     canActivate: [NoAuthGuard],
     children: [
       {
         path: Path.SignIn,
         loadChildren: () =>
-          import('@app/pages/public/auth/sign-in/sign-in.module').then(
+          import('../pages/public/auth/sign-in/sign-in.module').then(
             (m) => m.SignInModule,
           ),
       },
       {
         path: Path.SignUp,
         loadChildren: () =>
-          import('@app/pages/public/auth/sign-up/sign-up.module').then(
+          import('../pages/public/auth/sign-up/sign-up.module').then(
             (m) => m.SignUpModule,
           ),
       },
-      {
-        path: Path.ForgotPassword,
-        loadChildren: () =>
-          import(
-            '@app/pages/public/auth/forgot-password/forgot-password.module'
-          ).then((m) => m.ForgotPasswordModule),
-      },
-      {
-        path: Path.ForgotPassword,
-        loadChildren: () =>
-          import(
-            '@app/pages/public/auth/forgot-password-email-sent/forgot-password-email-sent.module'
-          ).then((m) => m.ForgotPasswordEmailSentModule),
-      },
-      {
-        path: Path.PasswordReset,
-        loadChildren: () =>
-          import(
-            '@app/pages/public/auth/password-reset/password-reset.module'
-          ).then((m) => m.PasswordResetModule),
-      },
-      {
-        path: Path.PasswordResetSucceeded,
-        loadChildren: () =>
-          import(
-            '@app/pages/public/auth/password-reset-succeeded/password-reset-succeeded.module'
-          ).then((m) => m.PasswordResetSucceededModule),
-      },
-      {
-        path: Path.PasswordResetFailed,
-        loadChildren: () =>
-          import(
-            '@app/pages/public/auth/password-reset-failed/password-reset-failed.module'
-          ).then((m) => m.PasswordResetFailedModule),
-      },
     ],
+  },
+
+  // App
+  {
+    path: Path.App,
+    redirectTo: `${Path.App}`,
+    pathMatch: 'full',
   },
 ];
