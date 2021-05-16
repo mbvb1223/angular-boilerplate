@@ -7,7 +7,7 @@ import { Path } from '@core/structs';
 import { LoadingScreenComponent } from '@app/shared/loading-screen/loading-screen.component';
 import { AuthBackendService } from '@core/services/auth-backend.service';
 import { UserModel } from '@core/models/user.model';
-import { AuthService } from '@pages/+auth/_services/auth.service';
+import { AuthService } from '@pages/public/auth/_services/auth.service';
 
 @Component({
   selector: 'app-root',
