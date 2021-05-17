@@ -2,7 +2,7 @@
   "hosting": {
     "public": "dist/thicongchuc.org",
     "headers": [
-      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}] }
     ],
     "ignore": [
       "firebase.json",
