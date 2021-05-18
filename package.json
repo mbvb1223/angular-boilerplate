@@ -12,7 +12,7 @@
     "test:e2e": "ng e2e",
     "test:coverage": "ng test --coverage",
     "lint": "ng lint",
-    "analyze": "webpack-bundle-analyzer dist/app/stats.json"
+    "analyze": "webpack-bundle-analyzer dist/thicongchuc.org/stats.json"
   },
   "dependencies": {
     "@angular/animations": "~11.2.8",
