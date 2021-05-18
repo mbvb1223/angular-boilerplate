@@ -1,19 +1,6 @@
 {
   "hosting": {
     "public": "dist/thicongchuc.org",
-    "headers": [
-      {
-        "source":"/service-worker.js",
-        "headers": [{"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}]
-      },
-      {
-        "source": "/**",
-        "headers": [{
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }]
-      }
-    ],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -22,23 +9,11 @@
     "rewrites": [
       {
         "source": "/public/**",
-        "destination": "/public.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate"
-          }
-        ]
+        "destination": "/public.html"
       },
       {
-        "source": "/**",
-        "destination": "/index.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate"
-          }
-        ]
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }
