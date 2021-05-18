@@ -1,13 +1,26 @@
 {
   "hosting": {
     "public": "dist/thicongchuc.org",
-    "headers": [{
-      "source": "**",
-      "headers": [{
-        "key": "Cache-Control",
-        "value": "max-age=20"
-      }]
-    }],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=20"
+          }
+        ]
+      },
+      {
+        "source": "ngsw-worker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
