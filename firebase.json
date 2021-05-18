@@ -19,6 +19,15 @@
             "value": "no-cache"
           }
         ]
+      },
+      {
+        "source": "ngsw.json",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
       }
     ],
     "rewrites": [
