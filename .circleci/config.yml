@@ -16,8 +16,7 @@ jobs:
       - run:
           name: Install tools & lint & test
           command: |
-            sudo npm install -g firebase-tools;
-            sudo npm install -g @angular/cli > /dev/null;
+            pwd
 #            ng lint;
 #            ng test --code-coverage;
       - run:
@@ -43,11 +42,11 @@ jobs:
       - run:
           name: Deploy app to firebase
           command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
-            if [ "${CIRCLE_BRANCH}" == "tcc-dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
-            if [ "${CIRCLE_BRANCH}" == "ott-dev" ]; then firebase deploy --project onthitoeic-3019b --token=$FIREBASE_DEPLOY_TOKEN; fi
-            if [ "${CIRCLE_BRANCH}" == "tcc-prod" ]; then firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
-            if [ "${CIRCLE_BRANCH}" == "ott-prod" ]; then firebase deploy --project onthitoeic --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then ./node_modules/.bin/firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "tcc-dev" ]; then ./node_modules/.bin/firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "ott-dev" ]; then ./node_modules/.bin/firebase deploy --project onthitoeic-3019b --token=$FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "tcc-prod" ]; then ./node_modules/.bin/firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
+            if [ "${CIRCLE_BRANCH}" == "ott-prod" ]; then ./node_modules/.bin/firebase deploy --project onthitoeic --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
 workflows:
   version: 2
   workflow:
