@@ -20,7 +20,7 @@ jobs:
 #            ng lint;
 #            ng test --code-coverage;
   deploy:
-    - steps:
+    steps:
       - checkout
       - run:
         name: Prepare for deployment
