@@ -17,9 +17,11 @@ jobs:
           name: Install tools & lint & test
           command: |
             pwd
-#            ng lint;
-#            ng test --code-coverage;
+  #            ng lint;
+  #            ng test --code-coverage;
   deploy:
+    docker:
+      - image: buildpack-deps:trusty
     steps:
       - checkout
       - run:
