@@ -24,21 +24,21 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
-            ng build --aot --prod --outputHashing=all --base-href='https://aloha-feature.firebaseapp.com/'; fi
+            ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://aloha-feature.firebaseapp.com/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "tcc-dev" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
-            ng build --aot --prod --outputHashing=all --base-href='https://aloha-feature.firebaseapp.com/'; fi
+            ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://aloha-feature.firebaseapp.com/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "ott-dev" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
-            ng build --aot --prod --outputHashing=all --base-href='https://onthitoeic-3019b.firebaseapp.com/'; fi
+            ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://onthitoeic-3019b.firebaseapp.com/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "tcc-prod" ];
-            then ng build --aot --prod --outputHashing=all --base-href='https://thicongchuc.org/'; fi
+            then ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://thicongchuc.org/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
-            then ng build --aot --prod --outputHashing=all --base-href='https://onthitoeic.net/'; fi
+            then ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://onthitoeic.net/'; fi
       - run:
           name: Deploy app to firebase
           command: |
