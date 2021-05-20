@@ -27,12 +27,16 @@
     "rxjs" "6.6.3"
 
 "@angular-devkit/architect@0.1102.13":
+  "integrity" "sha512-v44YF54DQnxwggZKUVCB2WtgfqMW8VG5AtE+nO0RgEtgnOC3e4bB7dZ/n+2Am0LCauYx45ufQDlIespeX09XgA=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1102.13.tgz"
   "version" "0.1102.13"
   dependencies:
     "@angular-devkit/core" "11.2.13"
     "rxjs" "6.6.3"
 
 "@angular-devkit/build-angular@~0.1102.11":
+  "integrity" "sha512-1ezVautOtfl16pOT3p7Z9IPd7vSyy6lZ+HZWqMK1AmUjNhsEA2WeuC/XznGatC3K+9IcfV+eSm6cP0iuLyETzw=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-0.1102.13.tgz"
   "version" "0.1102.13"
   dependencies:
     "@angular-devkit/architect" "0.1102.13"
@@ -110,6 +114,8 @@
     "worker-plugin" "5.0.0"
 
 "@angular-devkit/build-optimizer@0.1102.13":
+  "integrity" "sha512-OvTsUVe5cC4oKym1pohVzkn50OLnjK/SuOnMgeWceMDkqmzJEdJqhG1SfnXv+MJiuUDlhyUVbbnFwkj5Y0fXYA=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/build-optimizer/-/build-optimizer-0.1102.13.tgz"
   "version" "0.1102.13"
   dependencies:
     "loader-utils" "2.0.0"
@@ -119,6 +125,8 @@
     "webpack-sources" "2.2.0"
 
 "@angular-devkit/build-webpack@0.1102.13":
+  "integrity" "sha512-5KMq7jUtk5GOuErR6psG8ypyfHL/sITfpgyRXcsqJEqLEbb5MPmaR9gBjz6TSQGUH2/jNiJjdd82h8ckWxfN8g=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1102.13.tgz"
   "version" "0.1102.13"
   dependencies:
     "@angular-devkit/architect" "0.1102.13"
@@ -157,6 +165,8 @@
     "source-map" "0.7.3"
 
 "@angular-devkit/core@11.2.13":
+  "integrity" "sha512-GL97DZXeQCecqZmaIeMfG/XtHv6e7FM+uygMePNF9yn4cml32bSp4P5oRjDMgj7iFl6GIU81n8TstTMmFbt85w=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/core/-/core-11.2.13.tgz"
   "version" "11.2.13"
   dependencies:
     "ajv" "6.12.6"
@@ -175,6 +185,8 @@
     "rxjs" "6.6.2"
 
 "@angular-devkit/schematics@11.2.13":
+  "integrity" "sha512-HMQWs9tsvmsS/QoL+ayxCYqjpP2Qc1x30EJrDU8zPDsaRCe06Uj7VYedBKlHpDGxh0D2F2oRSG1YkXGHr3H/TQ=="
+  "resolved" "https://registry.npmjs.org/@angular-devkit/schematics/-/schematics-11.2.13.tgz"
   "version" "11.2.13"
   dependencies:
     "@angular-devkit/core" "11.2.13"
@@ -233,6 +245,8 @@
     "parse5" "^5.0.0"
 
 "@angular/cli@>= 11.2.0 < 12.0.0", "@angular/cli@~11.2.11":
+  "integrity" "sha512-ma5+Iu24XacSY5WrcZ5WJQMv7/RPhWxtbkpr11hndlgUmjmM6dYNGHJOFRXcU7bP7kbOVdd7cZ++2vMGlh0kcg=="
+  "resolved" "https://registry.npmjs.org/@angular/cli/-/cli-11.2.13.tgz"
   "version" "11.2.13"
   dependencies:
     "@angular-devkit/architect" "0.1102.13"
@@ -259,6 +273,8 @@
     "uuid" "8.3.2"
 
 "@angular/common@^11.0.0", "@angular/common@^11.0.0 || ^12.0.0-0", "@angular/common@^9.0.0 || ^10.0.0 || ^11.0.0", "@angular/common@>=9.0.0", "@angular/common@~11.2.12", "@angular/common@11.2.14":
+  "integrity" "sha512-ZSLV/3j7eCTyLf/8g4yBFLWySjiLz3vLJAGWscYoUpnJWMnug1VRu6zoF/COxCbtORgE+Wz6K0uhfS6MziBGVw=="
+  "resolved" "https://registry.npmjs.org/@angular/common/-/common-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
@@ -283,16 +299,22 @@
     "yargs" "^16.2.0"
 
 "@angular/compiler@>= 11.2.0 < 12.0.0", "@angular/compiler@~11.2.11", "@angular/compiler@11.2.14", "@angular/compiler@11.2.9":
+  "integrity" "sha512-XBOK3HgA+/y6Cz7kOX4zcJYmgJ264XnfcbXUMU2cD7Ac+mbNhLPKohWrEiSWalfcjnpf5gRfufQrQP7lpAGu0A=="
+  "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
 
 "@angular/core@^11.0.0", "@angular/core@^11.0.0 || ^12.0.0-0", "@angular/core@^9.0.0", "@angular/core@^9.0.0 || ^10.0.0 || ^11.0.0", "@angular/core@>=2.0.0", "@angular/core@~11.2.11", "@angular/core@11.2.14", "@angular/core@11.2.9":
+  "integrity" "sha512-vpR4XqBGitk1Faph37CSpemwIYTmJ3pdIVNoHKP6jLonpWu+0azkchf0f7oD8/2ivj2F81opcIw0tcsy/D/5Vg=="
+  "resolved" "https://registry.npmjs.org/@angular/core/-/core-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
 
 "@angular/forms@^11.0.0 || ^12.0.0-0", "@angular/forms@~11.2.12":
+  "integrity" "sha512-4LWqY6KEIk1AZQFnk+4PJSOCamlD4tumuVN06gO4D0dZo9Cx+GcvW6pM6N0CPubRvPs3sScCnu20WT11HNWC1w=="
+  "resolved" "https://registry.npmjs.org/@angular/forms/-/forms-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
@@ -303,21 +325,29 @@
     "tslib" "^2.0.0"
 
 "@angular/platform-browser-dynamic@>=2.0.0", "@angular/platform-browser-dynamic@~11.2.12":
+  "integrity" "sha512-TWTPdFs6iBBcp+/YMsgCRQwdHpWGq8KjeJDJ2tfatGgBD3Gqt2YaHOMST1zPW6RkrmupytTejuVqXzeaKWFxuw=="
+  "resolved" "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
 
 "@angular/platform-browser@~11.2.12", "@angular/platform-browser@11.2.14":
+  "integrity" "sha512-fb7b7ss/gRoP8wLAN17W62leMgjynuyjEPU2eUoAAazsG9f2cgM+z3rK29GYncDVyYQxZUZYnjSqvL6GSXx86A=="
+  "resolved" "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
 
 "@angular/router@~11.2.12":
+  "integrity" "sha512-3aYBmj+zrEL9yf/ntIQxHIYaWShZOBKP3U07X2mX+TPMpGlvHDnR7L6bWhQVZwewzMMz7YVR16ldg50IFuAlfA=="
+  "resolved" "https://registry.npmjs.org/@angular/router/-/router-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
 
 "@angular/service-worker@^11.0.0 || ^11.2.0-next", "@angular/service-worker@~11.2.12":
+  "integrity" "sha512-QQFITcXsYaKgVuu4bHQ0SKR0P+CIHNJyqrUYhBFU4i8oG2MhS0tlJI8kTESxG9w5nM6/t00q1nlJPqoXPBseLA=="
+  "resolved" "https://registry.npmjs.org/@angular/service-worker/-/service-worker-11.2.14.tgz"
   "version" "11.2.14"
   dependencies:
     "tslib" "^2.0.0"
@@ -1657,6 +1687,8 @@
   "version" "7.1.3"
 
 "@ngtools/webpack@11.2.13":
+  "integrity" "sha512-Wbv1zjLaS1zXcJ1wryYc6vhKWq8r/+ZrdN5SlRIf3xf7fwuTymbvL41SndUibssXir6s4vePYqZL241nkThx9g=="
+  "resolved" "https://registry.npmjs.org/@ngtools/webpack/-/webpack-11.2.13.tgz"
   "version" "11.2.13"
   dependencies:
     "@angular-devkit/core" "11.2.13"
@@ -1825,6 +1857,8 @@
     "jsonc-parser" "2.3.0"
 
 "@schematics/angular@11.2.13":
+  "integrity" "sha512-cMXWruwSkH2XEKDA8df70Ey/5okdJrRCgsnXkGuLRC+GQM7ArLPkgoVw0GXM8TfI0bWyGWT7QYbHBzsyN5ajGA=="
+  "resolved" "https://registry.npmjs.org/@schematics/angular/-/angular-11.2.13.tgz"
   "version" "11.2.13"
   dependencies:
     "@angular-devkit/core" "11.2.13"
@@ -1832,6 +1866,8 @@
     "jsonc-parser" "3.0.0"
 
 "@schematics/update@0.1102.13":
+  "integrity" "sha512-lHym4eUhbvUORwRJQJzgVFjofnc9nB2f/Ef3NNEgn3OkvsxHWtPH8NCQy/tj6sBAsyqK2T88aO2nejU9fZgMog=="
+  "resolved" "https://registry.npmjs.org/@schematics/update/-/update-0.1102.13.tgz"
   "version" "0.1102.13"
   dependencies:
     "@angular-devkit/core" "11.2.13"
@@ -2007,9 +2043,13 @@
   "version" "1.2.1"
 
 "@types/node@*", "@types/node@^15.0.1", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
+  "integrity" "sha512-8/bnjSZD86ZfpBsDlCIkNXIvm+h6wi9g7IqL+kmFkQ+Wvu3JrasgLElfiPgoo8V8vVfnEi0QVS12gbl94h9YsQ=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-15.3.0.tgz"
   "version" "15.3.0"
 
 "@types/node@^14.14.31":
+  "integrity" "sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-14.14.45.tgz"
   "version" "14.14.45"
 
 "@types/normalize-package-data@^2.4.0":
@@ -2496,6 +2536,8 @@
   "version" "8.1.1"
 
 "adjust-sourcemap-loader@^4.0.0":
+  "integrity" "sha512-OXwN5b9pCUXNQHJpwwD2qP40byEmSgzj8B4ydSN0uMNYWiFmJ6x6KwUllMmfk8Rwu/HJDFR7U8ubsWBoN0Xp0A=="
+  "resolved" "https://registry.npmjs.org/adjust-sourcemap-loader/-/adjust-sourcemap-loader-4.0.0.tgz"
   "version" "4.0.0"
   dependencies:
     "loader-utils" "^2.0.0"
@@ -4547,6 +4589,8 @@
   "version" "3.0.0"
 
 "cssnano-preset-default@^5.0.1":
+  "integrity" "sha512-cfmfThYODGqhpQKDq9H0MTAqkMvZ3dGbOUTBKw0xWZiIycMqHid22LsJXJl4r1qX4qzDeKxcSyQ/Xb5Mu3Z//Q=="
+  "resolved" "https://registry.npmjs.org/cssnano-preset-default/-/cssnano-preset-default-5.0.1.tgz"
   "version" "5.0.1"
   dependencies:
     "css-declaration-sorter" "6.0.0"
@@ -4585,6 +4629,8 @@
   "version" "2.0.0"
 
 "cssnano@5.0.2":
+  "integrity" "sha512-8JK3EnPsjQsULme9/e5M2hF564f/480hwsdcHvQ7ZtAIMfQ1O3SCfs+b8Mjf5KJxhYApyRshR2QSovEJi2K72Q=="
+  "resolved" "https://registry.npmjs.org/cssnano/-/cssnano-5.0.2.tgz"
   "version" "5.0.2"
   dependencies:
     "cosmiconfig" "^7.0.0"
@@ -9417,6 +9463,8 @@
   "version" "2.14.2"
 
 "nanoid@^3.1.22", "nanoid@^3.1.23":
+  "integrity" "sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw=="
+  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.1.23.tgz"
   "version" "3.1.23"
 
 "nanomatch@^1.2.9":
@@ -10780,6 +10828,8 @@
     "supports-color" "^5.4.0"
 
 "postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.0", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.13", "postcss@^8.1.4", "postcss@^8.1.6", "postcss@^8.2.1", "postcss@^8.2.13", "postcss@^8.2.2":
+  "integrity" "sha512-2zO3b26eJD/8rb106Qu2o7Qgg52ND5HPjcyQiK2B98O388h43A448LCslC0dI2P97wCAQRJsFvwTRcXxTKds+Q=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.2.15.tgz"
   "version" "8.2.15"
   dependencies:
     "colorette" "^1.2.2"
@@ -10787,6 +10837,8 @@
     "source-map" "^0.6.1"
 
 "postcss@^7.0.35":
+  "integrity" "sha512-3QT8bBJeX/S5zKTTjTCIjRF3If4avAT6kqxcASlTWEtAFCb9NH0OUxNDfgZSWdP5fJnBYCMEWkIFfWeugjzYMg=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-7.0.35.tgz"
   "version" "7.0.35"
   dependencies:
     "chalk" "^2.4.2"
@@ -10794,6 +10846,8 @@
     "supports-color" "^6.1.0"
 
 "postcss@8.2.14":
+  "integrity" "sha512-+jD0ZijcvyCqPQo/m/CW0UcARpdFylq04of+Q7RKX6f/Tu+dvpUI/9Sp81+i6/vJThnOBX09Quw0ZLOVwpzX3w=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.2.14.tgz"
   "version" "8.2.14"
   dependencies:
     "colorette" "^1.2.2"
@@ -11704,6 +11758,8 @@
     "global-dirs" "^0.1.1"
 
 "resolve-url-loader@4.0.0":
+  "integrity" "sha512-05VEMczVREcbtT7Bz+C+96eUO5HDNvdthIiMB34t7FcF8ehcu4wC0sSgPUubs3XW2Q3CNLJk/BJrCU9wVRymiA=="
+  "resolved" "https://registry.npmjs.org/resolve-url-loader/-/resolve-url-loader-4.0.0.tgz"
   "version" "4.0.0"
   dependencies:
     "adjust-sourcemap-loader" "^4.0.0"
