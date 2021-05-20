@@ -16,7 +16,6 @@ jobs:
       - run:
           name: Install tools & lint & test
           command: |
-            sudo npm install -g @angular/cli > /dev/null;
 #            ng lint;
 #            ng test --code-coverage;
       - run:
@@ -38,7 +37,7 @@ jobs:
             then ng build --aot --prod --outputHashing=all --base-href='https://thicongchuc.org/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
-            then ng build --aot --prod --output-hashing=all --base-href='https://onthitoeic.net/'; fi
+            then ./node_modules/.bin/ng build --aot --prod --output-hashing=all --base-href='https://onthitoeic.net/'; fi
 
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "tcc-dev" ]; then firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
