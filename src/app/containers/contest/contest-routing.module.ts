@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     component: ContestListComponent,
     data: {
-      title: 'Danh sách kỳ thi',
-      description: 'Danh sách kỳ thi ThiCongChuc.Org',
+      title: 'Danh sách khóa học',
+      description: 'Danh sách khóa học tại onthitoeic.net',
       robots: 'index, follow',
     },
   },
