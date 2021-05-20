@@ -17,15 +17,10 @@ jobs:
           name: Install tools & lint & test
           command: |
             pwd
-  #            ng lint;
-  #            ng test --code-coverage;
-  deploy:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
+#            ng lint;
+#            ng test --code-coverage;
       - run:
-          name: Prepare for deployment
+          name: Deploy to Firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "dev" ];
             then rm src/environments/environment.prod.ts; mv src/environments/environment.dev.ts src/environments/environment.prod.ts;
@@ -44,19 +39,19 @@ jobs:
 
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ];
             then ./node_modules/.bin/ng build --aot --prod --outputHashing=all --base-href='https://onthitoeic.net/'; fi
-      - run:
-          name: Deploy to Firebase
-          command: |
+
             if [ "${CIRCLE_BRANCH}" == "dev" ]; then ./node_modules/.bin/firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "tcc-dev" ]; then ./node_modules/.bin/firebase deploy --project aloha-feature --token=$FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "ott-dev" ]; then ./node_modules/.bin/firebase deploy --project onthitoeic-3019b --token=$FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "tcc-prod" ]; then ./node_modules/.bin/firebase deploy --project thicongchuc-22e3a --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
             if [ "${CIRCLE_BRANCH}" == "ott-prod" ]; then ./node_modules/.bin/firebase deploy --project onthitoeic --token=$PROD_FIREBASE_DEPLOY_TOKEN; fi
+          filters:
+            branches:
+              only:
+                - master
+                - beta
 workflows:
   version: 2
   workflow:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
