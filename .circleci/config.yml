@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Install tools & lint & test
           command: |
-            - pwd
+            pwd
 #            ng lint;
 #            ng test --code-coverage;
       - run:
