@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ContestService } from '@core/services/contest.service';
 import { ContestModel } from '@core/models/contest.model';
@@ -7,30 +7,48 @@ import { Path } from '@core/structs';
 import { NotificationService } from '@core/services/notification.service';
 import { Helper } from '@core/helpers/helper';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
-import { AuthBackendService } from '@core/services/auth-backend.service';
-import { UserModel } from '@core/models/user.model';
+import { SeoService } from '@core/services/seo.service';
+import { PartModel } from '@core/models/part.model';
 
 @Component({
-  templateUrl: './contest-list.component.html',
-  styleUrls: ['./contest-list.component.scss'],
+  templateUrl: './part-list.component.html',
+  styleUrls: ['./part-list.component.scss'],
 })
-export class ContestListComponent implements OnInit, OnDestroy {
-  contests: Array<ContestModel>;
-  currentUser: UserModel | null;
+export class PartListComponent implements OnInit, OnDestroy {
+  contestId: number;
+  contest: ContestModel;
+  parts: Array<PartModel>;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private contestService: ContestService,
     private notificationService: NotificationService,
     private breadcrumbService: BreadcrumbService,
+    public seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.contestService.index().subscribe((contests: Array<ContestModel>) => {
-      this.contests = contests;
-    });
+    this.contestId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('khoa-hoc'),
+    );
+    this.contestService
+      .getById(this.contestId)
+      .subscribe((contest: ContestModel) => {
+        this.contest = contest;
 
-    this.breadcrumbService.setItem();
+        this.seoService.setData(this.contest.title, this.contest.description);
+        this.breadcrumbService.setItem(
+          Helper.convertToContestUrl(contest.title, contest.id),
+          this.contest.title,
+        );
+      });
+
+    this.contestService
+      .getParts(this.contestId)
+      .subscribe((parts: Array<PartModel>) => {
+        this.parts = parts;
+      });
   }
 
   ngOnDestroy(): void {}
@@ -51,11 +69,7 @@ export class ContestListComponent implements OnInit, OnDestroy {
     }
 
     if (contest.isPart) {
-      this.router.navigate([
-        'khoa-hoc',
-        Helper.convertToUrl(contest.title, contest.id),
-      ]);
-      return;
+
     }
 
     this.router.navigate([

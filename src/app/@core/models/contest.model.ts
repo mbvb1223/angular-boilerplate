@@ -1,4 +1,5 @@
 import { BaseModel } from './base.model';
+import { SubjectModel } from '@core/models/subject.model';
 
 export class ContestModel extends BaseModel {
   static readonly STATUS_ACTIVE = 1;
@@ -15,6 +16,18 @@ export class ContestModel extends BaseModel {
   price: number;
   image: string;
   sale_price: number;
+
+  subjects: Array<SubjectModel>;
+
+  constructor(params?: Array<unknown>) {
+    super(params);
+
+    if (this.subjects) {
+      this.subjects = this.subjects.map(
+        (question: any) => new SubjectModel(question),
+      );
+    }
+  }
 
   get isFree(): boolean {
     return !this.sale_price;
