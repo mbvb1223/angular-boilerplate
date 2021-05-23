@@ -22,7 +22,7 @@ export class PostModel extends BaseModel {
     return this.status === PostModel.STATUS_ACTIVE;
   }
 
-  get isVip() {
+  get isVip(): boolean {
     return this.vip === 1;
   }
 }

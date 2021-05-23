@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
-import { ContestModel } from '@core/models/contest.model';
 import { ICollection } from '@core/interfaces/collection.interface';
-import { SubjectModel } from '@core/models/subject.model';
 import { ExamModel } from '@core/models/exam.model';
 import { UserExamModel } from '@core/models/user-exam.model';
 

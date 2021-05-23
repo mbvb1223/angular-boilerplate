@@ -9,6 +9,7 @@ export class ExamModel extends BaseModel {
   status: number;
   type: number;
   subject_id: number;
+  vip: number;
 
   questions: Array<QuestionModel>;
 
@@ -20,5 +21,9 @@ export class ExamModel extends BaseModel {
         (question: any) => new QuestionModel(question),
       );
     }
+  }
+
+  get isVip(): boolean {
+    return this.vip === 1;
   }
 }

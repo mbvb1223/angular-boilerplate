@@ -39,7 +39,7 @@ export class Helper {
     return parseInt(<string>url.split(/[-]+/).pop());
   }
 
-  static parentUrl(url: string, deleteItem: number = 1): string {
+  static parentUrl(url: string, deleteItem = 1): string {
     return url.split('/').reverse().slice(deleteItem).reverse().join('/');
   }
 

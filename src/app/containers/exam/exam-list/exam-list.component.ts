@@ -56,7 +56,12 @@ export class ExamListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  goToExam(exam: ExamModel) {
+  goToExam(exam: ExamModel): void {
+    if (!exam.isVip) {
+      this.goToExamUrl(exam);
+      return;
+    }
+
     if (
       !Helper.isActiveOrder(
         this.sessionStorageService.retrieve(StoreKeyEnum.Order),
@@ -69,6 +74,10 @@ export class ExamListComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.goToExamUrl(exam);
+  }
+
+  public goToExamUrl(exam: ExamModel): void {
     this.router.navigate(
       [this.router.url, Helper.convertToUrl(exam.title, exam.id)],
       { queryParams: { reset: 'reset' } },

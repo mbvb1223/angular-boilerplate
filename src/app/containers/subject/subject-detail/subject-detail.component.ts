@@ -35,9 +35,7 @@ export class SubjectDetailComponent implements OnInit, OnDestroy {
       <string>this.route.snapshot.paramMap.get('id'),
     );
 
-    this.contestId = Helper.getId(
-      Helper.parentUrl(this.router.url, 2),
-    );
+    this.contestId = Helper.getId(Helper.parentUrl(this.router.url, 2));
 
     this.subjectService
       .getById(this.subjectId)
