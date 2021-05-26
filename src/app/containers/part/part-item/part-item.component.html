@@ -1,0 +1,45 @@
+<div *ngIf="part">
+  <audio controls class="text-center" id="audio" src="{{ part.audio }}">
+  </audio>
+  <mat-tab-group [formGroup]="form" (selectedTabChange)="selectedTabChange($event)" animationDuration="100ms" style="min-height: 200px">
+    <mat-tab label="Mô Tả">
+      <p [innerHTML]="transform(part.description)"></p>
+    </mat-tab>
+    <mat-tab label="Ghi chú" (click)="getNotes()">
+      <quill-editor formControlName='note' [styles]="{ height: '150px' }"></quill-editor>
+      <button class="btn pull-right btn-primary" (click)="submitNote()" [disabled]="shouldDisableNoteSubmit()">
+        Lưu
+      </button>
+
+      <div *ngFor="let note of notes; index as i; first as isFirst">
+        <div class="media">
+          <div class="media-body">
+            <p [innerHTML]="transform(note.content)"></p>
+            <ul class="list-unstyled list-inline media-detail pull-left">
+              <li><i class="fa fa-calendar"></i> {{ note.formattedCreatedAt }}</li>
+            </ul>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-tab>
+    <mat-tab label="Thảo luận">
+      <quill-editor formControlName='comment' [styles]="{ height: '150px' }"></quill-editor>
+      <button class="btn pull-right btn-primary" (click)="submitComment()" [disabled]="shouldDisableCommentSubmit()">
+        Lưu
+      </button>
+
+      <div *ngFor="let comment of comments;">
+        <div class="media">
+          <div class="media-body">
+            <p [innerHTML]="transform(comment.content)"></p>
+            <ul class="list-unstyled list-inline media-detail pull-left">
+              <li><i class="fa fa-calendar"></i> {{ comment.formattedCreatedAt }}</li>
+            </ul>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -3,12 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ContestService } from '@core/services/contest.service';
 import { ContestModel } from '@core/models/contest.model';
-import { Path } from '@core/structs';
 import { NotificationService } from '@core/services/notification.service';
 import { Helper } from '@core/helpers/helper';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
 import { SeoService } from '@core/services/seo.service';
 import { PartModel } from '@core/models/part.model';
+import { NoteModel } from '@core/models/note.model';
+import { CommentModel } from '@core/models/comment.model';
 
 @Component({
   templateUrl: './part-list.component.html',
@@ -17,7 +18,11 @@ import { PartModel } from '@core/models/part.model';
 export class PartListComponent implements OnInit, OnDestroy {
   contestId: number;
   contest: ContestModel;
-  parts: Array<PartModel>;
+  parentParts: Array<PartModel>;
+  allParts: Array<PartModel>;
+  currentPart: PartModel;
+  notes: Array<NoteModel>;
+  comments: Array<CommentModel>;
 
   constructor(
     private router: Router,
@@ -25,7 +30,7 @@ export class PartListComponent implements OnInit, OnDestroy {
     private contestService: ContestService,
     private notificationService: NotificationService,
     private breadcrumbService: BreadcrumbService,
-    public seoService: SeoService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -47,36 +52,29 @@ export class PartListComponent implements OnInit, OnDestroy {
     this.contestService
       .getParts(this.contestId)
       .subscribe((parts: Array<PartModel>) => {
-        this.parts = parts;
+        this.parentParts = parts;
+        this.currentPart = parts[0];
       });
   }
 
   ngOnDestroy(): void {}
 
-  goToContest(contest: ContestModel) {
-    if (!contest.isActive) {
-      this.notificationService.warning('Khóa học đang tạm khóa!');
-      return;
-    }
+  selectPart(id: number): void {
+    this.currentPart = <PartModel>(
+      this.getAllParts().find((part: PartModel) => part.id == id)
+    );
+    console.log(this.currentPart);
+    console.log(this.parentParts);
+    console.log(id);
+  }
 
-    if (contest.isSection) {
-      this.router.navigate([
-        Helper.convertToUrl(contest.title, contest.id),
-        'mon-thi',
-        `${contest.title}-${contest.subjects[0].id}`,
-      ]);
-      return;
-    }
+  getAllParts(): Array<PartModel> {
+    const data: PartModel[] = [];
+    this.parentParts.forEach((parentPart: PartModel) => {
+      data.push(parentPart);
+      parentPart.children.forEach((part: PartModel) => data.push(part))
+    });
 
-    if (contest.isPart) {
-
-    }
-
-    this.router.navigate([
-      Path.Contest,
-      Helper.convertToUrl(contest.title, contest.id),
-    ]);
-
-
+    return data;
   }
 }

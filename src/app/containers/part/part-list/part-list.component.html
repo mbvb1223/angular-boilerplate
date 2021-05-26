@@ -3,35 +3,24 @@
   <div class="card-body">
     <div class="row">
       <div class="col-lg-8 col-md-6">
-        <audio controls class="text-center">
-          <source src="https://raw.githubusercontent.com/mbvb1223/git/master/Tinh-Lo-Cach-Xa-My-Tam.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <mat-tab-group animationDuration="100ms">
-          <mat-tab label="Mô Tả">Mô Tả</mat-tab>
-          <mat-tab label="Ghi chú">Ghi chú</mat-tab>
-          <mat-tab label="Thảo luận">Thảo luận</mat-tab>
-        </mat-tab-group>
+        <app-part-item [part]="currentPart"></app-part-item>
       </div>
 
       <div class="col-lg-4 col-md-6">
-        <mat-list>
-          <h3 mat-subheader>Folders</h3>
-          <mat-list-item *ngFor="let folder of [1,2]; last as last">
-            <mat-icon mat-list-icon>folder</mat-icon>
-            <h4 mat-line>{{ 'df' }}</h4>
-            <p mat-line class="demo-2"> {{ 'ss' }} </p>
-            <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <div *ngFor="let parentPart of parentParts">
+          <h5 mat-subheader>{{ parentPart.title }}</h5>
+          <mat-list-item *ngFor="let part of parentPart.children; last as last">
+            <div style="display: flex">
+              <mat-checkbox
+                [disabled]="true"
+                (click)="selectPart(part.id)"
+                class="small">
+              </mat-checkbox>
+              <div class="cursor-pointer">{{ part.title }}</div>
+            </div>
+            <mat-divider *ngIf="last"></mat-divider>
           </mat-list-item>
-          <mat-divider></mat-divider>
-          <h3 mat-subheader>Notes</h3>
-          <mat-list-item *ngFor="let folder of [1,2]; last as last">
-            <mat-icon mat-list-icon>folder</mat-icon>
-            <h4 mat-line>{{ 'ccccccccc' }}</h4>
-            <p mat-line class="demo-2"> {{ '11111' }} </p>
-            <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-          </mat-list-item>
-        </mat-list>
+        </div>
       </div>
     </div>
   </div>
