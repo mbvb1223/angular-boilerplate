@@ -17,6 +17,12 @@ export class PostModel extends BaseModel {
   content: string;
   creatable_type: string;
   creatable_id: number;
+  link_vip_1: string;
+  link_vip_1_title: string;
+  link_vip_2: string;
+  link_vip_2_title: string;
+  link_vip_3: string;
+  link_vip_3_title: string;
 
   get isActive(): boolean {
     return this.status === PostModel.STATUS_ACTIVE;
@@ -24,5 +30,17 @@ export class PostModel extends BaseModel {
 
   get isVip(): boolean {
     return this.vip === 1;
+  }
+
+  get isCommon(): boolean {
+    return this.type_id === 1;
+  }
+
+  get isContest(): boolean {
+    return this.type_id === 2;
+  }
+
+  get isSubject(): boolean {
+    return this.type_id === 3;
   }
 }

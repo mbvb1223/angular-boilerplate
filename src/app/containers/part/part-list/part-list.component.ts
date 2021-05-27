@@ -61,11 +61,8 @@ export class PartListComponent implements OnInit, OnDestroy {
 
   selectPart(id: number): void {
     this.currentPart = <PartModel>(
-      this.getAllParts().find((part: PartModel) => part.id == id)
+      this.getAllParts().find((part: PartModel) => part.id === id)
     );
-    console.log(this.currentPart);
-    console.log(this.parentParts);
-    console.log(id);
   }
 
   getAllParts(): Array<PartModel> {

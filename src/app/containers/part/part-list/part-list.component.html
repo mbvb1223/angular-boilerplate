@@ -10,13 +10,12 @@
         <div *ngFor="let parentPart of parentParts">
           <h5 mat-subheader>{{ parentPart.title }}</h5>
           <mat-list-item *ngFor="let part of parentPart.children; last as last">
-            <div style="display: flex">
+            <div style="display: flex" (click)="selectPart(part.id)">
               <mat-checkbox
-                [disabled]="true"
-                (click)="selectPart(part.id)"
                 class="small">
+                <div class="cursor-pointer">{{ part.title }}</div>
               </mat-checkbox>
-              <div class="cursor-pointer">{{ part.title }}</div>
+
             </div>
             <mat-divider *ngIf="last"></mat-divider>
           </mat-list-item>

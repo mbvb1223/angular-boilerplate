@@ -1,5 +1,16 @@
+<app-order-contest *ngIf="isPostBelongToContest" [contestId]="post.creatable_id"></app-order-contest>
+
 <div class="card-header card-header-info hover-shadow-wrapper ck-content" *ngIf="postTitle">
   <h2 class="m-5 card-title">{{ postTitle }}</h2>
-  <div class="card-body" [innerHTML]="postContent">
+  <div class="card-body" [innerHTML]="postContent"></div>
+  <div *ngIf="post.link_vip_1">
+    <div *ngIf="shouldDisableLink()" class="text-center">
+      <a class="btn btn-warning">Chỉ tài khoản VIP mới có quyền tải tài liệu</a><br>
+    </div>
+    <div *ngIf="!shouldDisableLink()" class="text-center">
+      <a *ngIf="post.link_vip_1" href="{{ post.link_vip_1 }}" target="_blank" class="btn btn-primary">{{ post.link_vip_1_title}}</a><br>
+      <a *ngIf="post.link_vip_2" href="{{ post.link_vip_2 }}" target="_blank" class="btn btn-primary">{{ post.link_vip_2_title}}</a><br>
+      <a *ngIf="post.link_vip_3" href="{{ post.link_vip_3 }}" target="_blank" class="btn btn-primary">{{ post.link_vip_3_title}}</a><br>
+    </div>
   </div>
 </div>
