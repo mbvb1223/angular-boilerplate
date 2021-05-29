@@ -33,9 +33,6 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
     HeaderModule,
     FooterModule,
     BreadcrumbModule,
@@ -44,6 +41,12 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     {
