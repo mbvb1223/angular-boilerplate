@@ -1,6 +1,11 @@
 <div *ngIf="part">
-  <audio controls class="text-center" id="audio" src="{{ part.audio }}">
+  <audio *ngIf="part.audio" controls class="text-center" id="audio" src="{{ part.audio }}">
   </audio>
+  <video *ngIf="part.video" width="640" height="480" controls>
+    <source [src]="part.video" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+<!--  <video _ngcontent-wfu-c103="" width="640" height="480" controls="" class="ng-star-inserted"><source _ngcontent-wfu-c103="" type="video/mp4" src="https://github.com/mbvb1223/git/blob/master/videoplayback.mp4?raw=true"> Your browser does not support the video tag. </video>-->
   <mat-tab-group [formGroup]="form" (selectedTabChange)="selectedTabChange($event)" animationDuration="100ms" style="min-height: 200px">
     <mat-tab label="Mô Tả">
       <p [innerHTML]="transform(part.description)"></p>
