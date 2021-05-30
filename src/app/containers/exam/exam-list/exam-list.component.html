@@ -12,12 +12,12 @@
       <div class="card-body">
         <mat-card-content>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
               <b>Tổng số câu</b>: {{ exam.number_question }} <br>
               <b>Thời gian làm</b>: {{ exam.time }} (phút) <br>
               {{ exam.description}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <button (click)="goToExam(exam)" class="btn btn-sm pull-right {{ exam.isVip ? 'btn-primary' : 'btn-info' }}" style="">
                 Bắt đầu làm bài
               </button>
