@@ -29,7 +29,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     request = request.clone({
-      params: request.params.set('w_website', '1'),
+      params: request.params.set('w_website', '2'),
     });
 
     return next.handle(request);
