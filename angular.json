@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/thicongchuc.org",
+            "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -33,12 +33,13 @@
               "src/favicon.ico",
               "src/assets",
               "src/public",
-              "src/public/sitemap.xml"
+              "src/public/sitemap.xml",
+              "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/theme/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["src/theme/styles.scss"],
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -66,13 +67,6 @@
                   "maximumWarning": "2kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
-            },
-            "es": {
-              "localize": [
-                "es"
               ]
             }
           }
@@ -85,9 +79,6 @@
           "configurations": {
             "production": {
               "browserTarget": "thicongchuc:build:production"
-            },
-            "es": {
-              "browserTarget": "thicongchuc:build:es"
             }
           }
         },
@@ -103,22 +94,18 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/public/favicon.ico",
-              "src/assets"
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/theme/styles.scss"
-            ],
+            "styles": ["src/theme/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "e2e": {
@@ -157,12 +144,6 @@
               "devServerTarget": "thicongchuc:serve:production"
             }
           }
-        }
-      },
-      "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "es": "locale/messages.es.xlf"
         }
       }
     }

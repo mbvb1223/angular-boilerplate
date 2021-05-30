@@ -36,6 +36,7 @@ export enum Path {
   Dashboard = 'dashboard',
   Contest = 'ky-thi',
   Subject = ':ky-thi/mon-thi',
+  Part = 'khoa-hoc/:khoa-hoc',
   Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',
   Exam = ':ky-thi/mon-thi/:mon-thi/de-thi',
   Post = 'bai-viet/:type',

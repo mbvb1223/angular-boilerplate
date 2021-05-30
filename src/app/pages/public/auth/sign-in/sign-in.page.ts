@@ -48,8 +48,11 @@ export class SignInPage implements OnInit {
   private handleAfterLogin() {
     this.notificationService.success(`Bạn đã đăng nhập thành công!`);
 
-    const redirectUrl =
-      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') ?? '/';
+    const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get(
+      'returnUrl',
+    )
+      ? String(this.activatedRoute.snapshot.queryParamMap.get('returnUrl'))
+      : '/';
 
     this.router.navigateByUrl(redirectUrl);
   }

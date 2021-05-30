@@ -19,6 +19,7 @@ import { NotificationService } from '@core/services/notification.service';
   templateUrl: './order.component.html',
 })
 export class OrderComponent implements OnInit {
+  @Input() contestId: number;
   @Input() contest: ContestModel;
   shouldShowForm = false;
   form: FormGroup;
@@ -51,9 +52,10 @@ export class OrderComponent implements OnInit {
     }
 
     if (!this.contest) {
-      const contestId = Helper.getId(
-        <string>this.route.snapshot.paramMap.get('ky-thi'),
-      );
+      const contestId = this.contestId
+        ? this.contestId
+        : Helper.getId(<string>this.route.snapshot.paramMap.get('ky-thi'));
+
       this.contestService
         .getById(contestId)
         .subscribe((contest: ContestModel) => {
@@ -66,13 +68,13 @@ export class OrderComponent implements OnInit {
 
       orders.forEach((item, index) => {
         if (
-          item.contest_id === this.contest.id &&
+          item.contest_id === this.contestId &&
           item.status === OrderModel.STATUS_INACTIVE
         ) {
           this.isInactive = true;
         }
         if (
-          item.contest_id === this.contest.id &&
+          item.contest_id === this.contestId &&
           item.status === OrderModel.STATUS_ACTIVE
         ) {
           this.isActive = true;

@@ -9,7 +9,6 @@ import { ICollection } from '@core/interfaces/collection.interface';
 import { Helper } from '@core/helpers/helper';
 import { StoreKeyEnum } from '@core/structs/store-key.enum';
 
-
 @Component({
   templateUrl: './question-list.component.html',
   styleUrls: [],

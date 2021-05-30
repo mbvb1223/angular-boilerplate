@@ -1,0 +1,29 @@
+<app-order-contest *ngIf="contest" [contest]="contest"></app-order-contest>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-8 col-md-6">
+        <app-part-item [part]="currentPart"></app-part-item>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div *ngFor="let parentPart of parentParts">
+          <h5 mat-subheader>{{ parentPart.title }}</h5>
+          <mat-list-item *ngFor="let part of parentPart.children; last as last">
+            <div style="display: flex" (click)="selectPart(part.id)">
+              <mat-checkbox
+                class="small">
+                <div class="cursor-pointer">{{ part.title }}</div>
+              </mat-checkbox>
+
+            </div>
+            <mat-divider *ngIf="last"></mat-divider>
+          </mat-list-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
