@@ -11,12 +11,14 @@ import { Path } from '@core/structs';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from '@core/services/notification.service';
+import { RouterService } from '@core/services/router.service';
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
     private notificationService: NotificationService,
+    private routerService: RouterService,
   ) {}
 
   intercept(
@@ -26,7 +28,9 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if ([401, 403].includes(error.status)) {
-          this.router.navigateByUrl(Path.SignIn);
+          this.router.navigate([`/${Path.SignIn}`], {
+            queryParams: { returnUrl: this.routerService.getPreviousUrl() },
+          });
           return throwError(error);
         }
         console.error(error);

@@ -22,8 +22,6 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   ) {
     this.localStorageKey += this.route.snapshot.paramMap.get('id');
     this.answeredList = this.localSt.retrieve(this.localStorageKey) || [];
-
-    console.log(this.answeredList);
   }
 
   ngOnInit(): void {

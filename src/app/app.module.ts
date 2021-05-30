@@ -33,9 +33,6 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
     HeaderModule,
     FooterModule,
     BreadcrumbModule,
@@ -44,6 +41,9 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [
     {

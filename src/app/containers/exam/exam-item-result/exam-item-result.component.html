@@ -8,7 +8,7 @@
     <div *ngFor="let question of questions; index as i; first as isFirst">
       <app-question-item *ngIf="question.isSingle"
                          [question]="question"
-                         [questionNumber]="(currentPage * pageSize) + i + 1"
+                         [questionNumber]="orderQuestion[question.id]"
                          [canShowAnswer]="true"
                          [result]="result"
                          [forceShowAnswer]="true"
@@ -16,7 +16,8 @@
 
       <app-question-group *ngIf="question.isParent"
                           [question]="question"
-                          [questionNumber]="(currentPage * pageSize) + i + 1"
+                          [shouldIncrementId]="true"
+                          [questionNumber]="orderQuestion[question.id]"
                           [showAnswer]="true"
                           [result]="result"
                           [forceShowAnswer]="true"

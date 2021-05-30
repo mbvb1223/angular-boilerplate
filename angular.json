@@ -37,7 +37,9 @@
               "src/manifest.webmanifest"
             ],
             "styles": ["src/theme/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -65,9 +67,7 @@
                   "maximumWarning": "2kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              ]
             }
           }
         },

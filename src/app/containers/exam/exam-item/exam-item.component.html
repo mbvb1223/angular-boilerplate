@@ -9,13 +9,14 @@
   <div *ngFor="let question of questions; index as i; first as isFirst">
     <app-question-item *ngIf="question.isSingle"
                        [question]="question"
-                       [questionNumber]="(currentPage * pageSize) + i + 1"
+                       [questionNumber]="orderQuestion[question.id]"
                        [examId]="examId"
     ></app-question-item>
 
     <app-question-group *ngIf="question.isParent"
+                        [shouldIncrementId]="true"
                         [question]="question"
-                        [questionNumber]="(currentPage * pageSize) + i + 1"
+                        [questionNumber]="orderQuestion[question.id]"
                         [examId]="examId"
     ></app-question-group>
   </div>
@@ -25,6 +26,7 @@
   [pageSize]="pageSize"
   [showFirstLastButtons]="true"
   [length]="totalSize"
+  [pageSizeOptions]="[1,2]"
   [pageIndex]="currentPage"
   [hidePageSize]="true"
   (page)="handlePage($event)">
