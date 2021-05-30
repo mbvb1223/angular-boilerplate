@@ -27,6 +27,7 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
   public currentPage = 0;
   public totalSize = 0;
   public lastPage: number;
+  public orderQuestion: Array<any> = [];
 
   constructor(
     private router: Router,
@@ -55,6 +56,7 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
       .subscribe((exam: ExamModel) => {
         this.exam = exam;
         this.questions = this.paginate(exam.questions, this.pageSize, 1);
+        this.mapOrderQuestions(exam.questions);
         this.totalSize = exam.questions.length;
         this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
       });
@@ -124,5 +126,17 @@ export class ExamItemResultComponent implements OnInit, OnDestroy {
   ): Array<QuestionModel> {
     // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
     return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+  }
+
+  private mapOrderQuestions(questions: Array<QuestionModel>): void {
+    let i = 1;
+    questions.forEach((question: QuestionModel) => {
+      this.orderQuestion[question.id] = i;
+      if (question.isSingle) {
+        i++;
+      } else {
+        i = i + question.children.length;
+      }
+    });
   }
 }

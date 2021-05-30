@@ -39,4 +39,13 @@ export class ExamService extends BaseHttpClientService {
 
     return this.post(url, data).pipe(map((res: ICollection) => res.data));
   }
+
+  getHistories(): Observable<Array<UserExamModel>> {
+    const url = this.getUrl() + `/histories`;
+
+    return this.get(url).pipe(
+      map((res: ICollection) => res.data),
+      map((data) => data.map((exam) => new UserExamModel(exam))),
+    );
+  }
 }

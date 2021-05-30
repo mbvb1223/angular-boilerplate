@@ -16,6 +16,18 @@
               <b>Tổng số câu</b>: {{ exam.number_question }} <br>
               <b>Thời gian làm</b>: {{ exam.time }} (phút) <br>
               {{ exam.description}}
+              <div *ngIf="histories && histories[exam.id]">
+                <hr>
+                <div><b>Lịch sử bài thi đã làm</b></div>
+                <div *ngFor="let userExam of histories[exam.id]; index as i;">
+                  <a
+                    routerLink="{{ getResultLink(exam, userExam.id) }}">
+                    Lần {{ i + 1 }}
+                    - {{ userExam.number_question ? ('Điểm: ' + userExam.number_correct + '/' + userExam.number_question) + ' - ' : '' }}
+                    {{ userExam.formattedCreatedAt }}
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2">
               <button (click)="goToExam(exam)" class="btn btn-sm pull-right {{ exam.isVip ? 'btn-primary' : 'btn-info' }}" style="">

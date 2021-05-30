@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
-
 import { SessionStorageService } from 'ngx-webstorage';
+import { groupBy } from 'lodash';
+
 import { ExamModel } from '@core/models/exam.model';
 import { ExamService } from '@core/services/exam.service';
 import { SubjectService } from '@core/services/subject.service';
@@ -11,6 +12,8 @@ import { SubjectModel } from '@core/models/subject.model';
 import { BreadcrumbService } from '@core/services/breadcrumb.service';
 import { StoreKeyEnum } from '@core/structs/store-key.enum';
 import { NotificationService } from '@core/services/notification.service';
+import { UserExamModel } from '@core/models/user-exam.model';
+import { IDictionary } from '@core/interfaces/dictionary.interface';
 
 @Component({
   templateUrl: './exam-list.component.html',
@@ -19,6 +22,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
   subjectId: number;
   contestId: number;
   exams: Array<ExamModel>;
+  histories: IDictionary<UserExamModel[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,18 +43,24 @@ export class ExamListComponent implements OnInit, OnDestroy {
     );
 
     this.subjectService
-      .getExams(this.subjectId)
-      .subscribe((exams: Array<ExamModel>) => {
-        this.exams = exams;
-      });
-
-    this.subjectService
       .getById(this.subjectId)
       .subscribe((subject: SubjectModel) => {
         this.breadcrumbService.setItem(
           Helper.parentUrl(this.router.url),
           subject.title,
         );
+      });
+
+    this.subjectService
+      .getExams(this.subjectId)
+      .subscribe((exams: Array<ExamModel>) => {
+        this.exams = exams;
+      });
+
+    this.examService
+      .getHistories()
+      .subscribe((userExam: Array<UserExamModel>) => {
+        this.histories = groupBy(userExam, (item) => item.exam_id);
       });
   }
 
@@ -91,5 +101,14 @@ export class ExamListComponent implements OnInit, OnDestroy {
         'en',
       ),
     });
+  }
+
+  public getResultLink(exam: ExamModel, id: number): string {
+    return (
+      this.router.url +
+      '/' +
+      Helper.convertToUrl(exam.title, exam.id) +
+      `/result/${id}`
+    );
   }
 }

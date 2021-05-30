@@ -68,13 +68,13 @@ export class OrderComponent implements OnInit {
 
       orders.forEach((item, index) => {
         if (
-          item.contest_id === this.contest.id &&
+          item.contest_id === this.contestId &&
           item.status === OrderModel.STATUS_INACTIVE
         ) {
           this.isInactive = true;
         }
         if (
-          item.contest_id === this.contest.id &&
+          item.contest_id === this.contestId &&
           item.status === OrderModel.STATUS_ACTIVE
         ) {
           this.isActive = true;
