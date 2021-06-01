@@ -5,7 +5,7 @@ import { PartListComponent } from '@app/containers/part/part-list/part-list.comp
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':part',
     component: PartListComponent,
     data: {
       robots: 'index, follow',

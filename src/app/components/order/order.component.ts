@@ -50,14 +50,15 @@ export class OrderComponent implements OnInit {
     if (!this.user) {
       return;
     }
-
-    if (!this.contest) {
-      const contestId = this.contestId
+    if (this.contest) {
+      this.contestId = this.contest.id;
+    } else {
+      this.contestId = this.contestId
         ? this.contestId
         : Helper.getId(<string>this.route.snapshot.paramMap.get('ky-thi'));
 
       this.contestService
-        .getById(contestId)
+        .getById(this.contestId)
         .subscribe((contest: ContestModel) => {
           this.contest = contest;
         });

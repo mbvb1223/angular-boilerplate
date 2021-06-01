@@ -23,6 +23,7 @@ export class ContestListComponent implements OnInit, OnDestroy {
     private contestService: ContestService,
     private notificationService: NotificationService,
     private breadcrumbService: BreadcrumbService,
+    private authBackendService: AuthBackendService,
   ) {}
 
   ngOnInit(): void {
@@ -51,10 +52,24 @@ export class ContestListComponent implements OnInit, OnDestroy {
     }
 
     if (contest.isPart) {
-      this.router.navigate([
-        'khoa-hoc',
-        Helper.convertToUrl(contest.title, contest.id),
-      ]);
+      if (this.authBackendService.getCurrentUser()) {
+        this.router.navigate([
+          'khoa-hoc',
+          Helper.convertToUrl(contest.title, contest.id),
+          'p-0',
+        ]);
+        return;
+      }
+
+      this.notificationService.warning('Vui lòng đăng nhập!');
+      this.router.navigate([Path.SignIn], {
+        queryParams: {
+          returnUrl:
+            'khoa-hoc/' +
+            Helper.convertToUrl(contest.title, contest.id) +
+            '/p-0',
+        },
+      });
       return;
     }
 
@@ -62,7 +77,5 @@ export class ContestListComponent implements OnInit, OnDestroy {
       Path.Contest,
       Helper.convertToUrl(contest.title, contest.id),
     ]);
-
-
   }
 }
