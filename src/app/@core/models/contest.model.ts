@@ -12,6 +12,7 @@ export class ContestModel extends BaseModel {
   title: string;
   status: number;
   type: number;
+  short_description: string;
   description: string;
   price: number;
   image: string;
@@ -24,7 +25,7 @@ export class ContestModel extends BaseModel {
 
     if (this.subjects) {
       this.subjects = this.subjects.map(
-        (question: any) => new SubjectModel(question),
+        (subject: any) => new SubjectModel(subject),
       );
     }
   }

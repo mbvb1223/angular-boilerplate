@@ -1,4 +1,9 @@
 <div *ngIf="part">
+  <div>
+    <h4>{{ part.title }}</h4>
+  </div>
+  <mat-divider style="margin: 10px 0"></mat-divider>
+
   <audio *ngIf="part.audio" style="width: 100%" controls controlsList="nodownload" class="text-center" id="audio" src="{{ part.audio }}">
   </audio>
   <video *ngIf="part.video" style="width: 100%" controls controlsList="nodownload">
