@@ -1,25 +1,32 @@
 <app-order-contest *ngIf="contest" [contest]="contest"></app-order-contest>
+
 <div class="card">
   <div class="card-body">
     <div class="row">
       <div class="col-lg-8 col-md-6">
         <app-part-item [part]="currentPart"></app-part-item>
+        <div *ngIf="!currentPartId" [innerHTML]="contestContent"></div>
       </div>
 
       <div class="col-lg-4 col-md-6">
-        <div *ngFor="let parentPart of parentParts">
-          <h5 mat-subheader>{{ parentPart.title }}</h5>
-          <mat-list-item *ngFor="let part of parentPart.children; last as last">
-            <div style="display: flex" (click)="selectPart(part.id)">
-              <mat-checkbox
-                class="small">
-                <div class="cursor-pointer">{{ part.title }}</div>
-              </mat-checkbox>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let parentPart of parentParts">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ parentPart.title }}
+              </mat-panel-title>
+              <mat-panel-description></mat-panel-description>
+            </mat-expansion-panel-header>
 
+            <div *ngFor="let part of parentPart.children; last as last">
+              <div style="display: flex; padding-top: 8px; padding-left: 10px" [ngStyle]="(currentPart && currentPart.id === part.id) ? {'background-color': '#b7c9fb'} : {}" (click)="selectPart(part.id)" >
+                <mat-checkbox class="small"></mat-checkbox>
+                <div class="cursor-pointer" style="width: 100%; margin-left: 5px">{{ part.title }}</div>
+              </div>
             </div>
-            <mat-divider *ngIf="last"></mat-divider>
-          </mat-list-item>
-        </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
     </div>
   </div>
