@@ -44,7 +44,7 @@ import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
+      // or after 3 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:3000',
     }),
   ],
