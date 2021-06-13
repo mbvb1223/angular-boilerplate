@@ -37,34 +37,45 @@ export class ContestListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   goToContest(contest: ContestModel) {
-    if (contest.isActive) {
-      this.router.navigate([
-        Path.Contest,
-        Helper.convertToUrl(contest.title, contest.id),
-      ]);
+    if (!contest.isActive) {
+      this.notificationService.warning('Khóa học đang tạm khóa!');
       return;
-
-      // this.currentUser = this.authBackendService.getCurrentUser();
-      // if (this.currentUser) {
-      //   this.router.navigate([
-      //     Path.Contest,
-      //     Helper.convertToUrl(contest.title, contest.id),
-      //   ]);
-      //   return;
-      // }
-      //
-      // this.notificationService.warning('Vui lòng đăng nhập!');
-      //
-      // this.router.navigate([Path.SignIn], {
-      //   queryParams: {
-      //     returnUrl:
-      //       Path.Contest + '/' + Helper.convertToUrl(contest.title, contest.id),
-      //   },
-      // });
-      //
-      // return;
     }
 
-    this.notificationService.warning('Khóa học đang tạm khóa!');
+    if (contest.isSection) {
+      this.router.navigate([
+        Helper.convertToUrl(contest.title, contest.id),
+        'mon-thi',
+        Helper.convertToUrl(contest.title, contest.subjects[0].id)
+      ]);
+      return;
+    }
+
+    if (contest.isPart) {
+      if (this.authBackendService.getCurrentUser()) {
+        this.router.navigate([
+          'khoa-hoc',
+          Helper.convertToUrl(contest.title, contest.id),
+          'p-0',
+        ]);
+        return;
+      }
+
+      this.notificationService.warning('Vui lòng đăng nhập!');
+      this.router.navigate([Path.SignIn], {
+        queryParams: {
+          returnUrl:
+            'khoa-hoc/' +
+            Helper.convertToUrl(contest.title, contest.id) +
+            '/p-0',
+        },
+      });
+      return;
+    }
+
+    this.router.navigate([
+      Path.Contest,
+      Helper.convertToUrl(contest.title, contest.id),
+    ]);
   }
 }

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { ContestModel } from '@core/models/contest.model';
 import { ICollection } from '@core/interfaces/collection.interface';
 import { SubjectModel } from '@core/models/subject.model';
+import { PartModel } from '@core/models/part.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,15 @@ export class ContestService extends BaseHttpClientService {
     return this.get(url).pipe(
       map((res: ICollection) => res.data),
       map((data) => data.map((subject) => new SubjectModel(subject))),
+    );
+  }
+
+  getParts(id: number): Observable<Array<PartModel>> {
+    const url = this.getUrl() + `/${id}/parts`;
+
+    return this.get(url).pipe(
+      map((res: ICollection) => res.data),
+      map((data) => data.map((part) => new PartModel(part))),
     );
   }
 

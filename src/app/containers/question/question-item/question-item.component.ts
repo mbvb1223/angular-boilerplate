@@ -39,7 +39,6 @@ export class QuestionItemComponent implements OnInit, OnDestroy {
   }
 
   isSelectedAnswer(value: any) {
-    console.log('isSelectedAnswer');
     return this.selectedValue == value;
   }
 

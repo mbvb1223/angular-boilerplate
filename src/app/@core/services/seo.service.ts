@@ -17,11 +17,7 @@ export class SeoService {
     this.appTitle = this.titleService.getTitle();
   }
 
-  public setData(
-    title: string = '',
-    description: string = '',
-    robots: string = 'index, follow',
-  ): void {
+  public setData(title = '', description = '', robots = 'index, follow'): void {
     this.titleService.setTitle(
       `${this.appTitle} - ${title} - ${this.authService.getUserName()}`,
     );
