@@ -28,6 +28,12 @@ export const PUBLIC_ROUTES: Routes = [
   },
 
   {
+    path: Path.Part,
+    loadChildren: () =>
+      import('@app/containers/part/part.module').then((m) => m.PartModule),
+  },
+
+  {
     path: Path.Subject,
     loadChildren: () =>
       import('@app/containers/subject/subject.module').then(

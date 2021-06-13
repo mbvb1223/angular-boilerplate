@@ -39,19 +39,6 @@ export class PostListComponent implements OnInit {
   }
 
   goToPost(post: PostModel) {
-    if (post.isVip && parseInt(this.typeId) === PostModel.TYPE_CONTEST) {
-      if (
-        !Helper.isActiveOrder(
-          this.sessionStorageService.retrieve(StoreKeyEnum.Order),
-          parseInt(this.creatableId),
-        )
-      ) {
-        this.notificationService.warning(
-          'Vui lòng mua khóa học để xem được tài liệu này!',
-        );
-        return;
-      }
-    }
     this.router.navigate([
       'bai-viet',
       Helper.convertToUrl(this.parentObject.title, this.parentObject.id),

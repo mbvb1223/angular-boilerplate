@@ -7,13 +7,15 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
+          "/",
           "/favicon.ico",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
         ]
       }
-    }, {
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",

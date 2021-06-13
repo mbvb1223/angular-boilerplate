@@ -34,6 +34,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
   public currentPage = 0;
   public totalSize = 0;
   public lastPage: number;
+  public orderQuestion: Array<any> = [];
   private timeInterval: any;
 
   constructor(
@@ -58,6 +59,7 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     this.examService.getById(this.examId).subscribe((exam: ExamModel) => {
       this.exam = exam;
       this.questions = this.paginate(exam.questions, this.pageSize, 1);
+      this.mapOrderQuestions(exam.questions);
       this.totalSize = exam.questions.length;
       this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
 
@@ -235,5 +237,17 @@ export class ExamItemComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate([], { queryParams: {} });
+  }
+
+  private mapOrderQuestions(questions: Array<QuestionModel>): void {
+    let i = 1;
+    questions.forEach((question: QuestionModel) => {
+      this.orderQuestion[question.id] = i;
+      if (question.isSingle) {
+        i++;
+      } else {
+        i = i + question.children.length;
+      }
+    });
   }
 }
