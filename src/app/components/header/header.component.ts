@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Path } from '@app/@core/structs';
-import { AuthService } from '@app/pages/public/auth/_services/auth.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter, Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+
+import { AuthBackendService } from '@core/services/auth-backend.service';
+import { UserModel } from '@core/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +16,13 @@ import { AuthService } from '@app/pages/public/auth/_services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  path = Path;
+  @Input() user: UserModel | null;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private authBackendService: AuthBackendService) {}
 
   ngOnInit(): void {}
 
-  onClickSignOut(): void {
-    this.authService.signOut();
-    this.router.navigate(['/', Path.SignIn]);
+  onClickLogout(): void {
+    this.authBackendService.logout();
   }
 }

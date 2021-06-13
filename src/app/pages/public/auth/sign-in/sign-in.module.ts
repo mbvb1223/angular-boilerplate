@@ -1,20 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
 import { SignInPage } from './sign-in.page';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [SignInPage],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
         component: SignInPage,
         data: {
-          title: 'Sign into Angular Boilerplate',
+          title: 'Đăng nhập',
           description:
-            'Start writing your business logic right away without any concern on architecture matters.',
+            'Đăng nhập hệ thống ThiCongChuc.Org',
           robots: 'index, follow',
         },
       },

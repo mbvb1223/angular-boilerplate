@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title>Do you want to love me? {{ question }}</mat-card-title>
+
+  <mat-card-content>
+    <div class="grid grid-cols-2 gap-4" [ngClass]="{'singleClass' : isAnswered}">
+      <div *ngFor="let option of [1,2,3,4]; index as optionId; first as isFirst">
+        <mat-card class="m-2">
+          <mat-card-content>
+            <mat-checkbox (change)="answer(option)"
+                          [checked]="isSelectedAnswer(option)"
+                          class="example-margin">Check asdf asdf asdf sdf asdf sdf sdme!
+            </mat-checkbox>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <button mat-raised-button
+            color="{{ isCorrectAnswer() ? 'primary' : 'accent' }}"
+            *ngIf="!!selectedValue">
+      {{ isCorrectAnswer() ? 'OKAY' : 'WRONG' }}
+    </button>
+  </mat-card-content>
+</mat-card>

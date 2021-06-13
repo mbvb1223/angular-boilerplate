@@ -1,10 +1,12 @@
 export enum Path {
   // General containers
+  Public = 'public',
   Home = '',
   NotFound = '404',
 
   // Auth
-  SignIn = 'sign-in',
+  Auth = '',
+  SignIn = 'auth/dang-nhap',
   SignUp = 'sign-up',
   ForgotPassword = 'forgot-password',
   ForgotPasswordEmailSent = 'forgot-password-email-sent',
@@ -13,7 +15,7 @@ export enum Path {
   PasswordResetSucceeded = 'password-reset-succeeded',
 
   // App base url
-  Dashboard = 'dashboard',
+  App = 'app',
 
   // Settings
   Settings = 'settings',
@@ -26,6 +28,18 @@ export enum Path {
   SettingsSecurityLog = 'security-log',
 
   // User
+  User = 'users',
+  UserOverview = 'overview',
+  UserProfile = ':username',
+
+  // Features
+  Dashboard = 'dashboard',
+  Contest = 'ky-thi',
+  Subject = ':ky-thi/mon-thi',
+  Part = 'khoa-hoc/:khoa-hoc',
+  Section = ':ky-thi/mon-thi/:mon-thi/phan-thi',
+  Exam = ':ky-thi/mon-thi/:mon-thi/de-thi',
+  Post = 'bai-viet/:type',
   Users = 'users',
   UsersOverview = 'overview',
   UsersProfile = ':username',

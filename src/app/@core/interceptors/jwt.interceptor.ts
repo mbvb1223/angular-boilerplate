@@ -17,7 +17,7 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const isLoggedIn = true;
-    const token = 'ABC';
+    const token = localStorage.getItem('NX)f$XhV8$;(9X;');
     const isApiUrl = request.url.startsWith(environment.apiUrl);
 
     if (isLoggedIn && isApiUrl) {
@@ -27,6 +27,10 @@ export class JwtInterceptor implements HttpInterceptor {
         },
       });
     }
+
+    request = request.clone({
+      params: request.params.set('w_website', '1'),
+    });
 
     return next.handle(request);
   }

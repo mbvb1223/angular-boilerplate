@@ -1,0 +1,20 @@
+.search {
+  width: 100%;
+  position: relative;
+
+  &__input {
+    margin: 0 5px;
+    width: calc(100% - 10px);
+  }
+  
+  &__icon-search, &__icon-clear {
+    position: absolute;
+    right: 20px;
+    font-size: 40px;
+    top: 15px;
+  }
+
+  &__icon-clear {
+    cursor: pointer;
+  }
+}

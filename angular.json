@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-boilerplate": {
+    "thicongchuc": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-boilerplate",
+            "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -32,10 +32,14 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/public",
+              "src/public/sitemap.xml",
               "src/manifest.webmanifest"
             ],
             "styles": ["src/theme/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -56,28 +60,32 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-boilerplate:build"
+            "browserTarget": "thicongchuc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-boilerplate:build:production"
+              "browserTarget": "thicongchuc:build:production"
             }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "thicongchuc:build"
           }
         },
         "test": {
@@ -116,7 +124,7 @@
         "cypress-run": {
           "builder": "@briebug/cypress-schematic:cypress",
           "options": {
-            "devServerTarget": "angular-boilerplate:serve"
+            "devServerTarget": "thicongchuc:serve"
           },
           "configurations": {
             "production": {
@@ -133,12 +141,12 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-boilerplate:serve:production"
+              "devServerTarget": "thicongchuc:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-boilerplate"
+  "defaultProject": "thicongchuc"
 }

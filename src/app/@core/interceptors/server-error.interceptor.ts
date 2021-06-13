@@ -10,10 +10,16 @@ import { Router } from '@angular/router';
 import { Path } from '@core/structs';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NotificationService } from '@core/services/notification.service';
+import { RouterService } from '@core/services/router.service';
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private notificationService: NotificationService,
+    private routerService: RouterService,
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -22,14 +28,14 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if ([401, 403].includes(error.status)) {
-          this.router.navigateByUrl(Path.SignIn);
-          return throwError(error);
-        } else if (error.status === 500) {
-          console.error(error);
-          return throwError(error);
-        } else {
+          this.router.navigate([`/${Path.SignIn}`], {
+            queryParams: { returnUrl: this.routerService.getPreviousUrl() },
+          });
           return throwError(error);
         }
+        console.error(error);
+        this.notificationService.error('Có lỗi xảy ra, vui lòng thử lại!');
+        return throwError(error);
       }),
     );
   }

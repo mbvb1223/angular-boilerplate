@@ -1,0 +1,10 @@
+<div class="search">
+  <mat-form-field appearance="outline" class="search__input">
+    <mat-label>Search</mat-label>
+    <input class="search__input" matInput
+           [formControl]="searchTerm"
+    >
+  </mat-form-field>
+  <i class="material-icons search__icon-search" *ngIf="!searchTerm.value">search</i>
+  <i class="material-icons search__icon-clear" *ngIf="searchTerm.value" (click)="clearSearchTerm()">clear</i>
+</div>

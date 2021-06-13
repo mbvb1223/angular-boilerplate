@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://thicongchuc.org/public/sitemap.xml

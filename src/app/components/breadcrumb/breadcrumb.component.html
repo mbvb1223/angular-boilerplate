@@ -1,0 +1,4 @@
+<div style="display: flex; padding: 5px">
+  <a routerLink="/" class="" href="#">Home</a> &nbsp;/&nbsp;
+  <a *ngIf="item" routerLink="{{ item.url }}" class="" href="{{ item.url }}">{{ item.label }}</a>
+</div>

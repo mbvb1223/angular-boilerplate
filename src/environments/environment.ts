@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/v1',
+  apiUrl: 'http://tcc.local/api/',
+  googleClientId:
+    '686645448062-bqnisflu0a358ameteqc63ah09uc08fu.apps.googleusercontent.com',
+  facebookClientId: '486122019055775',
 };
 
 /*

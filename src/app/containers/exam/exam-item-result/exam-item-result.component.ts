@@ -1,0 +1,142 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator/paginator';
+
+import { SessionStorageService } from 'ngx-webstorage';
+import { QuestionModel } from '@core/models/question.model';
+import { ExamService } from '@core/services/exam.service';
+import { Helper } from '@core/helpers/helper';
+import { ExamModel } from '@core/models/exam.model';
+import { UserExamModel } from '@core/models/user-exam.model';
+import { BreadcrumbService } from '@core/services/breadcrumb.service';
+
+@Component({
+  selector: 'app-exam-item-result',
+  templateUrl: './exam-item-result.component.html',
+})
+export class ExamItemResultComponent implements OnInit, OnDestroy {
+  examId: number;
+  resultId: number;
+  exam: ExamModel;
+  questions: Array<QuestionModel>;
+  answers: Array<number>;
+  result: any;
+  analytics: Array<number>;
+  public pageSize = 10;
+  public currentPage = 0;
+  public totalSize = 0;
+  public lastPage: number;
+  public orderQuestion: Array<any> = [];
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private sessionStorageService: SessionStorageService,
+    private examService: ExamService,
+    private breadcrumbService: BreadcrumbService,
+  ) {}
+
+  ngOnInit(): void {
+    this.examId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('de-thi'),
+    );
+    this.resultId = Helper.getId(
+      <string>this.route.snapshot.paramMap.get('result-id'),
+    );
+
+    this.examService
+      .getResult(this.examId, this.resultId)
+      .pipe(
+        switchMap((userExam: UserExamModel) => {
+          this.result = JSON.parse(userExam.answer);
+          return this.examService.getById(this.examId);
+        }),
+      )
+      .subscribe((exam: ExamModel) => {
+        this.exam = exam;
+        this.questions = this.paginate(exam.questions, this.pageSize, 1);
+        this.mapOrderQuestions(exam.questions);
+        this.totalSize = exam.questions.length;
+        this.lastPage = Math.ceil(this.totalSize / this.pageSize) - 1;
+      });
+
+    this.breadcrumbService.setItem(
+      Helper.parentUrl(this.router.url, 3),
+      'Danh sách đề thi',
+    );
+  }
+
+  ngOnDestroy(): void {}
+
+  handlePage(event: PageEvent) {
+    Helper.scrollTop();
+
+    this.questions = this.paginate(
+      this.exam.questions,
+      event.pageSize,
+      event.pageIndex + 1,
+    );
+    this.currentPage = event.pageIndex;
+  }
+
+  isLastPage(): boolean {
+    return this.currentPage === this.lastPage;
+  }
+
+  public getAnalyticsNumber(): Array<number> {
+    if (this.analytics) {
+      return this.analytics;
+    }
+
+    let number = 0;
+    let correctNumber = 0;
+    this.exam.questions.forEach((question: QuestionModel) => {
+      if (question.isParent) {
+        number += question.children.length;
+
+        question.children.forEach((questionItem: QuestionModel) => {
+          if (
+            this.result &&
+            questionItem.id in this.result &&
+            questionItem.correct_answer === this.result[questionItem.id]
+          ) {
+            correctNumber++;
+          }
+        });
+      } else {
+        number += 1;
+        if (
+          this.result &&
+          question.id in this.result &&
+          question.correct_answer === this.result[question.id]
+        ) {
+          correctNumber++;
+        }
+      }
+    });
+
+    return (this.analytics = [number, correctNumber]);
+  }
+
+  paginate(
+    array: Array<QuestionModel>,
+    pageSize: number,
+    pageNumber: number,
+  ): Array<QuestionModel> {
+    // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+    return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+  }
+
+  private mapOrderQuestions(questions: Array<QuestionModel>): void {
+    let i = 1;
+    questions.forEach((question: QuestionModel) => {
+      this.orderQuestion[question.id] = i;
+      if (question.isSingle) {
+        i++;
+      } else {
+        i = i + question.children.length;
+      }
+    });
+  }
+}

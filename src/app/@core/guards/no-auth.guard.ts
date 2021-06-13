@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
-import { AuthService } from '@app/pages/public/auth/_services/auth.service';
-import { Path } from '@core/structs';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
+
+import { Path } from '@core/structs';
+import { AuthBackendService } from '@core/services/auth-backend.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoAuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authBackendService: AuthBackendService,
+  ) {}
 
-  canActivate():
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const isLoggedIn = this.authService.isLoggedIn;
+    const isLoggedIn = this.authBackendService.getCurrentUser();
 
     if (isLoggedIn) {
-      this.router.navigate([Path.Dashboard]);
+      this.router.navigate([Path.Contest]);
       return false;
     }
 
