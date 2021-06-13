@@ -46,7 +46,7 @@ export class ContestListComponent implements OnInit, OnDestroy {
       this.router.navigate([
         Helper.convertToUrl(contest.title, contest.id),
         'mon-thi',
-        `${contest.title}-${contest.subjects[0].id}`,
+        Helper.convertToUrl(contest.title, contest.subjects[0].id)
       ]);
       return;
     }
