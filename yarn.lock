@@ -192,6 +192,15 @@
     aria-query "^4.2.2"
     axobject-query "^2.2.0"
 
+"@angular-eslint/eslint-plugin-template@4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-4.3.1.tgz#0c5fc00ff931d68f13a9c14c8cc006cc1758b661"
+  integrity sha512-KpG+KrJ3ldYcA/6b/EzFjGh02ieOpuhzMjpnl8EwQMuqOazeDnpzwVVGwEUpB7gL0IqHqNS2HMrWqq6k1kdnqg==
+  dependencies:
+    "@typescript-eslint/experimental-utils" "4.16.1"
+    aria-query "^4.2.2"
+    axobject-query "^2.2.0"
+
 "@angular-eslint/eslint-plugin@4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-4.2.0.tgz#134203c3ac340ae4ae76703434f636dc0a110d7d"
@@ -199,13 +208,20 @@
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
 
-"@angular-eslint/schematics@4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-4.2.0.tgz#28bb9c67f0cc6c03219cf92220f74c171a613897"
-  integrity sha512-aohGcfYUqN2hFLWaZoOqkLDyYVDFoLC3LwgIknoaDqWkvFG/RUTg1X1pCFjddLQYP5ist8+OppHH+gnYMbftEw==
+"@angular-eslint/eslint-plugin@4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-4.3.1.tgz#57c688089ac0c184fae137a7cf004728047d929a"
+  integrity sha512-Pqsjx+R8vShkh5oAK/XfzYR05RBbjrwSHZZF8XY1Q5t5CMGcJ5HC+v0jTMpM6qdJ4LUqqMdN3Sx86BUCIvXieQ==
   dependencies:
-    "@angular-eslint/eslint-plugin" "4.2.0"
-    "@angular-eslint/eslint-plugin-template" "4.2.0"
+    "@typescript-eslint/experimental-utils" "4.16.1"
+
+"@angular-eslint/schematics@4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-4.3.1.tgz#62f3b3fdbe8e1916f06181e8d57570b58aac66b3"
+  integrity sha512-8YJI2uNXI4cGjnX2wIhuJ4vr6oMAcGGdpGCm0g0lMQKmwvpHa1I/XQgvfEryZovKIe32U+qNk7pY65tf0qMrRQ==
+  dependencies:
+    "@angular-eslint/eslint-plugin" "4.3.1"
+    "@angular-eslint/eslint-plugin-template" "4.3.1"
     ignore "5.1.8"
     strip-json-comments "3.1.1"
     tmp "0.2.1"
