@@ -1,34 +1,37 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "lib": ["es2018", "dom"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "dom"],
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@components/*": ["src/app/components/*"],
-      "@core/*": ["src/app/@core/*"],
+      "@lib/*": ["src/app/lib/*"],
       "@pages/*": ["src/app/pages/*"],
-      "@router/*": ["src/app/router/*"],
-      "@assets/*": ["src/assets/*"],
-      "@environments/*": ["src/environments/*"]
+      "@env/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {
-    "enableIvy": true,
-    "fullTemplateTypeCheck": true,
+    "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
     "strictTemplates": true
   }
 }

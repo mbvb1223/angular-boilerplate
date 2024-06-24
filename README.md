@@ -1,300 +1,150 @@
+<p align="center">
+  <img src="https://api.iconify.design/logos:angular-icon.svg" alt="Angular brand" width="100" height="100"/>
+</p>
+
 <h1 align="center">Angular Boilerplate</h1>
 
-<p align="center">
-  <img src="https://img.icons8.com/ios-filled/150/000000/angularjs.png" alt="angular-logo" width="120px" height="120px"/>
-  <br>
-  <i>Angular starter for enterprise-grade front-end projects, built under a clean architecture 
-    <br> that helps to scale and maintain a fast workflow.</i>
-  <br>
+<br>
+
+<p align='center'>
+  <a href="https://angularboilerplate.vercel.app/">Live site (Demo)</a>
 </p>
 
-<p align="center">
-  <a href="https://angularboilerplate.vercel.app"><strong>https://angularboilerplate.vercel.app</strong></a>
-  <br>
+<br>
+
+<p align='center'>
+  <strong>English</strong> |
+  <a href="https://github.com/juanmesa2097/angular-boilerplate/blob/main/README.es-CO.md">Español</a>
 </p>
 
-<p align="center">
-  <a href="CONTRIBUTING.md">Contributing Guidelines</a>
-  ·
-  <a href="https://github.com/juanmesa2097/angular-boilerplate/issues">Submit an Issue</a>
-  <br>
-  <br>
-</p>
+<br>
 
-<p align="center">
-  <a href="https://github.com/facebook/jest">
-    <img src="https://jestjs.io/img/jest-badge.svg" alt="unit tests with Jest" />
-  </a>&nbsp;
-  <a href="https://www.cypress.io">
-    <img src="https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg" alt="e2e with Cypress" />
-  </a>&nbsp;
-  <a href="https://github.com/juanmesa2097/angular-boilerplate/issues">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="Contributions welcome" />
-  </a>
-</p>
-
-<hr>
+This opinionated Angular starter focuses on the latest Angular features and best practices. It offers essential features for flexibility and scalability, minimizing unnecessary overhead. The codebase is lightweight yet robust, allowing developers to choose their preferred technologies like UI component libraries, state management, server-side rendering, etc. Its flexible boilerplate enables easy customization and adaptation to unique project requirements.
 
 ## ⚗️ Features
 
-- Strict mode.
-- Lazy loading.
-- Smart and pure components pattern.
-- SCAM pattern.
-- Self-contained components and encapsulated modules.
-- Components types (e.g. component, page).
-- Amazing directory structure.
-- Unit tests with Jest instead of Karma & Jasmine.
-- e2e tests with Cypress instead of Protractor.
-- PWA
-- Dynamic titles and content meta tags.
-- TailwindCSS + Autoprefixer + PurgeCSS setup.
-- Dark mode and theme configuration.
-- Scalable CSS architecture in favor of TailwindCSS layers.
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse) reports improved.
-- Migration from TSLint to ESLint.
-- Run unit tests & lint code on Git Hooks using [Husky](https://github.com/typicode/husky) & validate commit messages using [commitlint](https://github.com/conventional-changelog/commitlint)
-- GitHub Actions workflows for code analysis and unit tests.
+- [Angular 16](https://angular.io/docs)
+- [PNPM](https://pnpm.io/), [esbuild](https://esbuild.github.io/)
+- [Standalone components](https://angular.io/guide/standalone-components)
+- [Signals](https://angular.io/guide/signals)
+- [Lazy loading](https://angular.io/guide/lazy-loading-ngmodules)
+- [PWA](https://angular.io/guide/service-worker-getting-started)
+- [I18n](https://ngneat.github.io/transloco/)
+- [TailwindCSS](https://tailwindcss.com/)
+- OS/Light/Dark themes
+- Lightweight, fast, and built using state-of-the-art technology.
 
-## 📄 Pages
+## ✅ Ready-to-use
 
-```
-Types of pages
+### UI Frameworks
 
-public: everybody can see them
-private: only logged in users can see them
-```
+- [TailwindCSS](https://tailwindcss.com/)
 
-- General
-  - home
-  - not-found
-- Auth
-  - sign-in
-  - sign-up
-  - forgot-password
-  - forgot-password-email-sent
-  - password-reset
-  - password-reset-succeeded
-  - password-reset-failed
-- Settings
-  - account
-  - appearance
-  - billing
-  - blocked-Users
-  - notifications
-  - security
-  - security-log
-- User
-  - my-profile
-  - overview
-- Features
-  - dashboard
+### Icons
 
-## 🧱 Self-contained components
+- [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/).
+- [@iconify/tailwind](https://docs.iconify.design/usage/css/tailwind/) - Pure CSS icons.
 
-- footer
-- header
-- layout
+### Add-ons
 
-## 📡 Services
+- <https://github.com/ngneat/transloco>
+- <https://github.com/tailwindlabs/tailwindcss>
+  - <https://github.com/tailwindlabs/tailwindcss-aspect-ratio>
+  - <https://github.com/tailwindlabs/tailwindcss-forms>
+  - <https://github.com/tailwindlabs/tailwindcss-typography>
+  - <https://github.com/tailwindlabs/prettier-plugin-tailwindcss>
+- <https://github.com/iconify/iconify>
+  - <https://github.com/iconify/iconify/tree/main/plugins/tailwind>
 
-- AuthService
-- SeoService
-- ThemeService
+## ⚙ Prerequisites
 
-## 📛 Custom directives
+- Node.js ([^16.14.0 || ^18.10.0](https://angular.io/guide/versions)): <https://nodejs.org/en/>
+- PNPM: <https://pnpm.io/>
+- Docker (optional): <https://www.docker.com/>
 
-- click-outside (detects when the user clicks outside an element).
+## 🏹 Start development
 
-## 🧪 Custom pipes
+> **Note:**
+> You have three options to start a new project based on this template:
+>
+> 1. Create a new GitHub repository from this template.
+> 2. Clone this repository to start with a clean git history.
+> 3. Scaffold a project fork on StackBlitz.
 
-- bytes (transforms a numeric value into bytes, KB, MB, GB, etc.).
+### Using the GitHub template
 
-## 🛠️ Make some initial tweaks
+[Create a repo from this template on GitHub](https://github.com/juanmesa2097/angular-boilerplate/generate).
 
-- Change application title:
+---
 
-  Go to `src/index.html` and inside the `title` tag, replace "Angular Boilerplate" with your app name.
+### Cloning the repository locally
 
-- Change paths of the pages:
-
-  Go to `src/app/core/structs/path.enum.ts` to find all the registered routes in an enum file.
-
-  For example, you could replace `sign-in` with `SignIn`, `login` or `iniciar_sesion`
-
-- Change titles, descriptions, and robots of the pages:
-
-  Every page has a `.route` file that contains an exported constant that holds the title, description and a robot's metatag that indicates if it can be indexed or followed by a web crawler.
-
-- Change your TailwindCSS configuration:
-
-  You can find the config file in the project root, then you can refer to https://tailwindcss.com/docs/configuration to learn how to make your own adjustments.
-
-- Set a default theme (First time load)
-
-  Go to `src\app\@core\services\theme\theme.config.ts` and change the following line of code
-
-  from operating system preference
-
-  ```ts
-  export const defaultBaseTheme = ThemeList.System;
-  ```
-
-  to light mode
-
-  ```ts
-  export const defaultBaseTheme = ThemeList.Light;
-  ```
-
-  or dark mode
-
-  ```ts
-  export const defaultBaseTheme = ThemeList.Dark;
-  ```
-
-## 🗑️ Remove features
-
-There are certain features that you may or may not like to have in your projects, and here's how to remove them:
-
-### 🌠 Husky & commitlint
-
-> Husky allows you to easily run scripts on Git Hooks & commitlint validates if a commit message follows a certain convention.
-
-- Remove execution of tests and linting on pre-commit:
-
-  - Go to `angular-boilerplate\.husky` and remove the npm scripts inside the `pre-commit` file or the file itself.
-
-- Remove execution of build on pre-push:
-
-  - Go to `angular-boilerplate\.husky` and remove the npm scripts inside the `pre-push` file or the file itself.
-
-- Remove conventional commit messages validation:
-
-  1. Go to `angular-boilerplate\.husky` and remove the command `npx commitlint --edit $1` inside the `commit-msg` file or the file itself.
-  2. Remove the file `angular-boilerplate\.commitlintrc`.
-  3. Run the following command:
-
-  ```
-  npm uninstall @commitlint/cli @commitlint/config-conventional
-  ```
-
-  OR
-
-  ```
-  yarn remove @commitlint/cli @commitlint/config-conventional
-  ```
-
-- Fully remove Husky & commitlint
-
-  1. Remove the folder `angular-boilerplate\.husky`.
-  2. Remove the file `angular-boilerplate\.commitlintrc`.
-  3. Run the following commands:
-
-  ```
-  npm uninstall husky @commitlint/cli @commitlint/config-conventional
-  ```
-
-  OR
-
-  ```
-  yarn remove husky @commitlint/cli @commitlint/config-conventional
-  ```
-
-### 🌠 GitHub Actions workflows
-
-> A GitHub Action workflow is a configurable automated process made up of one or more jobs that will help us to validate if some actions pass before we integrate new code into the repository (E.g., run unit tests on pull-requests or branch pushes).
-
-- Remove CodeQL analysis:
-
-  - Go to `angular-boilerplate\.github\workflows` and remove the file codeql-analysis.yml
-
-- Remove tests workflow:
-
-  - Go to `angular-boilerplate\.github\workflows` and remove the file test.yml
-
-### 🌠 TailwindCSS
-
-> TailwindCSS is a utility-first CSS Framework fully customizable & fully tree shakeable. If you want to replace it with another CSS framework or don't want to use a CSS framework at all, you can easily remove it from the project.
-
-1. Remove `angular-boilerplate\tailwind.config.js` file.
-2. Run the following command:
-
-```
-npm uninstall tailwindcss autoprefixer postcss
+```sh
+npx degit juanmesa2097/angular-boilerplate my-app && cd my-app && ./scripts/rename_project.sh my-app
 ```
 
-OR
+### Install dependencies
 
+```sh
+pnpm install # run `npm install -g pnpm` if you don't have pnpm installed
 ```
-yarn remove tailwindcss autoprefixer postcss
+
+### Run project
+
+```sh
+pnpm dev
 ```
 
-## ⛩️ Project structure
+---
 
-```console
-├───app
-│   ├───@core
-│   │   ├───directives
-│   │   │   └───click-outside
-│   │   ├───guards
-│   │   ├───interceptors
-│   │   ├───pipes
-│   │   │   └───bytes
-│   │   ├───services
-│   │   │   ├───seo
-│   │   │   └───theme
-│   │   ├───structs
-│   │   └───utils
-│   ├───components
-│   │   ├───footer
-│   │   ├───header
-│   │   └───layout
-│   ├───pages
-│   │   ├───private
-│   │   │   ├───dashboard
-│   │   │   ├───settings
-│   │   │   │   ├───account
-│   │   │   │   ├───appearance
-│   │   │   │   ├───billing
-│   │   │   │   ├───blocked-users
-│   │   │   │   ├───notifications
-│   │   │   │   ├───security
-│   │   │   │   └───security-log
-│   │   │   └───user
-│   │   │       ├───my-profile
-│   │   │       └───overview
-│   │   └───public
-│   │       ├───auth
-│   │       │   ├───forgot-password
-│   │       │   ├───forgot-password-email-sent
-│   │       │   ├───password-reset
-│   │       │   ├───password-reset-failed
-│   │       │   ├───password-reset-succeeded
-│   │       │   ├───sign-in
-│   │       │   ├───sign-up
-│   │       │   └───_services
-│   │       ├───home
-│   │       └───not-found
-│   └───router
-├───assets
-│   └───icons
-├───environments
-└───theme
-    ├───01-base
-    ├───02-components
-    └───03-utilities
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/juanmesa2097/angular-boilerplate)
+
+## 📝 Checklist
+
+Please review this checklist and modify it as necessary to meet your project requirements.
+
+- [ ] Run the `./scripts/rename_project.sh` script to rename the project.
+- [ ] Change the title in `src/index.html` and the favicon in `src/favicon.ico` to match your project.
+- [ ] Decide whether to continue using [simple-git-hooks](https://github.com/toplenboren/simple-git-hooks) and [lint-staged](https://github.com/okonet/lint-staged) for your project.
+- [ ] Clean up the README file to provide clear instructions about your project.
+- [ ] Modify the pages in the project to meet your specific requirements.
+
+## 📦 Deploy to Vercel
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/juanmesa2097/angular-boilerplate)
+
+## 📦 Deploy to Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/juanmesa2097/angular-boilerplate)
+
+## 🐳 Docker
+
+Create an image of the project.
+
+```sh
+docker buildx build -t angular-boilerplate:latest .
+```
+
+Run the image of the project.
+
+```sh
+docker run --rm -p 8080:80 -d angular-boilerplate:latest
 ```
 
 ## 🧙‍♂️ Commands
 
-| Command       | Description                                       | NPM                   | Yarn               | Background command                                          |
-| ------------- | ------------------------------------------------- | --------------------- | ------------------ | ----------------------------------------------------------- |
-| ng            | See available commands                            | npm run ng            | yarn ng            | ng                                                          |
-| start         | Run your app in development mode                  | npm start             | yarn start         | ng serve                                                    |
-| build         | Build your app                                    | npm run build         | yarn build         | ng build                                                    |
-| build:prod    | Build your app ready for production               | npm run build:prod    | yarn build:prod    | ng build --prod --build-optimizer --aot --stats-json        |
-| test:unit     | Run your unit tests                               | npm run test          | yarn test          | ng test                                                     |
-| test:e2e      | Run your e2e tests                                | npm run e2e           | yarn e2e           | ng e2e                                                      |
-| test:coverage | Run your unit tests & generates a coverage report | npm run test:coverage | yarn test:coverage | ng test --coverage                                          |
-| lint          | Use ESLint to lint your app                       | npm run lint          | yarn lint          | ng lint                                                     |
-| analyze       | Open webpack-bundle-analyzer                      | npm run analyze       | yarn analyze       | webpack-bundle-analyzer dist/angular-boilerplate/stats.json |
+| Command         | Description                                              | npm                     | yarn                 | pnpm                 |
+| --------------- | -------------------------------------------------------- | ----------------------- | -------------------- | -------------------- |
+| `dev`           | Starts the development server                            | `npm run dev`           | `yarn dev`           | `pnpm dev`           |
+| `dev:host`      | Starts the development server with a custom host         | `npm run dev`           | `yarn dev`           | `pnpm dev`           |
+| `build`         | Builds the production code                               | `npm run build`         | `yarn build`         | `pnpm build`         |
+| `watch`         | Builds the production code and watches for changes       | `npm run watch`         | `yarn watch`         | `pnpm watch`         |
+| `test`          | Runs the unit tests                                      | `npm run test`          | `yarn test`          | `pnpm test`          |
+| `test:e2e`      | Open Cypress                                             | `npm run test`          | `yarn test`          | `pnpm test`          |
+| `test:headless` | Runs the unit tests in headless mode                     | `npm run test:headless` | `yarn test:headless` | `pnpm test:headless` |
+| `lint`          | Runs the linter                                          | `npm run lint`          | `yarn lint`          | `pnpm lint`          |
+| `lint:fix`      | Runs the linter and fixes any linting errors             | `npm run lint:fix`      | `yarn lint:fix`      | `pnpm lint:fix`      |
+| `lint:staged`   | Runs the linter on staged files                          | `npm run lint:staged`   | `yarn lint:staged`   | `pnpm lint:staged`   |
+| `stylelint`     | Runs the style linter                                    | `npm run stylelint`     | `yarn stylelint`     | `pnpm stylelint`     |
+| `stylelint:fix` | Runs the style linter and fixes any style linting errors | `npm run stylelint:fix` | `yarn stylelint:fix` | `pnpm stylelint:fix` |
+| `format`        | Formats the code with prettier                           | `npm run format`        | `yarn format`        | `pnpm format`        |

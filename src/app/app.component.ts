@@ -1,34 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SeoService } from '@core/services/seo';
-import { ThemeService } from '@core/services/theme';
-import { Path } from '@core/structs';
-import { Observable } from 'rxjs';
-import { AuthService } from './pages/public/auth/_services/auth.service';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '@lib/services';
+import { ThemeService } from '@lib/services/theme';
+import { LayoutHorizontalComponent } from './lib/components/layouts/layout-horizontal/layout-horizontal.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, RouterModule, LayoutHorizontalComponent],
+    templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  isLoggedIn$!: Observable<boolean>;
+    isAuthenticated$ = inject(AuthService).isAuthenticated$;
 
-  constructor(
-    private router: Router,
-    private seoService: SeoService,
-    private themeService: ThemeService,
-    private authService: AuthService,
-  ) {}
+    private readonly _themeService = inject(ThemeService);
 
-  ngOnInit(): void {
-    this.seoService.init();
-    this.themeService.init();
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
-  }
-
-  onLogout(): void {
-    this.authService.signOut();
-    this.router.navigate([`/${Path.SignIn}`]);
-  }
+    ngOnInit(): void {
+        this._themeService.init();
+    }
 }
